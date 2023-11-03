@@ -1,0 +1,27 @@
+footer{
+    padding: 10px;
+    background-color: #343541;
+}
+footer .contact-app{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 0px;
+}
+.contact-app a{
+    display: block;
+    font-size: 23px;
+    color: white;
+    transition: 0.3s;
+}
+.contact-app a:hover{
+    color: gray;
+    transform: translateY(-3px);
+    transition: 0.3s;
+}
+.copyright{
+    text-align: center;
+    padding-top: 10px;
+    font-weight: bold;
+    color: white;
+}

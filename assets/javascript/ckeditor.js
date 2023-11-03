@@ -1,0 +1,12 @@
+CKEDITOR.replace('description', {
+    language: 'en',
+    toolbar: 'Basic',
+    width: '100%',
+    height: '300px'
+});
+CKEDITOR.replace('details', {
+    language: 'en',
+    toolbar: 'Basic',
+    width: '100%',
+    height: '300px'
+});
