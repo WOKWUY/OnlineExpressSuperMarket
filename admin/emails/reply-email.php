@@ -1,3 +1,4 @@
+<a href="?room=emails" class="back"><i class="fa-solid fa-left-long"></i></a>
 <form class="input" action="?action=reply-email&email=<?= (isset($_GET["email"])) ? $_GET["email"] : "" ?>" method="POST" enctype="multipart/form-data" onsubmit="return validateReplyEmail()">
     <h1>Reply Email</h1>
     <label for="subject">Subject</label>

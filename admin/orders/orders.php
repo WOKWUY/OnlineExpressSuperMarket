@@ -57,7 +57,7 @@
                 <!-- XỬ LÍ HIỂN THỊ CHO ĐẸP -->
                 <span class="span-<?= $colorST ?>"><?= $status ?></span>
             </td>
-            <td><a class="black" href="">Details</a></td>
+            <td><a class="black" href="?room=note-details&<?= $order['id'] ?>">Details</a></td>
             <td class="actions">
                 <form action="" method="POST">
                     <!-- KIỂM TRA ĐƠN HÀNG ĐÃ CÓ AI CHỊU TRÁCH NHIỆM HAY CHƯA -->
