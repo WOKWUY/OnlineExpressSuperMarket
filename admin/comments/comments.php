@@ -3,10 +3,10 @@
     if(isset($result)){
         ?>
             <tr>
-                <th>ID</th>
                 <th>User ID</th>
-                <th>Category Name</th>
-                <th>Description</th>
+                <th>Product ID</th>
+                <th>Content</th>
+                <th>Create Date</th>
                 <th>Rate</th>
                 <th>Actions</th>
             </tr>

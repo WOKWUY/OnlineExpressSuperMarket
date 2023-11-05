@@ -47,6 +47,7 @@ sendMail.addEventListener("click", () => {
           name.value = "";
           email.value = "";
           message.value = "";
+          message.style.borderColor = "gray";
           /* ---------------------------- RESET VALUE INPUT --------------------------- */
         } else if (result === "Chưa nhập đầy đủ thông tin") {
           Swal.fire({

@@ -230,8 +230,8 @@ form.input{
     transition: 0.2s;
 }
 .input textarea:focus, input:focus{
-    border-color: #6ea8fe;
-    outline: 3px solid #6ea8fe;
+    border-color: #fd411b;
+    outline: 3px solid #ff2a00 ;
     transition: 0.1s;
     border-radius: 2px;
 }

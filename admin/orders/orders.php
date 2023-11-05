@@ -19,7 +19,9 @@
         <tr>
             <td><?= $order['id'] ?></td>
             <td><?= $order['userId'] ?></td>
-            <td><?= $order['userIdHandle'] ?></td>
+            <td>
+                <?= ($order['userIdHandle'] === 0) ? "not yet" : $order['userIdHandle'] ?>
+            </td>
             <td><?= $order['createdate'] ?></td>
             <td><?= $order['total'] ?></td>
             <td>

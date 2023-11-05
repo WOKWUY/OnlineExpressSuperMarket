@@ -20,6 +20,7 @@ include './models/category-model.php';
 include './models/product-model.php';
 include './models/comment-model.php';
 include './models/banner-model.php';
+include './models/cart-model.php';
 /* ---------------------------------- MODEL --------------------------------- */
 /* ---------------------------------- CONTROLLER --------------------------------- */
 include './controllers/user-controller.php';
@@ -27,12 +28,14 @@ include './controllers/category-controller.php';
 include './controllers/product-controller.php';
 include './controllers/comment-controller.php';
 include './controllers/banner-controller.php';
+include './controllers/cart-controller.php';
 /* ---------------------------------- CONTROLLER --------------------------------- */
 $db = require './config/database.php';
 $productController = new Product_Controller($db);
 $categoryController = new Category_Controller($db);
 $commentController = new Comment_Controller($db);
 $bannerController = new Banner_Controller($db);
+$cartController = new Cart_Controller($db);
 /* -------------------------------- VIEW MAIN (ROUTER) ------------------------------- */
 if(!empty(PAGE)){
     if(PAGE === 'home'){
@@ -40,7 +43,7 @@ if(!empty(PAGE)){
     }elseif(PAGE === 'details'){
         $productController->detailsProductWeb();
     }elseif(PAGE === 'cart'){
-        include './views/cart.php';
+        $cartController->showCartList();
     }elseif(PAGE === 'checkout'){
         include './views/checkout.php';
     }elseif(PAGE === 'contact'){

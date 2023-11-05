@@ -28,10 +28,11 @@
                     <span class="cost-pdts">$<?= $product['price'] ?> </span>
                     <span class="price-pdts-end"> $5555</span>
                 </div>
-                <form action="" method="POST">
+                <form action="" method="POST" onsubmit="return false">
                     <div class="control-quantity">
+                        <input type="hidden" id="productId" value="<?= (isset($_GET["id"])) ? $_GET["id"] : "" ?>">
                         <button type="button" id="down-qtt"><i class="fa-solid fa-minus"></i></button>
-                        <input type="number" value="1" name="quantity-add-cart" id="quantity_add_cart">
+                        <input type="number" value="1" id="quantity_add_cart">
                         <button type="button" id="up-qtt"><i class="fa-solid fa-plus"></i></button>
                     </div>
                     <button type="submit" id="add-to-cart">Add to cart</button>

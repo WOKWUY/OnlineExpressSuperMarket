@@ -30,5 +30,11 @@ class Order_Controller{
         $alertUpdate = $this->orderModel->receiveOrder();
         include './orders/orders.php';
     }
+    function numOrder($userId){
+        return $this->orderModel->orderNum($userId);
+    }
+    function numBoom($userId){
+        return $this->orderModel->boomNum($userId);
+    }
 }
 ?>

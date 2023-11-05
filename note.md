@@ -22,5 +22,5 @@ Các div phải trong main
 - Statistical -> viết query lấy dữ liệu và cập nhật ==> SAU KHI HOÀN THÀNH CHECKOUT
 <!-- ------------------------------ SAU CÙNG ------------------------------- -->
 
+Tạo giao diện trang cart, checkout 
 ADD TO CART AJAX
-- validate email, hiệu ứng chờ sendmail

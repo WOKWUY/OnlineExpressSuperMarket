@@ -50,8 +50,16 @@
                     ?>
                 </strong>
             </td>
-            <td><?= $user['orderNum'] ?></td>
-            <td><?= $user['boomNum'] ?></td>
+            <td>
+                <?php
+                $db = include '../config/database.php';
+                $orderController = new Order_Controller($db);
+                echo $orderController->numOrder($user['id']);
+                ?>
+            </td>
+            <td>
+                <?= $orderController->numBoom($user['id']) ?>
+            </td>
             <td class="actions">
                 <?php 
                 if($role !== 'admin'){ // Nếu người dùng không phải admin

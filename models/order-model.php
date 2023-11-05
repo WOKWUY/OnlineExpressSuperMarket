@@ -113,5 +113,34 @@ class Order_Model{
         return $mess;
     }
     /* ----------------------------- RECEIVE ORDER ---------------------------- */
+    /* -------------------------------- ORDER NUM ------------------------------- */
+    function orderNum($userId){
+        $stmt = $this->db->prepare("SELECT * FROM orders WHERE userId = ?");
+        $stmt->bind_param("i", $userId);
+        if($stmt->execute()){
+            $result = $stmt->get_result();
+            $row = $result->num_rows;
+            return $row;
+        }
+    }
+    /* -------------------------------- ORDER NUM ------------------------------- */
+        /* -------------------------------- ORDER BOM ------------------------------- */
+        function boomNum($userId){
+            $status = "boom";
+            $stmt = $this->db->prepare("SELECT * FROM orders WHERE userId = ? AND status = ?");
+            $stmt->bind_param("is", $userId, $status);
+            if($stmt->execute()){
+                $result = $stmt->get_result();
+                $row = $result->num_rows;
+                if($row > 3){
+                    $newStatus = "disable";
+                    $disable = $this->db->prepare("UPDATE users SET status = ? WHERE id = ?");
+                    $disable->bind_param("si", $newStatus, $userId);
+                    $disable->execute();
+                }
+                return $row;
+            }
+        }
+        /* -------------------------------- ORDER BOM ------------------------------- */
 }
 ?>

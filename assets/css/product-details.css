@@ -52,7 +52,7 @@
     text-decoration: line-through;
 }
 .price-pdts-end{
-    color: #FF5F00;
+    color: #ff2a00;
     font-size: 25px;
 }
 .control-quantity{
@@ -92,10 +92,10 @@ button#add-to-cart{
     padding: 10px 60px;
     margin: 10px 0px;
     font-size: 16px;
-    background-color: #FF5F00;
+    background-color: #ff2a00;
     color: white;
     font-weight: bold;
-    border: 2px solid #FF5F00;
+    border: 2px solid #ff2a00;
     border-radius: 2px;
     font-family: 'Cabin', sans-serif;
 }
@@ -155,7 +155,7 @@ button#add-to-cart:hover{
 }
 .item-code-discount{
     padding: 10px;
-    border: 1px solid #FF5F00;
+    border: 1px solid #ff2a00;
     background-color: #fff4f4;
     display: grid;
     grid-template-columns: repeat(3,1fr);
@@ -173,7 +173,7 @@ button#add-to-cart:hover{
 }
 .add-code-discount button{
     padding: 2px;
-    background-color: #FF5F00;
+    background-color: #ff2a00;
     color: white;
     border: none;
     font-size: 12px;

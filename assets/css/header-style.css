@@ -1,5 +1,5 @@
 header{
-    background: linear-gradient(90deg, #ee4e2e,#ee4e2e);
+    background: linear-gradient(90deg, #fd411b,#ff2a00);
     padding: 35px 30px 10px 30px;
 }
 .header-top{
@@ -64,9 +64,6 @@ nav ul li a:hover::before{
     border-radius: 2px;
     outline: none;
 }
-.search input:focus{
-    border: 2px solid #ee4e2e;
-}
 .search input::placeholder{
     font-size: 13px;
 }
@@ -74,7 +71,7 @@ nav ul li a:hover::before{
     padding: 5px 20px;
     font-size: 15px;
     border: none;
-    background-color: #ee4e2e;
+    background-color: #ff2a00;
     color: white;
     border-radius: 3px;
 }

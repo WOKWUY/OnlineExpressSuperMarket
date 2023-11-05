@@ -1,8 +1,8 @@
 let addImageMore = document.getElementById("addImageMore");
-let productId = document.getElementById("productId").value;
+let productId = document.getElementById("productId");
 let imageMore = document.getElementById("imageMore");
 addImageMore.addEventListener("click",()=>{
-        let cc = imageMore.files[0].name;
+        let image = imageMore.files[0].name;
         let xhr = new XMLHttpRequest();
         xhr.open(
             "POST",
@@ -21,5 +21,5 @@ addImageMore.addEventListener("click",()=>{
                 }
             }
         }
-        xhr.send("imageMore=" + cc + "&productId=" + productId );
+        xhr.send("imageMore=" + image + "&productId=" + productId.value );
 });

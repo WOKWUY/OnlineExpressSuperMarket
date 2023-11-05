@@ -58,8 +58,8 @@
                         </div>
                     </li>
                     <a href="?room=comments"><i class="fa-regular fa-comments"></i> Comments</a>
-                    <a href="?room=orders"><i class="fa-solid fa-cube"></i> Orders</a>
                     <a href="?room=blogs"><i class="fa-solid fa-blog"></i> Blogs</a>
+                    <a href="?room=orders"><i class="fa-solid fa-cube"></i> Orders</a>
                     <a href="?room=emails"><i class="fa-regular fa-envelope"></i> Emails</a>
                     <a href="?room=statistical"><i class="fa-solid fa-chart-line"></i> Statistical</a>
                 </div>
@@ -80,6 +80,7 @@
     <script src="../assets/javascript/ckeditor.js"></script>
     <script src="../assets/javascript/add-image-product.js"></script>
     <script src="../assets/javascript/banners.js"></script>
+    <script src="../assets/javascript/emails.js"></script>
     <!-- /* --------------------------------- SCRIPT --------------------------------- */ -->
 </body>
 </html>

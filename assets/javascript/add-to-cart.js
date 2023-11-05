@@ -1,31 +1,28 @@
 /* ---------------- THÊM SẢN PHẨM TỪ TRANG SẢN PHẨM CHI TIẾT ---------------- */
-/* <div class="product">
-    <input type="text" class="productID" value="1">
-    <button class="add-to-cart">Add to cart</button>
-</div>
-<div class="product">
-    <input type="text" class="productID" value="2">
-    <button class="add-to-cart">Add to cart</button>
-</div> */
 document.addEventListener("DOMContentLoaded", function () { // Giúp đồng bộ thống nhất với HTML
   var addToCart = document.getElementById("add-to-cart");
   var productId = document.getElementById("productId");
-  var quantity = document.getElementById("quantity");
+  var quantity = document.getElementById("quantity_add_cart");
   addToCart.addEventListener('click', ()=>{
       var xhr = new XMLHttpRequest();
-      xhr.open("POST", "../handles/add-to-cart.php", true);
+      xhr.open("POST", "./handles/add-to-cart.php", true);
       xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xhr.onreadystatechange = function (){
         if (xhr.readyState === 4 && xhr.status === 200) {
-            Swal.fire({
-              icon: "success",
-              title: "Success add to cart",
-              showConfirmButton: false,
-              timer: 1500,
-            });
+            if(xhr.responseText === "Thành công"){
+                Swal.fire({
+                    icon: "success",
+                    title: "Success add to cart",
+                    showConfirmButton: false,
+                    timer: 1500,
+                });
+                quantity.value = 1;
+            }else{
+                Swal.fire({icon: 'error',title: 'Oops...',text: 'Something went wrong!',});
+            }
           }
       }
-      xhr.send("product_Id=" + productId + "&quantity=" + quantity);
+      xhr.send("productId=" + productId.value + "&quantity=" + quantity.value);
   });
 });
 /* ---------------- THÊM SẢN PHẨM TỪ TRANG SẢN PHẨM CHI TIẾT ---------------- */

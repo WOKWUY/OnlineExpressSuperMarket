@@ -20,7 +20,7 @@
     box-shadow: 0px 1px 2px #dadada;
 }
 .category-list ul li:nth-child(1){
-    background: linear-gradient(90deg, #ee4e2e,#ee4e2e);
+    background: linear-gradient(90deg, #fd411b,#fd411b);
     color: white;
     font-weight: bold;
     margin-bottom: 1px;
@@ -40,7 +40,7 @@
     transition: 0.2s;
 }
 .category-list ul li a:hover{
-    background: linear-gradient(90deg, #ee4e2e,#ee4e2e);
+    background: linear-gradient(90deg, #fd411b,#fd411b);
     color: white;
     transition: 0.2s;
     font-weight: bold;
@@ -79,14 +79,14 @@
     color: black;
 }
 #best-seller-list a:hover{
-    color: #ee4e2e;
+    color: #fd411b;
     transition: 0.2s;
     font-weight: bold;
 }
 .title-best-seller{
     display: block;
     padding: 10px 15px;
-    background: linear-gradient(90deg, #ee4e2e,#ee4e2e);
+    background: linear-gradient(90deg, #fd411b,#fd411b);
     color: white;
     font-weight: bold;
     text-transform: uppercase;
@@ -139,7 +139,7 @@
 .title:hover{
     font-weight: bold;
     transition: 0.2s;
-    color: #ee4e2e;
+    color: #fd411b;
 }
 .price{
     font-weight: bold;
@@ -153,7 +153,7 @@
     color: gray;
 }
 .price span{
-    color: #ee4e2e;
+    color: #fd411b;
 }
 /* PRODUCT */
 /* --------------------------------- REPONSE -------------------------------- */

@@ -11,7 +11,18 @@
                 <input type="text" name="name" id="name" placeholder="Name">
                 <input type="email" name="email" id="email" placeholder="Email">
                 <textarea name="message" id="message" cols="30" rows="10" placeholder="Message"></textarea>
-                <button id="sendMail">Submit</button>
+                <button id="sendMail" class="btn-53">
+                <div class="original">Submit</div>
+                <div class="letters">
+                    
+                    <span>S</span>
+                    <span>U</span>
+                    <span>B</span>
+                    <span>M</span>
+                    <span>I</span>
+                    <span>T</span>
+                </div>
+                </button>
             </div>
         </div>
         <div class="infor-contact">
