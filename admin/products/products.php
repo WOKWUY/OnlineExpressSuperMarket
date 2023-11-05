@@ -23,7 +23,7 @@
                 <td><?= $product['categoryId'] ?></td>
                 <td>
                     <img width="100px" src="../assets/image/<?= $product['image'] ?>" alt="">
-                    <a href="?room=images&productId=<?= $product['id'] ?>" class="image-more"><i class="fa-regular fa-images"></i></a>
+                    <a href="?room=images&productId=<?= $product['id'] ?>" class="image-more"><i class="fa-regular fa-image"></i></a>
                 </td>
                 <td class="productNameTD"><?= $product['productName'] ?></td>
                 <td>$<?= $product['price'] ?></td>
@@ -39,11 +39,11 @@
                         $color = "";
                         if($status === "hot"){
                             $color = "red";
-                        }if($status === "new"){
+                        }elseif($status === "new"){
                             $color = "green";
-                        }if($status === "sale"){
+                        }elseif($status === "sale"){
                             $color = "navi";
-                        }if($status === "flashsale"){
+                        }elseif($status === "flashsale"){
                             $color = "yellow";
                         }
                         ?>

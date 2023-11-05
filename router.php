@@ -19,17 +19,20 @@ include './models/user-model.php';
 include './models/category-model.php';
 include './models/product-model.php';
 include './models/comment-model.php';
+include './models/banner-model.php';
 /* ---------------------------------- MODEL --------------------------------- */
 /* ---------------------------------- CONTROLLER --------------------------------- */
 include './controllers/user-controller.php';
 include './controllers/category-controller.php';
 include './controllers/product-controller.php';
 include './controllers/comment-controller.php';
+include './controllers/banner-controller.php';
 /* ---------------------------------- CONTROLLER --------------------------------- */
 $db = require './config/database.php';
 $productController = new Product_Controller($db);
 $categoryController = new Category_Controller($db);
 $commentController = new Comment_Controller($db);
+$bannerController = new Banner_Controller($db);
 /* -------------------------------- VIEW MAIN (ROUTER) ------------------------------- */
 if(!empty(PAGE)){
     if(PAGE === 'home'){

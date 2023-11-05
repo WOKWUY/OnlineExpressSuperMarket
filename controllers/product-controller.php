@@ -20,9 +20,6 @@ class Product_Controller{
         $maylike = $this->productModel->showProductList();
         include $url;
     }
-    function addProductView(){
-        include './products/add-product.php';
-    }
     function addProduct(){
         $categories = $this->categoryModel->showCategoriesList();
         $result = $this->productModel->createProduct();

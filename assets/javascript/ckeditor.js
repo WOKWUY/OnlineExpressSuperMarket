@@ -10,3 +10,9 @@ CKEDITOR.replace('details', {
     width: '100%',
     height: '300px'
 });
+CKEDITOR.replace('message', {
+    language: 'en',
+    toolbar: 'Basic',
+    width: '100%',
+    height: '300px'
+});

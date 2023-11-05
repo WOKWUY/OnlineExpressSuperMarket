@@ -48,11 +48,9 @@
                 $colorST = "";
                 if($status === "paid"){
                     $colorST = "green";
-                }
-                if($status === "unpaid"){
+                }elseif($status === "unpaid"){
                     $colorST = "red";
-                }
-                if($status === "boom"){
+                }elseif($status === "boom"){
                     $colorST = "red";
                 }
                 ?>

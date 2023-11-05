@@ -30,6 +30,12 @@ class Comment_Controller{
         $result = $this->commentModel->createComment();
         return $result;
     }
+    function updateRateComment(){
+        $update = $this->commentModel->updateRateComment();
+        if($update){
+            header("Location: ?room=comments");
+        }
+    }
     function deleteComment(){
         $result = $this->commentModel->deleteComment();
         return $result; 

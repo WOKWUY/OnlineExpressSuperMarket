@@ -136,6 +136,7 @@ class User_Model{
                                         if(password_verify($clean_password, $db_password)){ // Check password
                                             session_start();
                                             $userId = $row['id'];
+                                            $_SESSION['user']['token'] = $row['token'];
                                             $_SESSION['user']['role'] = $row['role'];
                                             $_SESSION["user"]['id'] = $userId;
                                             date_default_timezone_set('Asia/Ho_Chi_Minh'); // Cấu hình giờ Việt Nam
@@ -170,6 +171,30 @@ class User_Model{
         return $mess;
     }
     /* --------------------------- CHECK ACCOUNT LOGIN -------------------------- */
+    function checkToken(){
+        $mess = "";
+        if(!isset($_SESSION["user"])){
+            session_start();
+        }
+        $token = (isset($_SESSION["user"])) ? $_SESSION["user"]['token'] : "";
+        if(isset($_SESSION["user"]["token"]) && !empty($token)){
+            $stmt = $this->db->prepare("SELECT * FROM users WHERE token = ?");
+            $stmt->bind_param("s", $token);
+            if($stmt->execute()){
+                $result = $stmt->get_result();
+                if($result->num_rows > 0){
+                    $mess = "successtoken";
+                }else{
+                    $mess = "Lỗi";
+                }
+            }else{
+                $mess = "Lỗi";
+            }
+        }else{
+            $mess = "Lỗi";
+        }
+        return $mess;
+    }
     /* --------------------------- FORGOT PASSWORD -------------------------- */
     function forgotPassword(){
         if($_SERVER["REQUEST_METHOD"] === 'POST'){
@@ -298,6 +323,21 @@ class User_Model{
         }
     }
     /* --------------------------- SHOW USER -------------------------- */
+    /* -------------------------- SHOW INFORMATION USER ------------------------- */
+    function showInformationUser(){
+        $id = (isset($_GET["id"])) ? $_GET["id"] : "";
+        if(!empty($id) && is_numeric($id)){
+            $stmt = $this->db->prepare("SELECT * FROM userinformation WHERE userId = ?");
+            $stmt->bind_param("i", $id);
+            if($stmt->execute()){
+                $result = $stmt->get_result();
+                if($result->num_rows > 0){
+                    return $result;
+                }
+            }
+        }
+    }
+    /* -------------------------- SHOW INFORMATION USER ------------------------- */
     /* --------------------------- SHOW LOGS -------------------------- */
     function showLogs(){
         $mess = "";

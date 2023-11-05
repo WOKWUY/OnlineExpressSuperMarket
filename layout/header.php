@@ -32,7 +32,9 @@
                         <a href="#"><i class="fa-brands fa-php"></i> I am <?= isset($_SESSION["user"]) ? $_SESSION['user']['role'] . " - " . $_SESSION['user']['id'] : ""  ?></a>
                         <a href="?page=my-profile"><i class="fa-regular fa-user"></i> Profile</a>
                         <a href="?page=order"><i class="fa-solid fa-bag-shopping"></i> My Order</a>
+                        <!-- NHỚ VALIDATE  -->
                         <a href="?page=admin"><i class="fa-solid fa-screwdriver-wrench"></i> Admin</a>
+                        <!-- NHỚ VALIDATE  -->
                         <a href="./auth/?action=logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
                     </div>
                 </div>
@@ -53,8 +55,8 @@
     <nav>
         <ul>
             <li><a href="">Discount Code</a></li>
-            <li><a href="">Blogs</a></li>
-            <li><a href="">Contact</a></li>
+            <li><a href="?page=blogs">Blogs</a></li>
+            <li><a href="?page=contact">Contact</a></li>
             <li><a href="">FAQ</a></li>
         </ul>
     </nav>

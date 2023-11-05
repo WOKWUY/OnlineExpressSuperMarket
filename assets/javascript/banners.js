@@ -1,12 +1,22 @@
-function validateAddCategory(){
-    let categoryName = document.getElementById("categoryName");
+function validateAddBanner(){
+    let image = document.getElementById("image");
+    let url = document.getElementById("url");
+    let type = document.getElementById("type");
     let description = document.getElementById("description");
-    let valid = true;
-    if(categoryName.value == 0){
-        categoryName.style.borderColor = 'red';
+    var valid = true;
+
+    if(image.value == 0){
+        image.style.borderColor = 'red';
         valid = false;
     }else{
-        categoryName.style.borderColor = 'gray';
+        image.style.borderColor = 'gray';
+        valid = true;
+    }
+    if(url.value == 0){
+        url.style.borderColor = 'red';
+        valid = false;
+    }else{
+        url.style.borderColor = 'gray';
         valid = true;
     }
     if(description.value == 0){

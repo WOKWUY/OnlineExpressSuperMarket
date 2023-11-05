@@ -18,7 +18,10 @@
         foreach ($result as $users => $user) :
         ?>
         <tr>
-            <td><?= $user['id'] ?></td>
+            <td>
+                <?= $user['id'] ?>
+                <a href="?room=information-user&id=<?= $user['id'] ?>" class="inforUserMore"><i class="fa-solid fa-magnifying-glass"></i></a>
+            </td>
             <td><?= $user['userName'] ?></td>
             <td><?= $user['email'] ?></td>
             <td>
@@ -76,7 +79,7 @@
         <?php // HTML
         endforeach;
     }else{
-        ?><span class="span-red">Không có dữ liệu</span><?php
+        ?><span class="span-red">Empty</span><?php
     }
     ?>
     <!-- /* ---------------------------------- DATA ---------------------------------- */ -->

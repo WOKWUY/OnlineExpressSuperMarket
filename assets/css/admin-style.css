@@ -59,6 +59,25 @@ table td,th{
     padding: 5px 10px;
     overflow-wrap: break-word;
 }
+.inforUserMore{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: black;
+    border: 2px solid black;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 0px;
+    scale: 0;
+    height: 100%;
+    transition: 0.2s;
+}
+td:hover .inforUserMore{
+    scale: 1;
+    transition: 0.2s;
+}
 .productNameTD{
     max-width: 250px;
     text-align: left;
@@ -249,9 +268,12 @@ td:hover a.image-more{
     transform: translate(-50%, -50%);
     opacity: 0.8;
 }
+td.textleft{
+    text-align: left;
+}
 /* CHART JS */
 #myChart{
-    width: 100%;
+    min-width: 100%;
 }
 /* CHART JS */
 .rlvcmt{

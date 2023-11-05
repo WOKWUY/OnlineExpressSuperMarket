@@ -30,6 +30,10 @@ class User_Controller{
         $result = $this->userModel->showUsers();
         include './users/users.php';
     }
+    function showInformationUser(){
+        $result = $this->userModel->showInformationUser();
+        include './users/information-user.php';
+    }
     function showLogs(){
         $result = $this->userModel->showLogs();
         include './users/logs.php';
@@ -42,6 +46,10 @@ class User_Controller{
     }
     function disableBomm(){
         $this->userModel->disableBecauseBoom();
+    }
+    function checkToken(){
+        $result = $this->userModel->checkToken();
+        return $result;
     }
 }
 ?>

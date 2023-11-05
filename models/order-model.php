@@ -4,6 +4,7 @@ class Order_Model{
     function __construct(mysqli $db){
         $this->db = $db;
     }
+    /* ----------------------------- SHOW ORDER LIST ---------------------------- */
     function showOrderList(){
         $stmt = $this->db->prepare("SELECT * FROM orders");
         if($stmt->execute()){
@@ -13,6 +14,8 @@ class Order_Model{
             }
         }
     }
+    /* ----------------------------- SHOW ORDER LIST ---------------------------- */
+    /* ----------------------------- UPDATE ORDER ---------------------------- */
     function updateOrder(){
         $mess = "";
         $id = (isset($_GET["id"])) ? $_GET["id"] : "";
@@ -39,6 +42,8 @@ class Order_Model{
         }
         return $mess;
     }
+    /* ----------------------------- UPDATE ORDER ---------------------------- */
+    /* ----------------------------- ORDER DETAILS ---------------------------- */
     function orderDetails(){
         $orderId = (isset($_GET["orderId"])) ? $_GET["orderId"] : "";
         if(!empty($orderId)){
@@ -52,6 +57,8 @@ class Order_Model{
             }
         }
     }
+    /* ----------------------------- ORDER DETAILS ---------------------------- */
+    /* ----------------------------- DELETE ORDER ---------------------------- */
     function deleteOrder(){
         $mess = "";
         $id = (isset($_GET["id"])) ? $_GET["id"] : "";
@@ -68,6 +75,8 @@ class Order_Model{
         }
         return $mess;
     }
+    /* ----------------------------- DELETE ORDER ---------------------------- */
+    /* ----------------------------- DELETE ORDER DETAILS ---------------------------- */
     function deleteOrderDetails(){
         $mess = "";
         $productId = (isset($_GET["id"])) ? $_GET["id"] : "";
@@ -84,6 +93,8 @@ class Order_Model{
         }
         return $mess;
     }
+    /* ----------------------------- DELETE ORDER DETAILS ---------------------------- */
+    /* ----------------------------- RECEIVE ORDER ---------------------------- */
     function receiveOrder(){
         $mess = "";
         $action = (isset($_GET["action"])) ? $_GET["action"] : "";
@@ -101,5 +112,6 @@ class Order_Model{
         }
         return $mess;
     }
+    /* ----------------------------- RECEIVE ORDER ---------------------------- */
 }
 ?>

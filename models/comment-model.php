@@ -4,6 +4,7 @@ class Comment_Model{
     function __construct(mysqli $db){
         $this->db = $db;
     }
+    /* ---------------------------- SHOW LIST COMMENT --------------------------- */
     function showListComment(){
         $stmt = $this->db->prepare("SELECT * FROM comments");
         if($stmt->execute()){
@@ -13,6 +14,8 @@ class Comment_Model{
             }
         }
     }
+    /* ---------------------------- SHOW LIST COMMENT --------------------------- */
+    /* ---------------------------- SHOW LIST COMMENT FOR PRODUCT --------------------------- */
     function showListCommentForProduct(){
         $productId = (isset($_GET["id"])) ? $_GET["id"] : "";
         if(!empty($productId) && is_numeric($productId)){
@@ -32,6 +35,8 @@ class Comment_Model{
             }
         }
     }
+    /* ---------------------------- SHOW LIST COMMENT FOR PRODUCT --------------------------- */
+    /* ---------------------------- SHOW LIST COMMENT DETAILS --------------------------- */
     function showListCommentDetails(){
         $productId = (isset($_GET["productId"])) ? $_GET["productId"] : "";
         if(!empty($productId) && is_numeric($productId)){
@@ -45,6 +50,8 @@ class Comment_Model{
             }
         }
     }
+    /* ---------------------------- SHOW LIST COMMENT DETAILS --------------------------- */
+    /* ---------------------------- CREATE COMMENT --------------------------- */
     function createComment(){
         $content = $_POST["content"];
         $contentTrimed = trim($content);
@@ -74,6 +81,8 @@ class Comment_Model{
             }
         }
     }
+    /* ---------------------------- CREATE COMMENT --------------------------- */
+    /* ---------------------------- QUANTITY COMMENT --------------------------- */
     function quantityComment(){
         $productId = (isset($_GET["id"])) ? $_GET["id"] : "";
         if(!empty($productId) && is_numeric($productId)){
@@ -86,6 +95,8 @@ class Comment_Model{
             }
         }
     }
+    /* ---------------------------- QUANTITY COMMENT --------------------------- */
+    /* ---------------------------- QUANTITY COMMENT ADMIN --------------------------- */
     function quantityCommentAdmin($productId){
         if(!empty($productId) && is_numeric($productId)){
             $stmt = $this->db->prepare("SELECT * FROM comments WHERE productId = ?");
@@ -97,6 +108,27 @@ class Comment_Model{
             }
         }
     }
+    /* ---------------------------- QUANTITY COMMENT ADMIN --------------------------- */
+    /* ---------------------------- UPDATE RATE COMMENT --------------------------- */
+    function updateRateComment(){
+        $mess = "";
+        $content = (isset($_GET["content"])) ? $_GET["content"] : "";
+        $value = (isset($_POST["value"])) ? $_POST["value"] : "";
+        if(!empty($content) && !empty($value)){
+            $stmt = $this->db->prepare("UPDATE comments SET rate = ? WHERE content = ?");
+            $stmt->bind_param("ss", $value, $content);
+            if($stmt->execute()){
+                $mess = "Thành công";
+            }else{
+                $mess = "Lỗi";
+            }
+        }else{
+            $mess = "Lỗi";
+        }
+        return $mess;
+    }
+    /* ---------------------------- UPDATE RATE COMMENT --------------------------- */
+    /* ---------------------------- DELETE COMMENT --------------------------- */
     function deleteComment(){
         $mess = "";
         $content = (isset($_POST["content"])) ? $_POST["content"] : "";
@@ -111,6 +143,8 @@ class Comment_Model{
         }
         return $mess;
     }
+    /* ---------------------------- DELETE COMMENT --------------------------- */
+    /* ---------------------------- DELETE COMMENT ADMIN --------------------------- */
     function deleteCommentAdmin(){
         $mess = "";
         $content = (isset($_GET["content"])) ? $_GET["content"] : "";
@@ -127,4 +161,5 @@ class Comment_Model{
         }
         return $mess;
     }
+    /* ---------------------------- DELETE COMMENT ADMIN --------------------------- */
 }

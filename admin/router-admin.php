@@ -1,19 +1,25 @@
 <!-- /* --------------------------------- ROUTER --------------------------------- */ -->
 <?php
 /* ---------------------------------- MODEL --------------------------------- */
-include '../models/user-model.php';
 include '../models/product-model.php';
 include '../models/category-model.php';
 include '../models/order-model.php';
 include '../models/comment-model.php';
+include '../models/banner-model.php';
+include '../models/email-model.php';
 /* ---------------------------------- MODEL --------------------------------- */
 /* ---------------------------------- CONTROLLER --------------------------------- */
-include '../controllers/user-controller.php';
 include '../controllers/product-controller.php';
 include '../controllers/category-controller.php';
 include '../controllers/order-controller.php';
 include '../controllers/comment-controller.php';
+include '../controllers/banner-controller.php';
+include '../controllers/email-controller.php';
 /* ---------------------------------- CONTROLLER --------------------------------- */
+/* ---------------------------------- AUTH ---------------------------------- */ 
+include './auth-role.php'; // Xác thực quyền
+// controller và model user nằm trong auth-role
+/* ---------------------------------- AUTH ---------------------------------- */ 
 define("ROOM", isset($_GET["room"]) ? $_GET["room"] : "");
 define("SUBROOM", isset($_GET["subroom"]) ? $_GET["subroom"] : "");
 define("ACTION", isset($_GET["action"]) ? $_GET["action"] : "");
@@ -24,12 +30,16 @@ $categoryController = new Category_Controller($db);
 $productController = new Product_Controller($db);
 $orderController = new Order_Controller($db);
 $commentController = new Comment_Controller($db);
+$bannerController = new Banner_Controller($db);
+$emailController = new Email_Controller($db);
 if (!empty(ROOM)) {
     if (ROOM === 'statistical') {
         include './statistical/statistical.php';
     }elseif (ROOM === 'users') {
         $userController->disableBomm();
         $userController->showUserList();
+    }elseif (ROOM === 'information-user') {
+        $userController->showInformationUser();
     }elseif(ROOM === 'logs'){
         $userController->showLogs();
     }elseif (ROOM === 'products') {
@@ -40,6 +50,12 @@ if (!empty(ROOM)) {
         $productController->editProduct();
     }elseif (ROOM === 'images') {
         $productController->showAImageMore();
+    }elseif (ROOM === 'banners') {
+        $bannerController->showBannerList();
+    }elseif(ROOM === 'add-banner'){
+        include './banners/add-banner.php';
+    }elseif(ROOM === 'edit-banner'){
+        $bannerController->editBanner();
     }elseif (ROOM === 'details-product') {
         $productController->detailsProduct();
     }elseif (ROOM === 'add-category') {
@@ -56,6 +72,12 @@ if (!empty(ROOM)) {
         $commentController->showListComment();
     }elseif(ROOM === 'comment-details'){
         $commentController->showListCommentDetails();
+    }elseif(ROOM === 'emails'){
+        $emailController->showEmailList();
+    }elseif(ROOM === 'email-details'){
+        $emailController->showMessageEmail();
+    }elseif(ROOM === 'reply-email'){
+        include './emails/reply-email.php';
     }
     // NOT FOUND
     else {
@@ -95,12 +117,24 @@ if(!empty(ACTION)){
         $orderController->deleteOrderDetails();
     }elseif(ACTION === 'delete-comment'){
         $commentController->deleteCommentAdmin();
+    }elseif(ACTION === 'update-rate-comment'){
+        $commentController->updateRateComment();
     }elseif(ACTION === 'delete-comment-details'){
         $commentController->deleteCommentDetails();
+    }elseif(ACTION === 'add-banner'){
+        $bannerController->addBanner();
+    }elseif(ACTION === 'edit-banner'){
+        $bannerController->editBanner();
+    }elseif(ACTION === 'update-banner'){
+        $bannerController->updateBanner();
+    }elseif(ACTION === 'delete-banner'){
+        $bannerController->deleteBanner();
+    }elseif(ACTION === 'delete-email'){
+        $emailController->deleteEmail();
+    }elseif(ACTION === 'reply-email'){
+        $emailController->replyEmail();
     }
 }
 /* --------------------------------- ACTION --------------------------------- */
 ?>
 <!-- /* --------------------------------- ROUTER --------------------------------- */ -->
-
-

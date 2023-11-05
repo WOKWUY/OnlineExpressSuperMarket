@@ -4,7 +4,7 @@ class Category_Model{
     public function __construct(mysqli $db){
         $this->db = $db;
     }
-    
+    /* --------------------------- SHOW CATEGOIES LIST -------------------------- */
     function showCategoriesList(){
         $stmt = $this->db->prepare("SELECT * FROM categories");
         if($stmt->execute()){
@@ -14,6 +14,8 @@ class Category_Model{
             }
         }
     }
+    /* --------------------------- SHOW CATEGOIES LIST -------------------------- */
+    /* --------------------------- CREATE CATEGOIES -------------------------- */
     function createCategory(){
         $mess = "";
         if($_SERVER["REQUEST_METHOD"] === 'POST'){
@@ -21,7 +23,7 @@ class Category_Model{
                 $userId = $_SESSION["user"]['id'];
                 $categoryName = $_POST["categoryName"];
                 $description = $_POST["description"];
-    
+                
                 if(!empty($categoryName) && !empty($description)){
                     $stmt = $this->db->prepare("INSERT INTO categories (`userId`,`categoryName`,`description`) VALUES (?,?,?)");
                     $stmt->bind_param("iss", $userId, $categoryName, $description);
@@ -37,6 +39,8 @@ class Category_Model{
         }
         return $mess;
     }
+    /* --------------------------- CREATE CATEGOIES -------------------------- */
+    /* --------------------------- DATA CATEGORY OLD -------------------------- */
     function dataCategoryOld(){
         $id = isset($_GET["id"]) ? $_GET["id"] : "";
         if(!empty($id)){
@@ -51,6 +55,8 @@ class Category_Model{
             }
         }
     }
+    /* --------------------------- DATA CATEGORY OLD -------------------------- */
+    /* --------------------------- EDIT CATEGORY -------------------------- */
     function editCategory(){
         $mess = "";
         if($_SERVER["REQUEST_METHOD"] === 'POST'){
@@ -59,7 +65,7 @@ class Category_Model{
                 $userId = $_SESSION["user"]['id'];
                 $categoryName = $_POST["categoryName"];
                 $description = $_POST["description"];
-    
+                
                 if(!empty($id) && !empty($userId) && !empty($categoryName) && !empty($description)){
                     $stmt = $this->db->prepare("UPDATE categories SET userId = ?,categoryName = ?, description = ? WHERE id = ?");
                     $stmt->bind_param("issi", $userId, $categoryName, $description, $id);
@@ -75,6 +81,8 @@ class Category_Model{
         }
         return $mess;
     }
+    /* --------------------------- EDIT CATEGORY -------------------------- */
+    /* --------------------------- DELETE CATEGORY -------------------------- */
     function deleteCategory(){
         $mess = "";
         $id = isset($_GET["id"]) ? $_GET["id"] : "" ;
@@ -89,5 +97,6 @@ class Category_Model{
         }
         return $mess;
     }
+    /* --------------------------- DELETE CATEGORY -------------------------- */
 }
 ?>

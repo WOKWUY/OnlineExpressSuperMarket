@@ -13,16 +13,14 @@ Các div phải trong main
 
 - Thêm 1 bảng lọc theo price + category + status
 
-- Admin: Comment -> Hiển thị + xóa + đánh giá (good, bad, notyet)
 
 
 <!-- ------------------------------ SAU CÙNG ------------------------------- -->
-- Có thể chuyển slide (Tạo mới 1 bảng slide)
 - Có thể phát triển thêm bảng discount code cho từng người dùng (userid - id)
 - Có thể hàm dịch productId thành tên cho dễ đọc
 - Admin: Blogs -> Thêm + sửa + xóa -> Hiển thị lên web (LÀM SAU CÙNG BỔ SUNG - KO QUAN TRỌNG)
 - Statistical -> viết query lấy dữ liệu và cập nhật ==> SAU KHI HOÀN THÀNH CHECKOUT
 <!-- ------------------------------ SAU CÙNG ------------------------------- -->
 
-CHI TIẾT USER 
 ADD TO CART AJAX
+- validate email, hiệu ứng chờ sendmail

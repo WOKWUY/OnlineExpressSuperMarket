@@ -42,26 +42,26 @@ function validateAddProduct(){
         quantity.style.borderColor = 'gray';
         valid = true;
     }
-    if(description.value == 0){
+    if(description.value == ""){
         description.style.borderColor = 'red';
         valid = false;
     }else{
         description.style.borderColor = 'gray';
         valid = true;
     }
-    if(details.value == 0){
+    if(details.value == ""){
         details.style.borderColor = 'red';
         valid = false;
     }else{
         details.style.borderColor = 'gray';
         valid = true;
     }
-    if(valid === false){
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Not fully entered information!',
-        });
-    }
+    // if(!valid){
+    //     Swal.fire({
+    //         icon: 'error',
+    //         title: 'Oops...',
+    //         text: 'Not fully entered information!',
+    //     });
+    // }
     return valid;
 }

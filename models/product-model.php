@@ -4,6 +4,7 @@ class Product_Model{
     function __construct(mysqli $db){
         $this->db = $db;
     }
+    /* ---------------------------- SHOW PRODUCT LIST --------------------------- */
     function showProductList(){
         $stmt = $this->db->prepare("SELECT * FROM products");
         if($stmt->execute()){
@@ -13,9 +14,11 @@ class Product_Model{
             }
         }
     }
+    /* ---------------------------- SHOW PRODUCT LIST --------------------------- */
+    /* ---------------------------- ADD PRODUCT --------------------------- */
     function createProduct(){
         $mess = "";
-
+        
         if(isset($_POST["add-product"])){
             $categoryId = $_POST["categoryId"];
             $image = $_FILES['image']['name'];
@@ -26,7 +29,7 @@ class Product_Model{
             $description = $_POST["description"];
             $details = $_POST["details"];
             $status = "none";
-
+            
             if(!empty($productName) && !empty($image) && !empty($categoryId) && !empty($price) && !empty($quantity) && !empty($description) && !empty($details)){
                 $stmt = $this->db->prepare("INSERT INTO products(`categoryId`, `image`,`productName`,`price`,`discount`,`quantity`,`description`,`details`,`status`) VALUES (?,?,?,?,?,?,?,?,?) ");
                 $stmt->bind_param("issiiisss", $categoryId, $image, $productName, $price, $discount, $quantity, $description, $details, $status);
@@ -41,6 +44,8 @@ class Product_Model{
         }
         return $mess;
     }
+    /* ---------------------------- ADD PRODUCT --------------------------- */
+    /* ---------------------------- DATA PRODUCT OLD --------------------------- */
     function dataProductOld(){
         $id = (isset($_GET["id"])) ? $_GET["id"] : "";
         if(!empty($id)){
@@ -55,6 +60,8 @@ class Product_Model{
             }
         }
     }
+    /* ---------------------------- DATA PRODUCT OLD --------------------------- */
+    /* ---------------------------- EDIT PRODUCT --------------------------- */
     function editProduct(){
         $mess = "";
         if($_SERVER["REQUEST_METHOD"] === 'POST'){
@@ -87,6 +94,8 @@ class Product_Model{
         }
         return $mess;
     }
+    /* ---------------------------- EDIT PRODUCT --------------------------- */
+    /* ----------------------------- DELETE PRODUCT ----------------------------- */
     function deleteProduct(){
         $mess = "";
         $id = (isset($_GET["id"])) ? $_GET["id"] : "";
@@ -103,6 +112,8 @@ class Product_Model{
         }
         return $mess;
     }
+    /* ----------------------------- DELETE PRODUCT ----------------------------- */
+    /* ----------------------------- UPDATE STATUS PRODUCT ----------------------------- */
     function updateStatusProduct(){
         $mess = "";
         $id = (isset($_GET["id"])) ? $_GET["id"] : "";
@@ -122,6 +133,8 @@ class Product_Model{
         }
         return $mess;
     }
+    /* ----------------------------- UPDATE STATUS PRODUCT ----------------------------- */
+    /* ----------------------------- DETAILS PRODUCT ----------------------------- */
     function detailsProduct(){
         $mess = "";
         $id = (isset($_GET["id"])) ? $_GET["id"] : "";
@@ -143,6 +156,8 @@ class Product_Model{
             return $mess;
         }
     }
+    /* ----------------------------- DETAILS PRODUCT ----------------------------- */
+    /* ----------------------------- TOP PRODUCT ----------------------------- */
     function topProduct(){
         $productOld = $this->db->prepare("SELECT id FROM products");
         $productOld->execute();
@@ -176,6 +191,8 @@ class Product_Model{
         }
         return $dataTop5Product;
     }
+    /* ----------------------------- TOP PRODUCT ----------------------------- */
+    /* ----------------------------- FILTER PRODUCT ----------------------------- */
     function filterProduct(){
         $mess = "";
         $categoryId = (isset($_GET["categoryId"])) ? $_GET["categoryId"] : "";
@@ -193,6 +210,8 @@ class Product_Model{
             }
         }
     }
+    /* ----------------------------- FILTER PRODUCT ----------------------------- */
+    /* ----------------------------- SEARCH PRODUCT ----------------------------- */
     function search(){
         $mess = "";
         $keyword = "%" . (isset($_GET["keyword"]) ? $_GET["keyword"] : "") . "%";
@@ -211,6 +230,8 @@ class Product_Model{
             }
         }
     }
+    /* ----------------------------- SEARCH PRODUCT ----------------------------- */
+    /* ----------------------------- QUANTITY COMMENT ----------------------------- */
     function quantityComment(){
         $stmt = $this->db->prepare("SELECT * FROM comments");
         if($stmt->execute()){
@@ -219,12 +240,14 @@ class Product_Model{
             return $quantity;
         }
     }
+    /* ----------------------------- QUANTITY COMMENT ----------------------------- */
+    /* ----------------------------- IMAGE PRODUCT ----------------------------- */
     function addImageProduct(){
         $mess = ""; 
-
+        
         $productId = $_POST["productId"];
         $imageMore = $_POST["imageMore"];
-
+        
         if(!empty($imageMore) && !empty($productId)){
             if(is_numeric($productId)){
                 $stmt = $this->db->prepare("INSERT INTO images(`productId`,`image`) VALUES (?,?)");
@@ -240,6 +263,8 @@ class Product_Model{
         }
         return $mess;
     }
+    /* ----------------------------- IMAGE PRODUCT ----------------------------- */
+    /* ----------------------------- SHOW LIST IMAGE WEBSITE ----------------------------- */
     function showListImageWeb(){
         $mess = "";
         $productId = (isset($_GET["id"])) ? $_GET["id"] : "";
@@ -260,6 +285,8 @@ class Product_Model{
             return $mess;
         }
     }
+    /* ----------------------------- SHOW LIST IMAGE WEBSITE ----------------------------- */
+    /* ----------------------------- SHOW 1 LIST IMAGE MORE ----------------------------- */
     function showAListImageMore(){
         $mess = "Lỗi";
         $productId = (isset($_GET["productId"])) ? $_GET["productId"] : "";
@@ -280,6 +307,8 @@ class Product_Model{
             return $mess;
         }
     }
+    /* ----------------------------- SHOW 1 LIST IMAGE MORE ----------------------------- */
+    /* ----------------------------- DELETE IMAGE MORE ----------------------------- */
     function deleteImageMore(){
         $mess = "";
         $image = (isset($_GET["image"])) ? $_GET["image"] : "";
@@ -296,4 +325,5 @@ class Product_Model{
         }
         return $mess;
     }
+    /* ----------------------------- DELETE IMAGE MORE ----------------------------- */
 }

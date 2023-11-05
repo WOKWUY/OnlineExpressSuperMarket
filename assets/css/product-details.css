@@ -195,7 +195,7 @@ button#add-to-cart:hover{
 #comments form{
     display: flex;
     align-items: center;
-    border: 2px solid gray;
+    border: 1.5px solid gray;
     border-radius: 2px;
     justify-content: space-between;
     overflow: hidden;
@@ -213,7 +213,10 @@ button#add-to-cart:hover{
     border-left: 2px solid gray;
     background-color: gray;
     color: white;
+}
+#comments form button:hover{
     font-weight: bold;
+    transition: 0.2s;
 }
 .all-comments{
     padding: 10px;
@@ -251,11 +254,14 @@ button#add-to-cart:hover{
 .delete-comment{
     width: 25px;
     height: 25px;
-    line-height: 27px;
-    border-radius: 50px;
+    padding: 0px 5px;
+    border-radius: 100%;
     border: none;
     color: white;
     background-color: red;
+}
+button#comment{
+    border-radius: 0px;
 }
 /* COMMENT */
 
@@ -311,12 +317,21 @@ button#add-to-cart:hover{
     .infor-more .detais-description-pdts{
         padding: 10px;
     }
+    .infor-top form{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 }
 @media screen and (max-width: 667px){}
 @media screen and (max-width: 575px){
     #product-details .sub-image-pdts{
         grid-template-columns: repeat(4,1fr);
         order: -1;
+    }
+    button#add-to-cart{
+        width: 100%;
     }
 }
 @media screen and (max-width: 480px){

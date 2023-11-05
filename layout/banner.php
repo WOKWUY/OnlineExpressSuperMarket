@@ -1,11 +1,17 @@
-<div id="banners">
-    <a href="#">
-        <img src="./assets/image/banner1.jpg" alt="">
-    </a>
-    <a href="#">
-        <img src="./assets/image/banner2.jpg" alt="">
-    </a>
-    <a href="#">
-        <img src="./assets/image/banner3.jpg" alt="">
-    </a>
-</div>
+<?php 
+if(isset($result)){
+    ?>
+    <div id="banners">
+        <?php 
+        foreach ($result as $banner) :
+            ?>
+            <a href="<?= $banner['url'] ?>">
+                <img src="./assets/image/<?= $banner['image'] ?>" alt="">
+            </a>
+            <?php //HTML
+        endforeach;
+        ?>
+    </div>
+    <?php //HTML
+}
+?>

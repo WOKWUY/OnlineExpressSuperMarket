@@ -32,15 +32,18 @@
     <title>Admin</title>
 </head>
 <body>
-    <!-- /* ---------------------------------- AUTH ---------------------------------- */ -->
-    <?php include './auth-role.php' // Xác thực quyền ?>
-    <!-- /* ---------------------------------- AUTH ---------------------------------- */ -->
     <div id="root">
         <div id="dashboard">
             <div class="controller-dashboard">
                 <div>
                     <h1>DashBoard</h1>
                     <a href="../?page=home"><i class="fa-solid fa-earth-americas fa-spin fa-spin-reverse"></i> Website</a>
+                    <li>
+                        <a href="?room=banners"><i class="fa-solid fa-sliders"></i> Banner</a>
+                        <div class="item-more-admin">
+                            <a href="?room=add-banner"><i class="fa-solid fa-plus"></i></a>
+                        </div>
+                    </li>
                     <a href="?room=users"><i class="fa-solid fa-users"></i> Users</a>
                     <li>
                         <a href="?room=categories"><i class="fa-solid fa-calendar-days"></i> Categories</a>
@@ -57,6 +60,7 @@
                     <a href="?room=comments"><i class="fa-regular fa-comments"></i> Comments</a>
                     <a href="?room=orders"><i class="fa-solid fa-cube"></i> Orders</a>
                     <a href="?room=blogs"><i class="fa-solid fa-blog"></i> Blogs</a>
+                    <a href="?room=emails"><i class="fa-regular fa-envelope"></i> Emails</a>
                     <a href="?room=statistical"><i class="fa-solid fa-chart-line"></i> Statistical</a>
                 </div>
                 <a href="../auth/?action=logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
@@ -75,6 +79,7 @@
     <script src="../assets/javascript/products.js"></script>
     <script src="../assets/javascript/ckeditor.js"></script>
     <script src="../assets/javascript/add-image-product.js"></script>
+    <script src="../assets/javascript/banners.js"></script>
     <!-- /* --------------------------------- SCRIPT --------------------------------- */ -->
 </body>
 </html>

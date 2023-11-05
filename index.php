@@ -16,6 +16,7 @@
     <link rel="stylesheet" href="./assets/css/responsive.css">
     <link rel="stylesheet" href="./assets/css/loading-style.css">
     <link rel="stylesheet" href="./assets/css/product-details.css">
+    <link rel="stylesheet" href="./assets/css/contact.css">
     <!-- CSS -->
     <!-- ALERT -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.2/dist/sweetalert2.min.css">
@@ -42,6 +43,7 @@
     <script src="./assets/javascript/delete-comment.js"></script>
     <script src="./assets/javascript/quantity-actions.js"></script>
     <script src="./assets/javascript/product-detail.js"></script>
+    <script src="./assets/javascript/contact.js"></script>
     <!-- /* --------------------------------- SCRIPT --------------------------------- */ -->
 </body>
 </html>

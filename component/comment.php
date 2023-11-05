@@ -42,7 +42,7 @@
                     </div>
                     <!-- XỬ LÍ XÓA BÌNH LUẬN CỦA BẢN THÂN -->
                     <?php 
-                    if($_SESSION["user"]['id'] === $comment['userId']){
+                    if(isset($_SESSION["user"]) && $_SESSION["user"]['id'] === $comment['userId']){
                         ?>
                         <input type="hidden" value="<?= $comment['content'] ?>" class="content-delete">
                         <button class="delete-comment"><i class="fa-solid fa-xmark"></i></button>

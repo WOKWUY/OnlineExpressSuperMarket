@@ -10,6 +10,7 @@ a,p,span,li{
 body{
     font-size: 13px;
     font-family: 'Cabin', sans-serif;
+    background-color: #f5f5f5;
 }
 a{
     text-decoration: none;
@@ -17,10 +18,12 @@ a{
 }
 main{
     padding: 20px;
-    background-color: #f5f5f5;
 }
 button, select{
     cursor: pointer;
+    font-family: 'Cabin', sans-serif;
+}
+input::placeholder{
     font-family: 'Cabin', sans-serif;
 }
 .span-red{
