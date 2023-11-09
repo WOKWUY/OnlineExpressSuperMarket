@@ -24,6 +24,8 @@
                 <div class="discount-pdts">
                     Discount: <?= $product['discount'] ?> %
                 </div>
+                <div class="quantity-sold-commment-pdts keclass">Insurance: Mobile device insurance</div>
+                <div class="quantity-sold-commment-pdts keclass">Transport: Free shipping</div>
                 <div class="price-pdts">
                     <span class="cost-pdts">$<?= $product['price'] ?> </span>
                     <span class="price-pdts-end"> $5555</span>
@@ -66,7 +68,7 @@
     <div class="infor-more">
         <div class="detais-description-pdts">
             <div class="title-details-description-pdts">
-                Product Details
+                Product Description
             </div>
             <div class="content-details-description-pdts">
                 <?= $product['details'] ?>
@@ -109,3 +111,10 @@
         <!-- /* ---------------------------------- CODE DISCOUNT --------------------------------- */ -->
     </div>
 </main>
+<!-- /* ----------------------------------- JAVASCRIPT ----------------------------------- */ -->
+<script src="./assets/javascript/add-to-cart.js"></script>
+<script src="./assets/javascript/quantity-actions.js"></script>
+<script src="./assets/javascript/comment.js"></script>
+<script src="./assets/javascript/delete-comment.js"></script>
+<script src="./assets/javascript/product-detail.js"></script>
+<!-- /* ----------------------------------- JAVASCRIPT ----------------------------------- */ -->

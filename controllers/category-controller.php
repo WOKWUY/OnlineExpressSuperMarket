@@ -18,8 +18,12 @@ class Category_Controller{
     }
     function editCategory(){
         $dataOld = $this->categoryModel->dataCategoryOld();
-        $result = $this->categoryModel->editCategory();
-        include './categories/edit-category.php';
+        if(isset($dataOld)){
+            $result = $this->categoryModel->editCategory();
+            include './categories/edit-category.php';
+        }else{
+            header("Location: ../404/");
+        }
     }
     function deleteCategory(){
         $result = $this->categoryModel->showCategoriesList();

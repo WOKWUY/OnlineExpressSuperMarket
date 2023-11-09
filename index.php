@@ -36,18 +36,7 @@
         <?php include './router.php' ?>
     </div>
     <!-- /* --------------------------------- SCRIPT --------------------------------- */ -->
-    <script src="./assets/javascript/admin.js"></script>
     <script src="./assets/javascript/alert-condition.js"></script>
-    <script src="./assets/javascript/filter-product.js"></script>
-    <script src="./assets/javascript/search.js"></script>
-    <script src="./assets/javascript/comment.js"></script>
-    <script src="./assets/javascript/delete-comment.js"></script>
-    <script src="./assets/javascript/quantity-actions.js"></script>
-    <script src="./assets/javascript/product-detail.js"></script>
-    <script src="./assets/javascript/contact.js"></script>
-    <script src="./assets/javascript/add-to-cart.js"></script>
-    <script src="./assets/javascript/update-quantity-cart.js"></script>
-    <script src="./assets/javascript/delete-cart.js"></script>
     <!-- /* --------------------------------- SCRIPT --------------------------------- */ -->
 </body>
 </html>

@@ -24,7 +24,7 @@
         <?php // HTML
         endforeach;
     }else{
-        ?><span class="span-red">Empty</span><?php
+        messRed("Empty");
     }
     ?>
     <!-- /* ---------------------------------- DATA ---------------------------------- */ -->

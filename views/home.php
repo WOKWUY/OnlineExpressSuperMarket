@@ -14,3 +14,7 @@ $bannerController = new Banner_Controller($db);
         </article>
     </div>
 </main>
+<!-- /* ------------------------------- JAVASCRIPT ------------------------------- */ -->
+<script src="./assets/javascript/filter-product.js"></script>
+<script src="./assets/javascript/search.js"></script>
+<!-- /* ------------------------------- JAVASCRIPT ------------------------------- */ -->

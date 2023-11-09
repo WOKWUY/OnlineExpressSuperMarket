@@ -13,7 +13,7 @@
         </tr>
         <?php // HTML
     }else{
-        ?><span class="span-red">Không tìm thấy kết quả</span><?php // HTML
+        messRed("Empty Data");
     }
     ?>
 </table>

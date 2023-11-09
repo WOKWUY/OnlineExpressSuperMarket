@@ -19,6 +19,8 @@ if(!empty(AUTH)){
         include './views/register.php';
     }elseif(AUTH === 'forgot-password'){
         include './views/forgot-password.php';
+    }elseif(AUTH === 'new-password'){
+        include './views/new-password.php';
     }
     // NOT FOUND
     else{

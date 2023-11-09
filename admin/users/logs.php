@@ -20,7 +20,7 @@
             <?php // HTML
         endforeach;
     }else{
-        ?><span class="span-red">Không có dữ liệu</span><?php
+        messRed("No Data");
     }
     ?>
     <!-- /* ----------------------------- XỬ LÍ HIỂN THỊ ----------------------------- */ -->

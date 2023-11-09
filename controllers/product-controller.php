@@ -31,6 +31,8 @@ class Product_Controller{
             $categories = $this->categoryModel->showCategoriesList();
             $result = $this->productModel->editProduct();
             include './products/edit-product.php';
+        }else{
+            header("Location: ../404/");
         }
     }
     function deleteProduct(){
@@ -63,8 +65,10 @@ class Product_Controller{
     }
     function searchProduct(){
         $products = $this->productModel->search();
+        require_once '../component/functionsHTML.php';
         include '../component/products.php';
         if(is_null($products)){
+            require_once '../component/functionsHTML.php';
             $this->noFilterOrSearch("../component/maylike.php");
         }
     }

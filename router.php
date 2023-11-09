@@ -7,13 +7,7 @@ if(isset($_SESSION["user"])){
 define("PAGE", (isset($_GET["page"])) ? $_GET["page"] : ""); 
 define("ACTION", (isset($_GET["action"])) ? $_GET["action"] : "");
 define("CATEGORY", (isset($_GET["category"])) ? $_GET["category"] : "") ;
-/* --------------------------------- HEADER --------------------------------- */
-if(PAGE === 'admin'){
-    // ADMIN
-}else{
-    include './layout/header.php';
-}
-/* --------------------------------- HEADER --------------------------------- */
+include './component/functionsHTML.php';
 /* ---------------------------------- MODEL --------------------------------- */
 include './models/user-model.php';
 include './models/category-model.php';
@@ -30,6 +24,13 @@ include './controllers/comment-controller.php';
 include './controllers/banner-controller.php';
 include './controllers/cart-controller.php';
 /* ---------------------------------- CONTROLLER --------------------------------- */
+/* --------------------------------- HEADER --------------------------------- */
+if(PAGE === 'admin'){
+    // ADMIN
+}else{
+    include './layout/header.php';
+}
+/* --------------------------------- HEADER --------------------------------- */
 $db = require './config/database.php';
 $productController = new Product_Controller($db);
 $categoryController = new Category_Controller($db);
@@ -66,8 +67,6 @@ if(!empty(PAGE)){
     include './views/home.php';
 }
 /* -------------------------------- VIEW MAIN (ROUTER) ------------------------------- */
-/* --------------------------------- ACTION --------------------------------- */
-/* --------------------------------- ACTION --------------------------------- */
 /* --------------------------------- LOADING -------------------------------- */
 include './component/loading.php';
 /* --------------------------------- LOADING -------------------------------- */

@@ -28,11 +28,12 @@
         endforeach;
     }else{
         if(!isset($alertDelete)){
-            ?><span class="span-red">Empty Comment</span><?php // HTML
+            messRed("Empty Comment");
         }
     }
     ?>
 </table>
+<!-- input giá trị ẩn để khi xóa có thể trở về lại trang trước -->
 <input type="hidden" value="<?= $comment['productId'] ?>" id="productIdCMT">
 <!-- Xử lí hiển thị -->
 <?= (isset($alertDelete) && $alertDelete === "Thành công") ? "<script> let productIdCMT = document.getElementById('productIdCMT').value; Swal.fire({icon: 'success',title: 'Success',text: 'Deleted successfully',allowOutsideClick: false}).then((result) => { if (result.isConfirmed) {window.location.href = '?room=comment-details&productId='+productIdCMT;}});</script>" : ""?>

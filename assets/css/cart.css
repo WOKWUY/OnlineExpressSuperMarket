@@ -3,19 +3,20 @@
     grid-template-columns: repeat(4,1fr);
     gap: 20px;
     align-items: self-start;
+    margin-bottom: 20px;
 }
 .main-cart{
     grid-column: 1/4;
     box-shadow: 0px 1px 2px #dadada;
     background-color: white;
-    padding: 20px;
+    padding: 10px 10px 20px 10px;
 }
 .all-cart h1{
     font-weight: normal;
     text-align: center;
     margin-bottom: 10px;
     padding: 10px 0px;
-    background-color: #ffebe7;
+    background-color: #f8f6f6;
 }
 .all-cart table{
     width: 100%;
@@ -29,7 +30,7 @@
 }
 .all-cart table th{
     padding: 10px 0px;
-    font-size: 15px;
+    color: gray;
 }
 .all-cart table td{
     padding: 10px 0px;
@@ -53,7 +54,7 @@
     grid-column: 5/6;
 }
 .all-cart table tr{
-    border-bottom: 2px solid #dadada;
+    border-bottom: 1.5px solid #dadada;
 }
 td.infc-product{
     display: flex;
@@ -74,11 +75,11 @@ button.delete-cart{
     color: white;
 }
 /* ----------------------------------- -x ----------------------------------- */
-.control-quantity{
+#ctrQttCart{
     display: grid;
-    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4,1fr) !important;
     width: 100px;
-    border: 1px solid gray;
+    border: 2px solid var(--gray3);
 }
 button.down-qtt-cart{
     grid-column: 1/2;
@@ -91,8 +92,8 @@ button.down-qtt-cart{
     border: none;
     text-align: center;
     outline: none;
-    border-left: 1px solid gray;
-    border-right: 1px solid gray;
+    border-left: 2px solid var(--gray3);
+    border-right: 2px solid var(--gray3);
 }
 /* Ẩn đi các điều khiển của input[type="number"] */
 input[type="number"]::-webkit-inner-spin-button,
@@ -108,14 +109,35 @@ button.up-qtt-cart{
     background-color: white;
 }
 /* ------------------------------------ - ----------------------------------- */
+/* ------------------------------------ EMPTY CART ----------------------------------- */
+.empty-cart{
+    display: grid;
+    justify-content: center;
+    padding: 50px 0px;
+}
+.empty-cart span{
+    font-size: 17px;
+    padding: 10px 0px;
+}
+.empty-cart a{
+    display: block;
+    text-align: center;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #fd411b;
+    color: white;
+    border-radius: 3px;
+    text-transform: uppercase;
+}
+/* ------------------------------------ EMPTY CART ----------------------------------- */
 .sub-cart{
     grid-column: 4/5;
     background-color: white;
     box-shadow: 0px 1px 2px #dadada;
-    padding: 20px;
+    padding: 15px;
 }
 .title-sub-cart{
-    font-size: 16px;
+    text-transform: uppercase;
     padding: 15px 20px;
     background-color: #fd411b;
     color: white;
@@ -137,13 +159,11 @@ button.checkout-btn{
 button.checkout-btn a {
     display: block;
     width: 100%;
-    font-size: 15px;
-    letter-spacing: 2px;
     text-transform: uppercase;
     display: inline-block;
     text-align: center;
     font-weight: bold;
-    padding: 0.7em 2em;
+    padding: 10px 20px;
     border: 3px solid #fd411b;
     border-radius: 2px;
     position: relative;
@@ -152,7 +172,7 @@ button.checkout-btn a {
     text-decoration: none;
     transition: 0.2s ease all;
     z-index: 1;
-    margin: 20px 0px 10px 0px;
+    margin-top: 20px;
   }
   
 button.checkout-btn a:before {
@@ -221,22 +241,22 @@ button.checkout-btn a:active {
 @media screen and (max-width: 480px){}
 @media screen and (max-width: 414px){}
 @media screen and (max-width: 360px){
-    .control-quantity{
+    main #ctrQttCart{
         width: 30px;
-        grid-template-columns: repeat(1,1fr);
+        grid-template-columns: repeat(1,1fr) !important;
     }
-    button#down-qtt-cart{
+    #ctrQttCart button.down-qtt-cart{
         width: 100%;
         grid-column: 1/2;
     }
-    #update_quantity_cart{
+    #ctrQttCart .update_quantity_cart{
         width: 100%;
         grid-column: 1/2;
         border: none;
         border-top: 1px solid;
         border-bottom: 1px solid;
     }
-    button#up-qtt-cart{
+    #ctrQttCart button.up-qtt-cart{
         width: 100%;
         grid-column: 1/2;
     }

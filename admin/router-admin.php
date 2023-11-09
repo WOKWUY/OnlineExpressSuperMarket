@@ -1,5 +1,6 @@
 <!-- /* --------------------------------- ROUTER --------------------------------- */ -->
 <?php
+include '../component/functionsHTML.php';
 /* ---------------------------------- MODEL --------------------------------- */
 include '../models/product-model.php';
 include '../models/category-model.php';

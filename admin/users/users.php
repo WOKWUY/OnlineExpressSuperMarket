@@ -27,14 +27,16 @@
             <td>
                 <strong>
                     <?php 
+                    // Xử lí hiển thị - màu
                     $role = $user['role'];
                     if($role === 'admin'){
-                        ?><span class="span-red"><?= $role ?></span><?php //HTML
+                        messRed($role);
                     }elseif($role === 'staff'){
-                        ?><spam class="span-navi"><?= $role ?></spam><?php //HTML
+                        messNavi($role);
                     }else{
                         echo $role;
                     }
+                    // Xử lí hiển thị - màu
                     ?>
                 </strong>
             </td>
@@ -43,9 +45,9 @@
                     <?php 
                     $status = $user['status'];
                     if($status === 'active'){
-                        ?><span class="span-green"><?= $status ?></span><?php //HTML
+                        messGreen($status);
                     }else{
-                        ?><span class="span-red"><?= $status ?></span><?php //HTML
+                        messRed($status);
                     }
                     ?>
                 </strong>
@@ -75,10 +77,10 @@
                             </form>
                         <?php //HTML
                     }else{
-                        ?><span class="span-red">no action</span><?php //HTML
+                        messRed("no action");
                     }
                 }else{
-                    ?><span class="span-red">no action</span><?php // HTML
+                    messRed("no action");
                 }
                 ?>
             </td>
@@ -87,7 +89,7 @@
         <?php // HTML
         endforeach;
     }else{
-        ?><span class="span-red">Empty</span><?php
+        messRed("Empty");
     }
     ?>
     <!-- /* ---------------------------------- DATA ---------------------------------- */ -->

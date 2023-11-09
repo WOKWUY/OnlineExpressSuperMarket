@@ -1,5 +1,5 @@
 <div id="form-auth">
-    <form action="" method="POST" onsubmit="return validateNewPassword()">
+    <form action="?action=new-password&token=<?= (isset($_GET["token"])) ? $_GET["token"] : "" ?>" method="POST" onsubmit="return validateNewPassword()">
         <h1>New Password</h1>
         <label for="password">Password</label>
         <input name="password" type="password" id="password" placeholder="Enter Password">
@@ -13,4 +13,5 @@
 <?= (isset($result) && $result === "Thành công") ? "<script>Swal.fire({icon: 'success',title: 'Success',text: 'New password activated successfully',}).then((result) => { if (result.isConfirmed) {window.location.href = '?auth=login';}});</script>" : ""?>
 <?= (isset($result) && $result === "Lỗi") ? "<script>Swal.fire({icon: 'error',title: 'Oops...',text: 'Error!',});</script>" : "" ?>
 <?= (isset($result) && $result === "Chưa nhập đủ thông tin") ? "<script>Swal.fire({icon: 'error',title: 'Oops...',text: 'Not enough information has been entered!',});</script>" : "" ?>
+<?= (isset($result) && $result === "Mật khẩu không khớp") ? "<script>Swal.fire({icon: 'error',title: 'Oops...',text: 'Password incorrect!',});</script>" : "" ?>
 <!-- Xử lí hiển thị -->

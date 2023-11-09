@@ -9,7 +9,8 @@ document.addEventListener("DOMContentLoaded", function () { // Giúp đồng b�
       xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       xhr.onreadystatechange = function (){
         if (xhr.readyState === 4 && xhr.status === 200) {
-            if(xhr.responseText === "Thành công"){
+            let result = xhr.responseText;
+            if(result === "Thành công"){
                 Swal.fire({
                     icon: "success",
                     title: "Success add to cart",
@@ -17,6 +18,10 @@ document.addEventListener("DOMContentLoaded", function () { // Giúp đồng b�
                     timer: 1500,
                 });
                 quantity.value = 1;
+                let quantityCartOld = parseInt(document.getElementById("quantityCartOld").value); 
+                document.getElementById("quantityCart").innerText = quantityCartOld + 1;
+            }else if(result === "Bạn chưa đăng nhập"){
+                Swal.fire({icon: 'error',title: 'Oops...',text: 'You not login!', allowOutsideClick: false,confirmButtonText: "Go to login"}).then((result) => { if (result.isConfirmed) {window.location.href = './auth/?auth=login';}});;
             }else{
                 Swal.fire({icon: 'error',title: 'Oops...',text: 'Something went wrong!',});
             }
@@ -29,27 +34,27 @@ document.addEventListener("DOMContentLoaded", function () { // Giúp đồng b�
 /* ---------------- THÊM SẢN PHẨM TỪ TRANG SHOP (Thêm nhanh - Hover vào sản phẩm) ---------------- */
 /* <input class="input" type="text" id="quantity" value="1">
 <button id="add-to-cart">Add to cart</button> */
-document.addEventListener('DOMContentLoaded', () => {
-    var products = document.querySelectorAll(".product"); // Chọn hết tất cả sản phẩm
-    products.forEach(function(product) { // Lặp qua từng sản phẩm
-        var addToCart = product.querySelector(".add-to-cart"); // Lấy button của sản phẩm đó
-        var productID = product.querySelector(".productID"); // Lấy id của sản phẩm đó
-        addToCart.addEventListener("click", ()=> { 
-            var xhr = new XMLHttpRequest(); // Tạo 1 đối tượng ajax mới
-            xhr.open("POST", "../handles/add-to-cart.php", true); // Mở
-            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); // Cấu hình
-            xhr.onreadystatechange = ()=>{
-                if(xhr.readyState === 4 && xhr.status === 200){
-                    Swal.fire({
-                    icon: "success",
-                    title: "Success add to cart" + productID.value,
-                    showConfirmButton: false,
-                    timer: 1500,
-                    });
-                }
-            };
-            xhr.send("productID=" + productID.value + "&quantity=" + "1"); // Gửi
-        });
-    });
-});
+// document.addEventListener('DOMContentLoaded', () => {
+//     var products = document.querySelectorAll(".product"); // Chọn hết tất cả sản phẩm
+//     products.forEach(function(product) { // Lặp qua từng sản phẩm
+//         var addToCart = product.querySelector(".add-to-cart"); // Lấy button của sản phẩm đó
+//         var productID = product.querySelector(".productID"); // Lấy id của sản phẩm đó
+//         addToCart.addEventListener("click", ()=> { 
+//             var xhr = new XMLHttpRequest(); // Tạo 1 đối tượng ajax mới
+//             xhr.open("POST", "../handles/add-to-cart.php", true); // Mở
+//             xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded"); // Cấu hình
+//             xhr.onreadystatechange = ()=>{
+//                 if(xhr.readyState === 4 && xhr.status === 200){
+//                     Swal.fire({
+//                     icon: "success",
+//                     title: "Success add to cart" + productID.value,
+//                     showConfirmButton: false,
+//                     timer: 1500,
+//                     });
+//                 }
+//             };
+//             xhr.send("productID=" + productID.value + "&quantity=" + "1"); // Gửi
+//         });
+//     });
+// });
 /* ---------------- THÊM SẢN PHẨM TỪ TRANG SHOP (Thêm nhanh - Hover vào sản phẩm) ---------------- */

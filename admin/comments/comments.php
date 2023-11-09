@@ -46,7 +46,7 @@
         endforeach;
     }else{
         if(!isset($alertDelete)){
-            ?><span class="span-red">Empty Comment</span><?php // HTML
+            messRed("Empty Comment");
         }
     }
     ?>

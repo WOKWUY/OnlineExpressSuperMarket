@@ -21,7 +21,14 @@
             </a>
             <a href="?page=cart">
                 <i class="fa-solid fa-bag-shopping"></i>
-                <span>10</span>
+                <span id="quantityCart">
+                    <?php
+                    $db = require './config/database.php';
+                    $newCartCtrl = new Cart_Controller($db);
+                    echo $newCartCtrl->quantityCart();
+                    ?>
+                </span>
+                <input type="hidden" id="quantityCartOld" value="<?= $newCartCtrl->quantityCart() ?>">
             </a>
             <?php
             if(isset($ss_role) && isset($ss_id)){ // Kiểm tra đã đăng nhập chưa
@@ -54,10 +61,11 @@
     <!-- /* ----------------------------------- NAV ---------------------------------- */ -->
     <nav>
         <ul>
-            <li><a href="">Discount Code</a></li>
+            <li><a href="./">Home</a></li>
+            <li><a href="./">Discount Code</a></li>
             <li><a href="?page=blogs">Blogs</a></li>
             <li><a href="?page=contact">Contact</a></li>
-            <li><a href="">FAQ</a></li>
+            <li><a href="./">FAQ</a></li>
         </ul>
     </nav>
     <!-- /* ----------------------------------- NAV ---------------------------------- */ -->

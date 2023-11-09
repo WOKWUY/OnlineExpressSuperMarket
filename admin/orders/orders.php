@@ -26,6 +26,7 @@
             <td><?= $order['total'] ?></td>
             <td>
                 <?php 
+                // Xử lí hiển thị - màu
                 $process = $order['process'];
                 $colorPC = "";
                 if($process === "confirm"){
@@ -40,6 +41,7 @@
                 if($process === "completed"){
                     $colorPC = "green";
                 }
+                // Xử lí hiển thị - màu
                 ?>
                 <span class="span-<?= $colorPC ?>"><?= $process ?></span>
             </td>
@@ -87,7 +89,7 @@
         endforeach;
     }else{
         if(!isset($alertDelete) && !isset($alertUpdate)){
-            ?><span class="span-red">Chưa có đơn hàng nào huhuhu !!!</span><?php // HTML
+            messRed("Chưa có đơn hàng nào huhuhu !!!");
         }
     }
     ?>

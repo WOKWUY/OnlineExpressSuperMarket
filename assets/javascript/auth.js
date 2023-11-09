@@ -1,22 +1,20 @@
-let username = document.getElementById("username");
-let email = document.getElementById("email");
-let password = document.getElementById("password");
-let confirmpassword = document.getElementById("confirmpassword");
-let error_confirm = document.getElementById("error-confirm");
-var isValid = true;
 function validateRegister(){
+    let username = document.getElementById("username");
+    let email = document.getElementById("email");
+    let password = document.getElementById("password");
+    let confirmpassword = document.getElementById("confirmpassword");
+    let error_confirm = document.getElementById("error-confirm");
+    let isValid = true;
     if(username.value == 0){
         username.style.borderColor = 'red';
         isValid = false;
     }else{
-        isValid = true;
         username.style.borderColor = '#c5c5c5';
     }
     if(email.value == 0){
         email.style.borderColor = 'red';
         isValid = false;
     }else{
-        isValid = true;
         email.style.borderColor = '#c5c5c5';
     }
     
@@ -24,7 +22,6 @@ function validateRegister(){
         password.style.borderColor = 'red';
         isValid = false;
     }else{
-        isValid = true;
         password.style.borderColor = '#c5c5c5';
     }
     
@@ -32,7 +29,6 @@ function validateRegister(){
         confirmpassword.style.borderColor = 'red';
         isValid = false;
     }else{
-        isValid = true;
         confirmpassword.style.borderColor = '#c5c5c5';
     }
     if(isValid === false){
@@ -51,19 +47,20 @@ function validateRegister(){
 }
 
 function validateLogin(){
+    let email = document.getElementById("email");
+    let password = document.getElementById("password");
+    let isValid = true;
     if(email.value == 0){
         email.style.borderColor = 'red';
         isValid = false;
     }else{
         email.style.borderColor = '#c5c5c5';
-        isValid = true;
     }
     if(password.value == 0){
         password.style.borderColor = 'red';
         isValid = false;
     }else{
         password.style.borderColor = '#c5c5c5';
-        isValid = true;
     }
     if(isValid === false){
         Swal.fire({
@@ -76,12 +73,13 @@ function validateLogin(){
 }
 
 function validateForgotPassword(){
+    let email = document.getElementById("email");
+    let isValid = true;
     if(email.value == 0){
         email.style.borderColor = 'red';
         isValid = false;
     }else{
         email.style.borderColor = '#c5c5c5';
-        isValid = true;
     }
     if(isValid === false){
         Swal.fire({
@@ -94,11 +92,19 @@ function validateForgotPassword(){
 }
 
 function validateNewPassword(){
+    let password = document.getElementById("password");
+    let confirmpassword = document.getElementById("confirmpassword");
+    let isValid = true;
+    let pass = password.value;
+    let cfPass = confirmpassword.value;
+    if(pass !== cfPass){
+        error_confirm.innerHTML = "Password incorrect";
+        isValid == false;
+    }
     if(password.value == 0){
         password.style.borderColor = 'red';
         isValid = false;
     }else{
-        isValid = true;
         password.style.borderColor = '#c5c5c5';
     }
     
@@ -106,7 +112,6 @@ function validateNewPassword(){
         confirmpassword.style.borderColor = 'red';
         isValid = false;
     }else{
-        isValid = true;
         confirmpassword.style.borderColor = '#c5c5c5';
     }
     if(isValid === false){
@@ -115,11 +120,6 @@ function validateNewPassword(){
             title: 'Oops...',
             text: 'Not fully entered information!',
         });
-    }else{
-        if(password.value !== confirmpassword.value){
-            isValid = false;
-            error_confirm.innerHTML = "Password incorrect";
-        }
     }
     return isValid;
 }

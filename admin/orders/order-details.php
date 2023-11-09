@@ -30,7 +30,7 @@
         endforeach;
     }else{
         if(!isset($alertDelete)){
-            ?><span class="span-red">Empty</span><?php // HTML
+            messRed("Empty");
         }
     }
     ?>

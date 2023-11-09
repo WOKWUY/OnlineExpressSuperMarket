@@ -1,5 +1,5 @@
 <div class="product-container">
-    <h3>You might also like</h3>
+    <h3>YOU MIGHT ALSO LIKE</h3>
     <div id="product-list">
         <?php
         if (isset($maylike)) {

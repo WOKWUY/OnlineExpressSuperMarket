@@ -14,7 +14,7 @@ if(isset($dataOldBanner)){
     </form>
     <?php // HTML
 }else{
-    ?><span class="span-red">Empty Data</span><?php // HTML
+    messRed("Empty Data");
 }
 ?>
 <!-- Xử lí hiển thị -->

@@ -3,7 +3,7 @@
         <?php
         $title = (isset($_GET["title"])) ? $_GET["title"] : "ALL PRODUCTS";
         if($title === 'search'){
-            ?><span class="span-green">Results</span><?php // HTML
+            messGreen("Result");
         }else{
             echo ucfirst($title);
         }
@@ -33,7 +33,8 @@
             <?php // HTML
             endforeach;
         }else{
-            ?><span class="span-red">Empty</span><?php // HTML
+            require_once '../component/functionsHTML.php';
+            messRed("Empty Product !!!");
         }
         ?>
     </div>

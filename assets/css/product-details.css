@@ -11,13 +11,13 @@
     display: grid;
     gap: 10px;
 }
-.image-main-pdts{
-    height: 400px;
-}
 .image-pdts img{
     width: 100%;
     height: 100%;
     object-fit: cover;
+    box-shadow: 0px 1px 2px #dadada;
+    border-radius: 2px;
+    border: 1px solid #dadada;
 }
 /* INFORMATION */
 .information-pdts{
@@ -59,7 +59,7 @@
     display: grid;
     grid-template-columns: repeat(4,1fr);
     width: 100px;
-    border: 1px solid gray;
+    border: 2px solid var(--gray3);
 }
 button#down-qtt{
     grid-column: 1/2;
@@ -72,15 +72,15 @@ button#down-qtt{
     border: none;
     text-align: center;
     outline: none;
-    border-left: 1px solid gray;
-    border-right: 1px solid gray;
+    border-left: 2px solid var(--gray3);
+    border-right: 2px solid var(--gray3);
 }
 /* Ẩn đi các điều khiển của input[type="number"] */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  appearance: none;
-  margin: 0; /* Loại bỏ margin để tránh lề trống */
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0; /* Loại bỏ margin để tránh lề trống */
 }
 button#up-qtt{
     border: none;
@@ -114,6 +114,9 @@ button#add-to-cart:hover{
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 2px;
+    box-shadow: 0px 1px 2px #dadada;
+    border: 1px solid #dadada;
 }
 .box-subimage{
     height: 100px;
@@ -333,13 +336,14 @@ button#comment{
     button#add-to-cart{
         width: 100%;
     }
+    main .control-quantity{
+        width: 100%;
+        height: 50px;
+    }
 }
 @media screen and (max-width: 480px){
-    #product-details .image-main-pdts{
-        height: 200px;
-    }
     #product-details .sub-image-pdts{
-        grid-template-columns: repeat(3,1fr);
+        grid-template-columns: repeat(2,1fr);
         order: -1;
     }
 }

@@ -28,7 +28,7 @@
         endforeach;
     }else{
         if(!isset($alertDelete)){
-            ?><span class="span-red">Empty Category</span><?php // HTML
+            messRed("Empty Category");
         }
     }
     ?>

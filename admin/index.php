@@ -73,14 +73,14 @@
         </div>
     </div>
     <!-- /* --------------------------------- SCRIPT --------------------------------- */ -->
-    <script src="../assets/javascript/admin.js"></script>
     <script src="../assets/javascript/alert-condition.js"></script>
-    <script src="../assets/javascript/categories.js"></script>
-    <script src="../assets/javascript/products.js"></script>
-    <script src="../assets/javascript/ckeditor.js"></script>
-    <script src="../assets/javascript/add-image-product.js"></script>
-    <script src="../assets/javascript/banners.js"></script>
-    <script src="../assets/javascript/emails.js"></script>
+    <script src="../assets/javascript/admin/admin.js"></script>
+    <script src="../assets/javascript/admin/banners.js"></script>
+    <script src="../assets/javascript/admin/categories.js"></script>
+    <script src="../assets/javascript/admin/products.js"></script>
+    <script src="../assets/javascript/admin/add-image-product.js"></script>
+    <script src="../assets/javascript/admin/emails.js"></script>
+    <script src="../assets/javascript/admin/ckeditor.js"></script>
     <!-- /* --------------------------------- SCRIPT --------------------------------- */ -->
 </body>
 </html>

@@ -26,7 +26,7 @@
                 <div class="user-comment">
                     <div class="item-user-comment">
                         <div class="avatar-user-comment">
-                            <img width="80px" src="./assets/image/ip15prm.png" alt="">
+                            <img width="80px" src="https://event.mediacdn.vn/2020/8/14/st-15973999489741584015103.jpg" alt="">
                         </div>
                         <div class="infor-user-comment">
                             <div class="name-user-comment">
@@ -54,9 +54,7 @@
                 <?php // HTML
             endforeach;
         }else{
-            ?>
-            <span class="span-red">No comments yet</span>
-            <?php // <HTML></HTML>
+            messRed("No comments yet");
         }
         ?>
         <div class="user-comment" id="new-comment"></div>

@@ -46,35 +46,39 @@ class Cart_Model{
         $productId = (isset($_POST["productId"])) ? $_POST["productId"] : "";
         $quantity = (isset($_POST["quantity"])) ? $_POST["quantity"] : "";
         
-        if(!empty($userId) && is_numeric($userId) && !empty($productId) && is_numeric($productId) && !empty($quantity) && is_numeric($quantity)){
-            /* ---------------- Check sản phẩm đã được thêm từ trước chưa --------------- */
-            $check = $this->db->prepare("SELECT * FROM carts WHERE userId = ? AND productId = ?");
-            $check->bind_param("ii", $userId, $productId);
-            if($check->execute()){
-                $result = $check->get_result();
-                if($result->num_rows === 1){ // Nếu đã có
-                    $row = $result->fetch_assoc();
-                    $dbQuantity = $row['quantity'];
-                    $newQuantity = $quantity + $dbQuantity;
-                    $update = $this->db->prepare("UPDATE carts SET quantity = ? WHERE productId = ? AND userId = ? ");
-                    $update->bind_param("iii", $newQuantity, $productId, $userId);
-                    if($update->execute()){
-                        $mess = "Thành công";
-                    }else{
-                        $mess = "Lỗi";
-                    }
-                }else{ // Nếu chưa có
-                    $stmt = $this->db->prepare("INSERT INTO carts(`userId`,`productId`,`quantity`) VALUES (?,?,?)");
-                    $stmt->bind_param("iii", $userId, $productId, $quantity);
-                    if($stmt->execute()){
-                        $mess = "Thành công";
-                    }else{
-                        $mess = "Lỗi";
+        if(!empty($userId) && is_numeric($userId)){ // Kiểm tra đăng nhập chưa
+            if(!empty($productId) && is_numeric($productId) && !empty($quantity) && is_numeric($quantity)){ // validate
+                /* ---------------- Check sản phẩm đã được thêm từ trước chưa --------------- */
+                $check = $this->db->prepare("SELECT * FROM carts WHERE userId = ? AND productId = ?");
+                $check->bind_param("ii", $userId, $productId);
+                if($check->execute()){
+                    $result = $check->get_result();
+                    if($result->num_rows === 1){ // Nếu đã có
+                        $row = $result->fetch_assoc();
+                        $dbQuantity = $row['quantity'];
+                        $newQuantity = $quantity + $dbQuantity;
+                        $update = $this->db->prepare("UPDATE carts SET quantity = ? WHERE productId = ? AND userId = ? ");
+                        $update->bind_param("iii", $newQuantity, $productId, $userId);
+                        if($update->execute()){
+                            $mess = "Thành công";
+                        }else{
+                            $mess = "Lỗi";
+                        }
+                    }else{ // Nếu chưa có
+                        $stmt = $this->db->prepare("INSERT INTO carts(`userId`,`productId`,`quantity`) VALUES (?,?,?)");
+                        $stmt->bind_param("iii", $userId, $productId, $quantity);
+                        if($stmt->execute()){
+                            $mess = "Thành công";
+                        }else{
+                            $mess = "Lỗi";
+                        }
                     }
                 }
+            }else{
+                $mess = "Lỗi";
             }
         }else{
-            $mess = "Lỗi";
+            $mess = "Bạn chưa đăng nhập";
         }
         return $mess;
     }
@@ -146,5 +150,21 @@ class Cart_Model{
         return $mess;
     }
     /* ------------------------------- DELETE CART ------------------------------ */
+    /* -------------------------------- QUANTITY CART -------------------------------- */
+    function quantityCart(){
+        $userId = (isset($_SESSION["user"])) ? $_SESSION["user"]['id'] : "";
+        if(isset($userId) && is_numeric($userId)){
+            $stmt = $this->db->prepare("SELECT * FROM carts WHERE userId = ?");
+            $stmt->bind_param("i", $userId);
+            if($stmt->execute()){
+                $result = $stmt->get_result();
+                $quantityCart = $result->num_rows;
+                return $quantityCart;
+                }
+        }else{
+            return 0;
+        }
+    }
+    /* -------------------------------- QUANTITY CART -------------------------------- */
 }
 ?>

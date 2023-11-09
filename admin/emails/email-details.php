@@ -11,7 +11,7 @@
             </tr>
         <?php // HTML
     }else{
-        ?><span class="span-red">No data</span><?php // HTML
+        messRed("No Data");
     }
     ?>
 </table>

@@ -19,9 +19,9 @@ class Cart_Controller{
     function deleteCart(){
         return $this->cartModel->deleteCart();
     }
-    function afterDeleteCart($url){
-        $result = $this->cartModel->showCartList();
-        include $url;
+    function quantityCart(){
+        return $this->cartModel->quantityCart();
     }
+
 }
 ?>

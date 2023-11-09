@@ -239,7 +239,7 @@ class User_Model{
                                     $mail->addAddress($email);
                                     $mail->isHTML(true);
                                     $mail->Subject = "ACTIVE ACCOUNT";
-                                    $mail->Body = "http://localhost/PHP/xuong/website/auth/?action=new-password&token=" . $db_token;
+                                    $mail->Body = "http://localhost/PHP/xuong/website/auth/?auth=new-password&token=" . $db_token;
                 
                                     if($mail->send()){
                                         $mess = 'Thành công';
@@ -268,45 +268,51 @@ class User_Model{
     /* --------------------------- NEW PASSWORD -------------------------- */
     function newPassword(){
         if($_SERVER["REQUEST_METHOD"]==='POST'){
-            $mess = "";
-            $token = $_GET["token"];
-            $password = $_POST["password"];
-            $password_hash = password_hash($password, PASSWORD_BCRYPT);
-            $confirmpassword = $_POST["confirmpassword"];
-            $status = 'active';
-            
-            $check_token = $this->db->prepare("SELECT * FROM users WHERE token = ? AND status = ?");
-            $check_token->bind_param("ss", $token, $status);
-            if($check_token->execute()){
-                $result = $check_token->get_result();
-                if($result->num_rows > 0){
-                    if(!empty($password) && !empty($confirmpassword)){
-                        if(!empty($token)){
-                            $new_password = $this->db->prepare("UPDATE users SET password = ? WHERE token = ?");
-                            $new_password->bind_param("ss", $password_hash, $token);
-                            if($new_password->execute()){
-                                $newToken = bin2hex(random_bytes(40));
-                                $new_token = $this->db->prepare("UPDATE users SET token = ? WHERE token = ?");
-                                $new_token->bind_param("ss", $newToken, $token);
-                                if($new_token->execute()){
-                                    $mess = "Thành công";
+            if(isset($_POST["submit"])){
+                $mess = "";
+                $token = $_GET["token"];
+                $password = $_POST["password"];
+                $password_hash = password_hash($password, PASSWORD_BCRYPT);
+                $confirmpassword = $_POST["confirmpassword"];
+                $status = 'active';
+                
+                $check_token = $this->db->prepare("SELECT * FROM users WHERE token = ? AND status = ?");
+                $check_token->bind_param("ss", $token, $status);
+                if($check_token->execute()){
+                    $result = $check_token->get_result();
+                    if($result->num_rows > 0){
+                        if(!empty($password) && !empty($confirmpassword)){
+                            if($password === $confirmpassword){
+                                if(!empty($token)){
+                                    $new_password = $this->db->prepare("UPDATE users SET password = ? WHERE token = ?");
+                                    $new_password->bind_param("ss", $password_hash, $token);
+                                    if($new_password->execute()){
+                                        $newToken = bin2hex(random_bytes(40));
+                                        $new_token = $this->db->prepare("UPDATE users SET token = ? WHERE token = ?");
+                                        $new_token->bind_param("ss", $newToken, $token);
+                                        if($new_token->execute()){
+                                            $mess = "Thành công";
+                                        }else{
+                                            $mess = "Lỗi";
+                                        }
+                                    }else{
+                                        $mess = "Lỗi";
+                                    }
                                 }else{
                                     $mess = "Lỗi";
                                 }
                             }else{
-                                $mess = "Lỗi";
+                                $mess = "Mật khẩu không khớp";
                             }
                         }else{
-                            $mess = "Lỗi";
+                            $mess = "Chưa nhập đủ thông tin";
                         }
                     }else{
-                        $mess = "Chưa nhập đủ thông tin";
+                        $mess = "Lỗi";
                     }
                 }else{
                     $mess = "Lỗi";
                 }
-            }else{
-                $mess = "Lỗi";
             }
             return $mess;
         }

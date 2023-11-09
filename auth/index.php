@@ -28,7 +28,8 @@
     </div>
     <!-- /* --------------------------------- SCRIPT --------------------------------- */ -->
     <script src="../assets/javascript/auth.js"></script>
-    <script src="../assets/javascript/sweet-condition.js"></script>
+    <script src="../assets/javascript/alert.js"></script>
+    <script src="../assets/javascript/alert-condition.js"></script>
     <!-- /* --------------------------------- SCRIPT --------------------------------- */ -->
 </body>
 </html>
