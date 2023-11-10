@@ -15,6 +15,24 @@ class Order_Model{
         }
     }
     /* ----------------------------- SHOW ORDER LIST ---------------------------- */
+    /* ----------------------------- SHOW NOTE---------------------------- */
+    function showNoteOrder(){
+        $id = (isset($_GET["id"])) ? $_GET["id"] : "";
+        if(!empty($id) && is_numeric($id)){
+            $stmt = $this->db->prepare("SELECT note FROM orders WHERE id = ?");
+            $stmt->bind_param("i", $id);
+            if($stmt->execute()){
+                $result = $stmt->get_result();
+                if($result->num_rows > 0){
+                    $row = $result->fetch_assoc();
+                    if($row['note'] !== ""){
+                        return $row;
+                    }
+                }
+            }
+        }
+    }
+    /* ----------------------------- SHOW NOTE---------------------------- */
     /* ----------------------------- UPDATE ORDER ---------------------------- */
     function updateOrder(){
         $mess = "";

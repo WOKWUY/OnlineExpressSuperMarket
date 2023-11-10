@@ -40,7 +40,11 @@
                         <a href="?page=my-profile"><i class="fa-regular fa-user"></i> Profile</a>
                         <a href="?page=order"><i class="fa-solid fa-bag-shopping"></i> My Order</a>
                         <!-- NHỚ VALIDATE  -->
-                        <a href="?page=admin"><i class="fa-solid fa-screwdriver-wrench"></i> Admin</a>
+                        <?php 
+                        if($ss_role === "admin" || $ss_role === "staff"){
+                            ?><a href="?page=admin"><i class="fa-solid fa-screwdriver-wrench"></i> Admin</a><?php // HTML
+                        }
+                        ?>
                         <!-- NHỚ VALIDATE  -->
                         <a href="./auth/?action=logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
                     </div>

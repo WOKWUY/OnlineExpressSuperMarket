@@ -34,6 +34,9 @@ class User_Controller{
         $result = $this->userModel->showInformationUser();
         include './users/information-user.php';
     }
+    function showInformationUserOld(){
+        return $this->userModel->showInformationUserOld();
+    }
     function showLogs(){
         $result = $this->userModel->showLogs();
         include './users/logs.php';

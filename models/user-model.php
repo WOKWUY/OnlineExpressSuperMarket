@@ -344,6 +344,22 @@ class User_Model{
         }
     }
     /* -------------------------- SHOW INFORMATION USER ------------------------- */
+    /* -------------------------- SHOW INFORMATION OLD USER ------------------------- */
+    function showInformationUserOld(){
+        $userId = (isset($_SESSION["user"])) ? $_SESSION["user"]['id'] : "";
+        if(!empty($userId) && is_numeric($userId)){
+            $stmt = $this->db->prepare("SELECT * FROM userinformation WHERE userId = ?");
+            $stmt->bind_param("i", $userId);
+            if($stmt->execute()){
+                $result = $stmt->get_result();
+                if($result->num_rows > 0){
+                    $row = $result->fetch_assoc();
+                    return $row;
+                }
+            }
+        }
+    }
+    /* -------------------------- SHOW INFORMATION OLD USER ------------------------- */
     /* --------------------------- SHOW LOGS -------------------------- */
     function showLogs(){
         $mess = "";

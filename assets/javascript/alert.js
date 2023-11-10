@@ -11,6 +11,6 @@ setTimeout(function () {window.location.href = 'https://example.com';}, 2000);
 ok_để_chuyển_hướng_Có_thể_thêm_else.then((result) => { if (result.isConfirmed) {window.location.href = 'url';}});
 hoặc_document.querySelector('form').submit();
 // showCancelButton: true,
-
+// allowOutsideClick: false,
 // Thêm thành công - tiếp tục thêm hoặc ra ngoài xem
 // <script>Swal.fire({icon: 'success',title: 'Success',text: 'Added category successfully',showCancelButton: true,cancelButtonText: 'Continute',confirmButtonText: 'View',}).then((result) => { if (result.isConfirmed) {window.location.href = '?room=categories';}});</script>

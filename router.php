@@ -32,6 +32,7 @@ if(PAGE === 'admin'){
 }
 /* --------------------------------- HEADER --------------------------------- */
 $db = require './config/database.php';
+$userController = new User_Controller($db);
 $productController = new Product_Controller($db);
 $categoryController = new Category_Controller($db);
 $commentController = new Comment_Controller($db);
@@ -46,7 +47,7 @@ if(!empty(PAGE)){
     }elseif(PAGE === 'cart'){
         $cartController->showCartList();
     }elseif(PAGE === 'checkout'){
-        include './views/checkout.php';
+        $cartController->showCartListPageCheckout();
     }elseif(PAGE === 'contact'){
         include './views/contact.php';
     }elseif(PAGE === 'blogs'){

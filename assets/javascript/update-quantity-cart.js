@@ -28,8 +28,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
                         subTotal += parseInt(nghia.value); // Cộng dồn tổng giá của từng cart
                     });
                     document.getElementById("subTotal").innerHTML = "$" + subTotal; // Cập nhật lại giá tổng đơn hàng
-                    let totalShip = parseInt(document.getElementById("totalShip").innerText); // Lấy giá trị của tiền Ship
-                    document.getElementById("total").innerHTML = "$" + (subTotal + totalShip); // Cập nhật lại giá tổng đơn hàng cuối
+                    document.getElementById("total").innerHTML = "$" + subTotal; // Cập nhật lại giá tổng đơn hàng cuối
                     if(result == "0"){
                         let cut = cart.closest(".aCartItem");
                         if(cut){
@@ -60,8 +59,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
                         subTotal += parseInt(nghia.value); // Cộng dồn tổng giá của từng cart
                     });
                     document.getElementById("subTotal").innerHTML = "$" + subTotal; // Cập nhật lại giá tổng đơn hàng tạm thời
-                    let totalShip = parseInt(document.getElementById("totalShip").innerText); // Lấy giá trị của tiền Ship
-                    document.getElementById("total").innerHTML = "$" + (subTotal + totalShip); // Cập nhật lại giá tổng đơn hàng cuối
+                    document.getElementById("total").innerHTML = "$" + subTotal; // Cập nhật lại giá tổng đơn hàng cuối
                 }
             }
             xhr.send("productId=" + productId.value + "&action=up");

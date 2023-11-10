@@ -70,7 +70,7 @@ if (!empty(ROOM)) {
     }elseif(ROOM === 'order-details'){
         $orderController->showOrderDetails();
     }elseif (ROOM === 'note-details') {
-        $orderController->showOrderList();
+        $orderController->showNoteOrder();
     }elseif(ROOM === 'comments'){
         $commentController->showListComment();
     }elseif(ROOM === 'comment-details'){

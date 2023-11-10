@@ -14,6 +14,10 @@ class Order_Controller{
         $result = $this->orderModel->orderDetails();
         include './orders/order-details.php';
     }
+    function showNoteOrder(){
+        $result = $this->orderModel->showNoteOrder();
+        include './orders/note-details.php';
+    }
     function updateOrder(){
         $alertUpdate = $this->orderModel->updateOrder();
         include './orders/orders.php';

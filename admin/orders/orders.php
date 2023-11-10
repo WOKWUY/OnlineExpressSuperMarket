@@ -61,7 +61,7 @@
                 <!-- XỬ LÍ HIỂN THỊ CHO ĐẸP -->
                 <span class="span-<?= $colorST ?>"><?= $status ?></span>
             </td>
-            <td><a class="black" href="?room=note-details&<?= $order['id'] ?>">Details</a></td>
+            <td><a class="black" href="?room=note-details&id=<?= $order['id'] ?>">Details</a></td>
             <td class="actions">
                 <form action="" method="POST">
                     <!-- KIỂM TRA ĐƠN HÀNG ĐÃ CÓ AI CHỊU TRÁCH NHIỆM HAY CHƯA -->
@@ -74,7 +74,13 @@
                         <button onclick="return confirmAction('?room=orders&action=update-order&id=<?= $order['id'] ?>&value=paid')" name="paid" class="green"><i class="fa-solid fa-money-check-dollar"></i></button>
                         <button onclick="return confirmAction('?room=orders&action=update-order&id=<?= $order['id'] ?>&value=unpaid')" name="unpaid" class="red"><i class="fa-solid fa-money-check-dollar"></i></button>
                         <button onclick="return confirmAction('?room=orders&action=update-order&id=<?= $order['id'] ?>&value=boom')" name="boom" class="red"><i class="fa-solid fa-bomb"></i></button>
-                        <button onclick="return confirmDelete('?room=orders&action=delete-order&id=<?= $order['id'] ?>')" class="red"><i class="fa-solid fa-trash-can"></i></button>
+                        <!-- DELETE -->
+                        <?php 
+                        if($_SESSION["user"]["role"] === "admin"){
+                            ?><button onclick="return confirmDelete('?room=orders&action=delete-order&id=<?= $order['id'] ?>')" class="red"><i class="fa-solid fa-trash-can"></i></button><?php
+                        }
+                        ?>
+                        <!-- DELETE -->
                         <?php //HTML
                     }else{
                         ?><button onclick="return confirmAction('?room=orders&action=receive-order&id=<?= $order['id'] ?>')" name="confirm" class="black"><i class="fa-solid fa-hand-back-fist"></i>  Receive</button><?php // HTML

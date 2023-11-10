@@ -22,6 +22,14 @@ class Cart_Controller{
     function quantityCart(){
         return $this->cartModel->quantityCart();
     }
-
+    function showCartListPageCheckout(){
+        $result = $this->cartModel->showCartList();
+        if(isset($result)){
+            include './views/checkout.php';
+        }else{
+            $result = $this->cartModel->showCartList();
+            include './views/cart.php';
+        }
+    }
 }
 ?>

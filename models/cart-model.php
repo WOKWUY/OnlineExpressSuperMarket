@@ -21,9 +21,9 @@ class Cart_Model{
                             FROM carts
                             INNER JOIN products
                             ON carts.productId = products.id
-                            WHERE products.id = ?
+                            WHERE products.id = ? AND userId = ?
                         ");
-                        $stmt->bind_param("i", $productId);
+                        $stmt->bind_param("ii", $productId, $userId);
                         if($stmt->execute()){
                             $result = $stmt->get_result();
                             if($result->num_rows > 0){

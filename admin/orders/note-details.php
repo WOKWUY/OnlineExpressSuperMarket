@@ -1,17 +1,17 @@
-<a href="?room=emails" class="back"><i class="fa-solid fa-left-long"></i></a>
+<a href="?room=orders" class="back"><i class="fa-solid fa-left-long"></i></a>
 <table>
     <?php 
     if(isset($result)){
         ?>
             <tr>
-                <th>Message</th>
+                <th>Note</th>
             </tr>
             <tr>
-                <td class="textleft"><?= $result['message'] ?></td>
+                <td class="textleft"><?= $result['note'] ?></td>
             </tr>
         <?php // HTML
     }else{
-        messRed("Empty");
+        messRed("Empty note");
     }
     ?>
 </table>

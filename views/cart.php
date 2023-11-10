@@ -78,7 +78,7 @@
                     </div>
                     <div class="row-infor">
                         <span>Shipping</span>
-                        <span>$<span id="totalShip">30</span></span>
+                        <span><span id="totalShip">Free</span></span>
                     </div>
                     <div class="title-sub-cart">
                         <span>Total</span>
@@ -86,7 +86,7 @@
                     </div>
                 </div>
                 <button class="checkout-btn">
-                    <a href="?room=checkout">Checkout</a>
+                    <a href="?page=checkout">Checkout</a>
                 </button>
             </div>
         </div>
@@ -97,7 +97,7 @@
         <div class="empty-cart">
             <img src="./assets/image/empty-cart.png" width="100px" alt="">
             <span>Empty your cart</span>
-            <a href="">Buy now</a>
+            <a href="?page=home">Buy now</a>
         </div>
         <?php // HTML
         $productController->noFilterOrSearch("./component/maylike.php");

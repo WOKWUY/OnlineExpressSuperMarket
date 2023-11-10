@@ -64,6 +64,7 @@ td.infc-product{
     justify-content: flex-start;
 }
 td.infc-product span{
+    width: 100%;
     height: 80px;
     overflow: hidden;
 }
@@ -240,14 +241,18 @@ button.checkout-btn a:active {
 }
 @media screen and (max-width: 480px){}
 @media screen and (max-width: 414px){}
-@media screen and (max-width: 360px){
+@media screen and (max-width: 361px){
     main #ctrQttCart{
         width: 30px;
         grid-template-columns: repeat(1,1fr) !important;
+        grid-template-rows: repeat(3,1fr);
+        border: none;
     }
     #ctrQttCart button.down-qtt-cart{
         width: 100%;
         grid-column: 1/2;
+        grid-row: 1/2;
+        border: 2px solid #dadada;
     }
     #ctrQttCart .update_quantity_cart{
         width: 100%;
@@ -255,10 +260,17 @@ button.checkout-btn a:active {
         border: none;
         border-top: 1px solid;
         border-bottom: 1px solid;
+        grid-row: 2/3;
+        border: none;
+        border-left: 2px solid #dadada;
+        border-right: 2px solid #dadada;
+        padding: 5px 0px;
     }
     #ctrQttCart button.up-qtt-cart{
         width: 100%;
         grid-column: 1/2;
+        grid-row: 3/4;
+        border: 2px solid #dadada;
     }
 }
 @media screen and (max-width: 320px){}
