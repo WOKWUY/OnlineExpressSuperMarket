@@ -10,7 +10,6 @@ $bannerController = new Banner_Controller($db);
         <article>
             <?= $bannerController->showBannerListWeb() ?>
             <?= $productController->showProductListWeb() ?>
-            <?= $productController->noFilterOrSearch("./component/maylike.php") ?>
         </article>
     </div>
 </main>

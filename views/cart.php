@@ -1,4 +1,5 @@
 <main>
+    <article>
     <?php 
     include './config/database.php';
     $productController = new Product_Controller($db);
@@ -29,6 +30,15 @@
                                 </td>
                                 <td>$<?= $cart['price'] ?></td>
                                 <td>
+                                    <!-- /* -------------------------- SỐ LƯỢNG HÀNG TỒN KHO ------------------------- */ -->
+                                    <?php 
+                                        $db = require './config/database.php';
+                                        $productController = new Product_Controller($db);
+                                        $quantityOld = $productController->quantityOld($cart['productId']);
+                                        $maxQuantity = $cart['quantityPrd'] - $quantityOld;
+                                    ?>
+                                    <input type="hidden" id="max-qtt" value="<?= $maxQuantity ?>">
+                                    <!-- /* -------------------------- SỐ LƯỢNG HÀNG TỒN KHO ------------------------- */ -->
                                     <div class="control-quantity" id="ctrQttCart">
                                         <button type="button" class="down-qtt-cart"><i class="fa-solid fa-minus"></i></button>
                                         <input type="number" min="1" value="<?= $cart['quantity'] ?>" readonly class="update_quantity_cart">
@@ -91,7 +101,7 @@
             </div>
         </div>
         <?php // HTML
-        $productController->noFilterOrSearch("./component/maylike.php");
+        $productController->noFilterOrSearch("./component/maylike.php", require './config/database.php');
     }else{
         ?>
         <div class="empty-cart">
@@ -100,11 +110,13 @@
             <a href="?page=home">Buy now</a>
         </div>
         <?php // HTML
-        $productController->noFilterOrSearch("./component/maylike.php");
+        $productController->noFilterOrSearch("./component/maylike.php", require './config/database.php');
     }
     ?>
+    </article>
 </main>
 <!-- /* ----------------------------------- JAVASCRIPT ----------------------------------- */ -->
 <script src="./assets/javascript/update-quantity-cart.js"></script>
 <script src="./assets/javascript/delete-cart.js"></script>
+<script src="./assets/javascript/search.js"></script>
 <!-- /* ----------------------------------- JAVASCRIPT ----------------------------------- */ -->

@@ -2,7 +2,6 @@
 Các div phải trong main
 <!-- ---------------------------------------- -->
 
-- Tạo hàm xử lí hiển thị giá sản phẩm (models và controller) -> Tạo 1 file chứa function đó và include khi cần
 - Trước khi thanh toán => check đăng nhập chưa + check số lượng từng sản phẩm + check thông tin người dùng
 
 - Thêm 1 bảng lọc theo price + category + status
@@ -17,3 +16,5 @@ Các div phải trong main
 <!-- ------------------------------ SAU CÙNG ------------------------------- -->
 
 Tạo giao diện trang profile 
+Bổ sung sql check quantity
+Hiển thị giá

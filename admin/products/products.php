@@ -28,7 +28,21 @@
                 <td class="productNameTD"><?= $product['productName'] ?></td>
                 <td>$<?= $product['price'] ?></td>
                 <td><?= $product['discount'] ?>%</td>
-                <td><?= $product['quantity'] ?></td>
+                <!-- /* ------------------------------ QUANTITY ------------------------------ */ -->
+                <td>
+                    <?php 
+                    $db = require '../config/database.php';
+                    $productController = new Product_Controller($db);
+                    $quantityOld = $productController->quantityOld($product['id']);
+                    $quantity = $product['quantity'];
+                    if($quantityOld >= $quantity){
+                        messRed("Sold old");
+                    }else{
+                        echo $quantityOld . " / " . $product['quantity'];
+                    }
+                    ?>
+                </td>
+                <!-- /* ------------------------------ QUANTITY ------------------------------ */ -->
                 <td><a class="black" href="?room=details-product&view=description&id=<?= $product['id'] ?>">Details</a></td>
                 <td><a class="black" href="?room=details-product&view=details&id=<?= $product['id'] ?>">Details</a></td>
                 <td>

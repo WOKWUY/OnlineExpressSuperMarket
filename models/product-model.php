@@ -326,4 +326,37 @@ class Product_Model{
         return $mess;
     }
     /* ----------------------------- DELETE IMAGE MORE ----------------------------- */
+    /* ------------------------------ QUANTITY OLD ------------------------------ */
+    function quantityOld($productId){
+        if(!empty($productId) && is_numeric($productId)){
+            $stmtQuantityOld = $this->db->prepare("SELECT quantity FROM orderdetails WHERE productId = ?");
+            $stmtQuantityOld->bind_param("i", $productId);
+            if($stmtQuantityOld->execute()){
+                $result = $stmtQuantityOld->get_result();
+                $quantityOld = 0;
+                while($row = $result->fetch_assoc()){
+                    $quantityOld += $row['quantity'];
+                }
+                return $quantityOld;
+            }
+        }
+    }
+    /* ------------------------------ QUANTITY OLD ------------------------------ */
+        /* --------------------------------- SELECT --------------------------------- */
+        function quantityProductOnCart(){
+            $userId = (isset($_SESSION["user"])) ? $_SESSION["user"]['id'] : "";
+            $productId = (isset($_GET["id"])) ? $_GET["id"] : "";
+            $stmt = $this->db->prepare("SELECT quantity FROM carts WHERE productId = ? AND userId = ?");
+            $stmt->bind_param("ii", $productId,$userId);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if($result->num_rows > 0){
+                $row = $result->fetch_assoc();
+                $quantity = $row['quantity'];
+                return $quantity;
+            }else{
+                return 0;
+            }
+        }
+        /* --------------------------------- SELECT --------------------------------- */
 }

@@ -16,7 +16,7 @@ class Product_Controller{
         $products = $this->productModel->showProductList();
         include './component/products.php';
     }
-    function noFilterOrSearch($url){
+    function noFilterOrSearch($url, $db){
         $maylike = $this->productModel->showProductList();
         include $url;
     }
@@ -49,6 +49,7 @@ class Product_Controller{
         include './products/details-product.php';
     }
     function detailsProductWeb(){
+        $quantityOnCart = $this->productModel->quantityProductOnCart();
         $product = $this->productModel->detailsProduct();
         if($product !== "Lỗi"){
             include './views/product-detail.php';
@@ -58,18 +59,18 @@ class Product_Controller{
     }
     function filterProduct(){
         $products = $this->productModel->filterProduct();
-        include '../component/products.php';
+        include '../component/filter-products.php';
         if(is_null($products)){
-            $this->noFilterOrSearch("../component/maylike.php");
+            $this->noFilterOrSearch("../component/maylike.php", require '../config/database.php');
         }
     }
     function searchProduct(){
-        $products = $this->productModel->search();
         require_once '../component/functionsHTML.php';
-        include '../component/products.php';
-        if(is_null($products)){
+        $products = $this->productModel->search();
+        include '../component/search.php';
+        if(is_null($products)){ // Nếu không có sản phẩm nào
             require_once '../component/functionsHTML.php';
-            $this->noFilterOrSearch("../component/maylike.php");
+            $this->noFilterOrSearch("../component/maylike.php",require '../config/database.php');
         }
     }
     function addImageProduct(){
@@ -87,6 +88,9 @@ class Product_Controller{
     function showListImageWeb(){
         $images = $this->productModel->showListImageWeb();
         return $images;
+    }
+    function quantityOld($productId){
+        return $this->productModel->quantityOld($productId);
     }
 }
 ?>

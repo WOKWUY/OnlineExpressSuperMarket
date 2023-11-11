@@ -1,4 +1,5 @@
 <main>
+    <article>
     <div id="product-details">
         <div class="image-pdts">
             <div class="image-main-pdts">
@@ -24,21 +25,50 @@
                 <div class="discount-pdts">
                     Discount: <?= $product['discount'] ?> %
                 </div>
+                <!-- /* -------------------------------- QUANTITY -------------------------------- */ -->
+                <div class="quantity-sold-commment-pdts keclass">
+                    <?php 
+                    $db = require './config/database.php';
+                    $productController = new Product_Controller($db);
+                    $quantityOld = $productController->quantityOld($product['id']);
+                    $quantity = $product['quantity'];
+                    if($quantityOld >= $quantity){
+                        messRed("Sold old");
+                    }else{
+                        echo "Sold: " . $quantityOld . " / " . $quantity;
+                    }
+                    ?>
+                </div>
+                <!-- /* -------------------------------- QUANTITY -------------------------------- */ -->
                 <div class="quantity-sold-commment-pdts keclass">Insurance: Mobile device insurance</div>
                 <div class="quantity-sold-commment-pdts keclass">Transport: Free shipping</div>
                 <div class="price-pdts">
                     <span class="cost-pdts">$<?= $product['price'] ?> </span>
                     <span class="price-pdts-end"> $5555</span>
                 </div>
-                <form action="" method="POST" onsubmit="return false">
-                    <div class="control-quantity">
-                        <input type="hidden" id="productId" value="<?= (isset($_GET["id"])) ? $_GET["id"] : "" ?>">
-                        <button type="button" id="down-qtt"><i class="fa-solid fa-minus"></i></button>
-                        <input type="number" value="1" id="quantity_add_cart">
-                        <button type="button" id="up-qtt"><i class="fa-solid fa-plus"></i></button>
-                    </div>
-                    <button type="submit" id="add-to-cart">Add to cart</button>
-                </form>
+                <!-- /* ------------------------------- ADD TO CART ------------------------------ */ -->
+                <?php 
+                    if($quantityOld !== $quantity){ // Kiểm tra xem hàng trong kho đã bán hết chưa
+                        ?>
+                        <form action="" method="POST" onsubmit="return false">
+                            <!-- /* -------------------------- SỐ LƯỢNG HÀNG TỒN KHO ------------------------- */ -->
+                            <input hidden type="number" readonly id="max-qtt" value="<?= $quantity - $quantityOld ?>">
+                            <!-- /* -------------------------- SỐ LƯỢNG HÀNG TỒN KHO ------------------------- */ -->
+                            <!-- /* -------------------------- SỐ LƯỢNG MAX BÊN CART ------------------------- */ -->
+                            <input hidden type="number" readonly id="max-qtt-on-cart" value="<?= $quantityOnCart ?>">
+                            <!-- /* -------------------------- SỐ LƯỢNG MAX BÊN CART ------------------------- */ -->
+                            <div class="control-quantity">
+                                <input type="hidden" id="productId" value="<?= (isset($_GET["id"])) ? $_GET["id"] : "" ?>">
+                                <button type="button" id="down-qtt"><i class="fa-solid fa-minus"></i></button>
+                                <input type="number" value="1" id="quantity_add_cart">
+                                <button type="button" id="up-qtt"><i class="fa-solid fa-plus"></i></button>
+                            </div>
+                            <button type="submit" id="add-to-cart">Add to cart</button>
+                        </form>
+                        <?php // HTML
+                    }
+                ?>
+                <!-- /* ------------------------------- ADD TO CART ------------------------------ */ -->
             </div>
             <div class="sub-image-pdts">
                 <?php 
@@ -110,6 +140,7 @@
         </div>
         <!-- /* ---------------------------------- CODE DISCOUNT --------------------------------- */ -->
     </div>
+    </article>
 </main>
 <!-- /* ----------------------------------- JAVASCRIPT ----------------------------------- */ -->
 <script src="./assets/javascript/add-to-cart.js"></script>
@@ -117,4 +148,5 @@
 <script src="./assets/javascript/comment.js"></script>
 <script src="./assets/javascript/delete-comment.js"></script>
 <script src="./assets/javascript/product-detail.js"></script>
+<script src="./assets/javascript/search.js"></script>
 <!-- /* ----------------------------------- JAVASCRIPT ----------------------------------- */ -->

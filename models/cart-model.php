@@ -17,7 +17,7 @@ class Cart_Model{
                     while($row = $listId->fetch_assoc()){
                         $productId = $row['productId'];
                         $stmt = $this->db->prepare(
-                            "SELECT products.id AS productId ,products.productName AS productName, products.image AS image, products.price AS price, carts.quantity AS quantity  
+                            "SELECT products.id AS productId ,products.productName AS productName, products.image AS image, products.price AS price, carts.quantity AS quantity, products.quantity AS quantityPrd  
                             FROM carts
                             INNER JOIN products
                             ON carts.productId = products.id

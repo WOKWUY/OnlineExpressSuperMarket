@@ -1,5 +1,6 @@
 <canvas id="myChart"></canvas>
 <script>
+  fetch('data.php')
   const ctx = document.getElementById('myChart');
 
   new Chart(ctx, {

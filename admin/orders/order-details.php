@@ -30,12 +30,13 @@
         endforeach;
     }else{
         if(!isset($alertDelete)){
-            messRed("Empty");
+            messRed("Empty Order Details");
         }
     }
     ?>
 </table>
+<input type="hidden" id="orderId" value="<?= (isset($_GET["orderId"])) ? $_GET["orderId"] : "" ?>">
 <!-- Xử lí hiển thị -->
-<?= (isset($alertDelete) && $alertDelete === "Thành công") ? "<script>Swal.fire({icon: 'success',title: 'Success',text: 'Deleted successfully',allowOutsideClick: false}).then((result) => { if (result.isConfirmed) {window.location.href = '?room=orders';}});</script>" : ""?>
+<?= (isset($alertDelete) && $alertDelete === "Thành công") ? "<script> let orderId = document.getElementById('orderId').value;;Swal.fire({icon: 'success',title: 'Success',text: 'Deleted successfully',allowOutsideClick: false}).then((result) => { if (result.isConfirmed) {window.location.href = '?room=order-details&orderId='+orderId;}});</script>" : ""?>
 <?= (isset($alertDelete) && $alertDelete === "Lỗi") ? "<script>Swal.fire({icon: 'error',title: 'Oops...',text: 'Error!',});</script>" : "" ?>
 <!-- Xử lí hiển thị -->

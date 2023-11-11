@@ -29,7 +29,7 @@
                             <!-- /* ------------------------------ QUANTITY SOLD ----------------------------- */ -->
                             <div class="sold">
                                 <?php 
-                                $db = require './config/database.php';
+                                $db = require '../config/database.php';
                                 $productController = new Product_Controller($db);
                                 $quantityOld = $productController->quantityOld($product['id']);
                                 $quantity = $product['quantity'];

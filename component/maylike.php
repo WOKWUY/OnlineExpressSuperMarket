@@ -17,7 +17,20 @@
                                 <span>$391</span>
                             </div>
                             <div class="quantity">Quantity: <?= $product['quantity'] ?></div>
-                            <div class="sold">Sold: 239</div>
+                            <!-- /* ------------------------------ QUANTITY SOLD ----------------------------- */ -->
+                            <div class="sold">
+                                <?php 
+                                $productController = new Product_Controller($db);
+                                $quantityOld = $productController->quantityOld($product['id']);
+                                $quantity = $product['quantity'];
+                                if($quantityOld >= $quantity){
+                                    messRed("Sold old");
+                                }else{
+                                    echo "Sold: " . $quantityOld;
+                                }
+                                ?>
+                            </div>
+                            <!-- /* ------------------------------ QUANTITY SOLD ----------------------------- */ -->
                         </div>
                     </a>
                 </div>

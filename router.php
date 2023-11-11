@@ -52,10 +52,8 @@ if(!empty(PAGE)){
         include './views/contact.php';
     }elseif(PAGE === 'blogs'){
         include './views/blogs.php';
-    }elseif(PAGE === 'order'){
-        include './views/order.php';
-    }elseif(PAGE === 'my-profile'){
-        include './views/my-profile.php';
+    }elseif(PAGE === 'profile'){
+        include './views/profile.php';
     }elseif(PAGE === 'admin'){
         header("Location: ./admin/?room=statistical");
     }

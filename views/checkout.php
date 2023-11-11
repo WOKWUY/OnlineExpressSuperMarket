@@ -1,5 +1,6 @@
 <link rel="stylesheet" href="./assets/css/checkout.css">
 <main>
+    <article>
     <div id="checkout">
         <div class="main-cart">
             <div class="all-cart">
@@ -101,7 +102,9 @@
             </button>
         </div>
     </div>
+    </article>
 </main>
 <!-- /* --------------------------------- SCRIPT --------------------------------- */ -->
 <script src="./assets/javascript/checkout.js"></script>
+<script src="./assets/javascript/search.js"></script>
 <!-- /* --------------------------------- SCRIPT --------------------------------- */ -->

@@ -37,8 +37,7 @@
                     <i class="fa-regular fa-user"></i>
                     <div class="profile-item">
                         <a href="#"><i class="fa-brands fa-php"></i> I am <?= isset($_SESSION["user"]) ? $_SESSION['user']['role'] . " - " . $_SESSION['user']['id'] : ""  ?></a>
-                        <a href="?page=my-profile"><i class="fa-regular fa-user"></i> Profile</a>
-                        <a href="?page=order"><i class="fa-solid fa-bag-shopping"></i> My Order</a>
+                        <a href="?page=profile"><i class="fa-regular fa-user"></i> Profile</a>
                         <!-- NHỚ VALIDATE  -->
                         <?php 
                         if($ss_role === "admin" || $ss_role === "staff"){
