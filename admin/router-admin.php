@@ -8,6 +8,7 @@ include '../models/order-model.php';
 include '../models/comment-model.php';
 include '../models/banner-model.php';
 include '../models/email-model.php';
+include '../models/statistical-model.php';
 /* ---------------------------------- MODEL --------------------------------- */
 /* ---------------------------------- CONTROLLER --------------------------------- */
 include '../controllers/product-controller.php';
@@ -16,6 +17,7 @@ include '../controllers/order-controller.php';
 include '../controllers/comment-controller.php';
 include '../controllers/banner-controller.php';
 include '../controllers/email-controller.php';
+include '../controllers/statistical-controller.php';
 /* ---------------------------------- CONTROLLER --------------------------------- */
 /* ---------------------------------- AUTH ---------------------------------- */ 
 include './auth-role.php'; // Xác thực quyền
@@ -33,9 +35,10 @@ $orderController = new Order_Controller($db);
 $commentController = new Comment_Controller($db);
 $bannerController = new Banner_Controller($db);
 $emailController = new Email_Controller($db);
+$statisticalController = new Statistical_Controller($db);
 if (!empty(ROOM)) {
     if (ROOM === 'statistical') {
-        include './statistical/statistical.php';
+        $statisticalController->statisticalOrder();
     }elseif (ROOM === 'users') {
         $userController->disableBomm();
         $userController->showUserList();

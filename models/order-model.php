@@ -6,7 +6,7 @@ class Order_Model{
     }
     /* ----------------------------- SHOW ORDER LIST ---------------------------- */
     function showOrderList(){
-        $stmt = $this->db->prepare("SELECT * FROM orders");
+        $stmt = $this->db->prepare("SELECT * FROM orders ORDER BY createdate DESC");
         if($stmt->execute()){
             $result = $stmt->get_result();
             if($result->num_rows > 0){

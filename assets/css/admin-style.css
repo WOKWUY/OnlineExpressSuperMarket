@@ -272,7 +272,7 @@ td.textleft{
     text-align: left;
 }
 /* CHART JS */
-#myChart{
+canvas{
     min-width: 100%;
 }
 /* CHART JS */
