@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", function () { // Giúp đồng b�
                 if(xhr.readyState === 4 && xhr.status === 200){
                     let result = xhr.responseText;
                     if(result == "Thành công"){
-                        Swal.fire({icon: 'success',title: 'Order Success',text: 'Thank you for trusting us', allowOutsideClick: false,}).then((result) => { if (result.isConfirmed) {window.location.href = '?page=my-profile';}});
+                        Swal.fire({icon: 'success',title: 'Order Success',text: 'Thank you for trusting us', allowOutsideClick: false,}).then((result) => { if (result.isConfirmed) {window.location.href = '?page=profile';}});
                     }else if(result === "Bạn chưa đăng nhập"){
                         Swal.fire({icon: 'error',title: 'Oops...',text: 'You are not logged in!',allowOutsideClick: false,}).then((result) => { if (result.isConfirmed) {window.location.href = './auth/?auth=login';}});
                     }else if(result === "Email không hợp lệ"){

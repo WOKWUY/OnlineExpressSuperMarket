@@ -54,3 +54,8 @@ input::placeholder{
     font-weight: bold;
     color: #ffb80b;
 }
+.flex{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

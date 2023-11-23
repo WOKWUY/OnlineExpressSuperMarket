@@ -28,19 +28,14 @@ class Checkout_Model{
                     $checkInformation->bind_param("i",$userId);
                     if($checkInformation->execute()){
                         $resultCheck = $checkInformation->get_result();
-                        $check = false;
                         if($resultCheck->num_rows > 0){
                             $updateInformation = $this->db->prepare("UPDATE userinformation SET fullName = ?, email = ?, address = ?, numberphone = ? WHERE userId = ?");
                             $updateInformation->bind_param("ssssi", $fullname, $email, $address, $numberphone, $userId);
-                            if($updateInformation->execute()){
-                                $check = true;
-                            }
+                            $updateInformation->execute();
                         }else{
                             $createInformation = $this->db->prepare("INSERT INTO userinformation (`userId`,`fullName`,`email`,`address`,`numberphone`) VALUES (?,?,?,?,?)");
                             $createInformation->bind_param("issss", $userId, $fullname, $email, $address, $numberphone);
-                            if($createInformation->execute()){
-                                $check = true;
-                            }
+                            $createInformation->execute();
                         }
                         /* --------------------- SAU KHI XỬ LÍ THÔNG TIN CÁ NHÂN -------------------- */
                         // Tạo đơn hàng tổng quát

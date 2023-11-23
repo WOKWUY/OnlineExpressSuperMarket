@@ -15,6 +15,7 @@ include './models/product-model.php';
 include './models/comment-model.php';
 include './models/banner-model.php';
 include './models/cart-model.php';
+include './models/order-model.php';
 /* ---------------------------------- MODEL --------------------------------- */
 /* ---------------------------------- CONTROLLER --------------------------------- */
 include './controllers/user-controller.php';
@@ -23,6 +24,7 @@ include './controllers/product-controller.php';
 include './controllers/comment-controller.php';
 include './controllers/banner-controller.php';
 include './controllers/cart-controller.php';
+include './controllers/order-controller.php';
 /* ---------------------------------- CONTROLLER --------------------------------- */
 /* --------------------------------- HEADER --------------------------------- */
 if(PAGE === 'admin'){
@@ -53,13 +55,13 @@ if(!empty(PAGE)){
     }elseif(PAGE === 'blogs'){
         include './views/blogs.php';
     }elseif(PAGE === 'profile'){
-        include './views/profile.php';
+        $userController->showInformationOneUser();
     }elseif(PAGE === 'admin'){
         header("Location: ./admin/?room=statistical");
     }
     // NOT FOUND
     else{
-        include './views/home.php';
+        ?><script>window.location = './404/'</script><?php
     }
     // NOT FOUND
 }else{ 

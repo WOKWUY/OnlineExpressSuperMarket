@@ -160,5 +160,20 @@ class Order_Model{
             }
         }
         /* -------------------------------- ORDER BOM ------------------------------- */
+        /* -------------------------- SHOW ORDER WEB (USER) ------------------------- */
+        function showOrderWeb(){
+            $userId = (isset($_SESSION["user"])) ? $_SESSION["user"]["id"] : "";
+            if(!empty($userId) && is_numeric($userId)){
+                $stmt = $this->db->prepare("SELECT * FROM orders WHERE userId = ?");
+                $stmt->bind_param("i", $userId);
+                if($stmt->execute()){
+                    $result = $stmt->get_result();
+                    if($result->num_rows > 0){
+                        return $result;
+                    }
+                }
+            }
+        } 
+        /* -------------------------- SHOW ORDER WEB (USER) ------------------------- */
 }
 ?>

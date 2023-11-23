@@ -2,6 +2,7 @@
 class User_Controller{
     private $db;
     private $userModel;
+    private $orderModel;
     function __construct(mysqli $db){
         $this->db = $db;
         $this->userModel = new User_Model($this->db);
@@ -34,6 +35,10 @@ class User_Controller{
         $result = $this->userModel->showInformationUser();
         include './users/information-user.php';
     }
+    function showInformationOneUser(){
+        $result = $this->userModel->showInformationOneUser();
+        include './views/profile.php';
+    }
     function showInformationUserOld(){
         return $this->userModel->showInformationUserOld();
     }
@@ -47,12 +52,18 @@ class User_Controller{
     function updateUser(){
         $result = $this->userModel->updateStatusOrRole();
     }
+    function updateInformationUser(){
+        return $this->userModel->updateInformationUser();
+    }
     function disableBomm(){
         $this->userModel->disableBecauseBoom();
     }
     function checkToken(){
         $result = $this->userModel->checkToken();
         return $result;
+    }
+    function uploadAvatar(){
+        return $this->userModel->uploadAvatar();
     }
 }
 ?>

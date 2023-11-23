@@ -19,27 +19,29 @@ class Product_Model{
     function createProduct(){
         $mess = "";
         
-        if(isset($_POST["add-product"])){
-            $categoryId = $_POST["categoryId"];
-            $image = $_FILES['image']['name'];
-            $productName = $_POST["productName"];
-            $price = $_POST["price"];
-            $discount = $_POST["discount"];
-            $quantity = $_POST["quantity"];
-            $description = $_POST["description"];
-            $details = $_POST["details"];
-            $status = "none";
-            
-            if(!empty($productName) && !empty($image) && !empty($categoryId) && !empty($price) && !empty($quantity) && !empty($description) && !empty($details)){
-                $stmt = $this->db->prepare("INSERT INTO products(`categoryId`, `image`,`productName`,`price`,`discount`,`quantity`,`description`,`details`,`status`) VALUES (?,?,?,?,?,?,?,?,?) ");
-                $stmt->bind_param("issiiisss", $categoryId, $image, $productName, $price, $discount, $quantity, $description, $details, $status);
-                if($stmt->execute()){
-                    $mess = "Thành công";
+        if($_SERVER["REQUEST_METHOD"] === 'POST'){
+            if(isset($_POST["add-product"])){
+                $categoryId = $_POST["categoryId"];
+                $image = $_FILES['image']['name'];
+                $productName = $_POST["productName"];
+                $price = $_POST["price"];
+                $discount = $_POST["discount"];
+                $quantity = $_POST["quantity"];
+                $description = $_POST["description"];
+                $details = $_POST["details"];
+                $status = "none";
+                
+                if(!empty($productName) && !empty($image) && !empty($categoryId) && !empty($price) && !empty($quantity) && !empty($description) && !empty($details)){
+                    $stmt = $this->db->prepare("INSERT INTO products(`categoryId`, `image`,`productName`,`price`,`discount`,`quantity`,`description`,`details`,`status`)VALUES (?,?,?,?,?,?,?,?,?) ");
+                    $stmt->bind_param("issiiisss", $categoryId, $image, $productName, $price, $discount, $quantity, $description, $details, $status);
+                    if($stmt->execute()){
+                        $mess = "Thành công";
+                    }else{
+                        $mess = "Lỗi";
+                    }
                 }else{
-                    $mess = "Lỗi";
+                    $mess = "Chưa nhập đầy đủ thông tin";
                 }
-            }else{
-                $mess = "Chưa nhập đầy đủ thông tin";
             }
         }
         return $mess;
@@ -80,7 +82,8 @@ class Product_Model{
                 $details = $_POST["details"];
     
                 if(!empty($id) && !empty($productName) && !empty($categoryId) && !empty($price) && !empty($quantity) && !empty($description) && !empty($details)){
-                    $stmt = $this->db->prepare("UPDATE products SET categoryId = ?, image = ?, productName = ?, price = ?, discount = ?, quantity = ?, description = ?, details = ? WHERE id = ?");
+                    $stmt = $this->db->prepare("UPDATE products SET categoryId = ?, image = ?, productName = ?, price = ?, discount = ?, quantity = ?, 
+                    description = ?, details = ? WHERE id = ?");
                     $stmt->bind_param("issiiissi", $categoryId, $image, $productName, $price, $discount, $quantity, $description, $details, $id);
                     if($stmt->execute()){
                         $mess = "Thành công";

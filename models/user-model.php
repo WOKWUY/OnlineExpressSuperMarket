@@ -344,6 +344,21 @@ class User_Model{
         }
     }
     /* -------------------------- SHOW INFORMATION USER ------------------------- */
+        /* -------------------------- SHOW INFORMATION USER ------------------------- */
+        function showInformationOneUser(){
+            $id = (isset($_SESSION["user"])) ? $_SESSION["user"]["id"] : "";
+            if(!empty($id) && is_numeric($id)){
+                $stmt = $this->db->prepare("SELECT * FROM userinformation WHERE userId = ?");
+                $stmt->bind_param("i", $id);
+                if($stmt->execute()){
+                    $result = $stmt->get_result();
+                    if($result->num_rows > 0){
+                        return $result->fetch_assoc();
+                    }
+                }
+            }
+        }
+        /* -------------------------- SHOW INFORMATION USER ------------------------- */
     /* -------------------------- SHOW INFORMATION OLD USER ------------------------- */
     function showInformationUserOld(){
         $userId = (isset($_SESSION["user"])) ? $_SESSION["user"]['id'] : "";
@@ -409,6 +424,49 @@ class User_Model{
         return $mess;
     }
     /* --------------------------- UPDATE USER -------------------------- */
+    /* ------------------------- UPDATE INFROMATION USER ------------------------ */
+    function updateInformationUser(){
+        $mess = "";
+
+        if($_SERVER["REQUEST_METHOD"] === "POST"){
+            session_start();
+            $userId = (isset($_SESSION["user"])) ? $_SESSION["user"]["id"] : "";    
+            $newFullName = (isset($_POST["newFullName"])) ? $_POST["newFullName"] : "";
+            $newEmail = (isset($_POST["newEmail"])) ? $_POST["newEmail"] : "";
+            $newAddress = (isset($_POST["newAddress"])) ? $_POST["newAddress"] : "";
+            $newNumberphone = (isset($_POST["newNumberphone"])) ? $_POST["newNumberphone"] : "";
+
+            if(!empty($userId) && is_numeric($userId)){
+                // Check người dùng đã có thông tin chưa
+                $checkInformation = $this->db->prepare("SELECT * FROM userinformation WHERE userId = ?");
+                $checkInformation->bind_param("i",$userId);
+                if($checkInformation->execute()){
+                $resultCheck = $checkInformation->get_result();
+                if($resultCheck->num_rows > 0){
+                    $stmt = $this->db->prepare("UPDATE userinformation SET fullName = ?, email = ?, address = ?, numberphone = ? WHERE userId = ?");
+                    $stmt->bind_param("ssssi", $newFullName, $newEmail, $newAddress, $newNumberphone, $userId);
+                    if($stmt->execute()){
+                        $mess = "Thành công";
+                    }else{
+                        $mess = "Lỗi";
+                    }
+                }else{
+                    $stmt = $this->db->prepare("INSERT INTO userinformation (`userId`, `fullName`,`email`,`address`,`numberphone`) VALUES (?,?,?,?,?) ");
+                    $stmt->bind_param("issss", $userId, $newFullName, $newEmail, $newAddress, $newNumberphone);
+                    if($stmt->execute()){
+                        $mess = "Thành công";
+                    }else{
+                        $mess = "Lỗi";
+                    }
+                }
+            }else{
+                $mess = "Bạn chưa đăng nhập";
+            }
+        }
+        return $mess;
+    }
+}
+    /* ------------------------- UPDATE INFROMATION USER ------------------------ */
     /* ------------------------- CREATE DATETIME LOGOUT ------------------------- */
     function updateTimeLogs(){
         session_start();
@@ -445,4 +503,56 @@ class User_Model{
         }
     }
     /* -------------------------- DISABLE BECAUSE BOOM -------------------------- */
+    /* ----------------------------- UPLOAD AVATAR ----------------------------- */
+    function uploadAvatar(){
+        if($_SERVER["REQUEST_METHOD"] === "POST") {
+            $mess = "";
+            session_start();
+            $userId = (isset($_SESSION["user"])) ? $_SESSION["user"]["id"] : "";
+            if(!empty($userId) && is_numeric($userId)){
+                $target_dir = "../uploads/"; // Thư mục để lưu trữ tệp tin đã tải lên
+                $target_file = $target_dir . basename($_FILES["avatar"]["name"]);
+                $uploadOk = 1;
+                $avatar = $_FILES['avatar']['name'];
+                $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION)); //pathinfo(): Lấy thông tin về một đường dẫn tệp tin
+            
+                // Kiểm tra xem tệp đã tồn tại chưa
+                // if (file_exists($target_file)) {
+                //     echo "Tệp tin đã tồn tại.";
+                //     $uploadOk = 0;
+                // }
+            
+                // Kiểm tra kích thước tệp tin
+                if($_FILES["avatar"]["size"] > 5000000){
+                    $mess = "Tệp tin quá lớn.";
+                    $uploadOk = 0;
+                }
+                // Cho phép png, jpg, jpeg
+                if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ){
+                    $mess = "Chỉ cho phép tệp tin hình ảnh.";
+                    $uploadOk = 0;
+                }
+                // Check lại
+                if($uploadOk == 0){
+                    $mess = "Tệp tin của bạn không được tải lên.";
+                }else{
+                    if(move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file)){
+                        $stmt = $this->db->prepare("UPDATE userinformation SET avatar = ? WHERE userId = ?");
+                        $stmt->bind_param("si", $avatar, $userId);
+                        if($stmt->execute()){
+                            $mess = "Thành công";
+                        }else{
+                            $mess = "Lỗi";
+                        }
+                    }else{
+                        $mess = "Đã xảy ra lỗi khi tải lên tệp tin.";
+                    }
+                }
+            }else{
+                $mess = "Bạn chưa đăng nhập";
+            }
+            return $mess;
+        }
+    }
+    /* ----------------------------- UPLOAD AVATAR ----------------------------- */
 }

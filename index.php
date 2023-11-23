@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="./assets/css/product-details.css">
     <link rel="stylesheet" href="./assets/css/contact.css">
     <link rel="stylesheet" href="./assets/css/cart.css">
+    <link rel="stylesheet" href="./assets/css/my-profile-style.css">
     <!-- CSS -->
     <!-- ALERT -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.2/dist/sweetalert2.min.css">

@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
             );
             xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
             xhr.onreadystatechange = () =>{
-                if(xhr.status === 200 && xhr.readyState === 4){
+                if(xhr.status === 4 && xhr.readyState === 200){
                     loadingElement.style.display = "none";
                     document.getElementById("new-comment").innerHTML = xhr.responseText;
                     document.getElementById("content-comment").value = "";

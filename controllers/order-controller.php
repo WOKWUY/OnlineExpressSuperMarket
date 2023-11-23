@@ -14,6 +14,9 @@ class Order_Controller{
         $result = $this->orderModel->orderDetails();
         include './orders/order-details.php';
     }
+    function showOrderWeb(){
+        return $this->orderModel->showOrderWeb();
+    }
     function showNoteOrder(){
         $result = $this->orderModel->showNoteOrder();
         include './orders/note-details.php';
