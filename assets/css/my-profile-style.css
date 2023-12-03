@@ -111,7 +111,7 @@ form#uploadAvatar button:hover{
     padding: 20px 10px;
     border-bottom: 1.5px solid rgb(240, 240, 240);
 }
-.actionOrderClient a,button{
+.actionOrderClient button{
     display: inline-block;
     border: none;
     border-radius: 2px;
@@ -119,7 +119,7 @@ form#uploadAvatar button:hover{
     background-color: transparent;
     padding: 0px 10px;
 }
-.actionOrderClient a{
+.actionOrderClient form button{
     color: red;
 }
 .actionOrderClient button{

@@ -65,10 +65,10 @@
     <nav>
         <ul>
             <li><a href="./">Home</a></li>
-            <li><a href="./">Discount Code</a></li>
-            <li><a href="?page=blogs">Blogs</a></li>
+            <!-- <li><a href="./">Discount Code</a></li> -->
+            <!-- <li><a href="?page=blogs">Blogs</a></li> -->
             <li><a href="?page=contact">Contact</a></li>
-            <li><a href="./">FAQ</a></li>
+            <!-- <li><a href="./">FAQ</a></li> -->
         </ul>
     </nav>
     <!-- /* ----------------------------------- NAV ---------------------------------- */ -->

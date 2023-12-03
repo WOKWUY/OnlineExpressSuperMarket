@@ -8,7 +8,7 @@ $newComment = $commentController->commentAction();
 <div class="user-comment">
     <div class="item-user-comment">
         <div class="avatar-user-comment">
-            <img width="80px" src="	https://event.mediacdn.vn/2020/8/14/st-15973999489741584015103.jpg" alt="">
+            <img width="80px" src="https://event.mediacdn.vn/2020/8/14/st-15973999489741584015103.jpg" alt="">
         </div>
         <div class="infor-user-comment">
             <div class="name-user-comment">

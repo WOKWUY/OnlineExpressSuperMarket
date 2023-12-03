@@ -43,5 +43,9 @@ class Order_Controller{
     function numBoom($userId){
         return $this->orderModel->boomNum($userId);
     }
+    function cancelOrder(){
+        $alertUpdate = $this->orderModel->cancelOrder();
+        include './views/profile.php';
+    }
 }
 ?>

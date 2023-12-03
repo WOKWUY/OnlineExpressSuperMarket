@@ -66,6 +66,7 @@ button#down-qtt{
     border: none;
     padding: 5px 0px;
     background-color: white;
+    color: black;
 }
 #quantity_add_cart{
     grid-column: 2/4;
@@ -87,6 +88,7 @@ button#up-qtt{
     grid-column: 4/5;
     padding: 5px 0px;
     background-color: white;
+    color: black;
 }
 button#add-to-cart{
     padding: 10px 60px;

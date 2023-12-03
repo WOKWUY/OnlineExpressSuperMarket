@@ -74,7 +74,6 @@
     </div>
     <!-- /* --------------------------------- SCRIPT --------------------------------- */ -->
     <script src="../assets/javascript/alert-condition.js"></script>
-    <script src="../assets/javascript/admin/admin.js"></script>
     <script src="../assets/javascript/admin/banners.js"></script>
     <script src="../assets/javascript/admin/categories.js"></script>
     <script src="../assets/javascript/admin/products.js"></script>
@@ -82,5 +81,6 @@
     <script src="../assets/javascript/admin/emails.js"></script>
     <script src="../assets/javascript/admin/ckeditor.js"></script>
     <!-- /* --------------------------------- SCRIPT --------------------------------- */ -->
+    <script src="../assets/javascript/snowfall.js" ></script>
 </body>
 </html>

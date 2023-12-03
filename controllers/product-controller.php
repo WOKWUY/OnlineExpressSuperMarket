@@ -69,8 +69,8 @@ class Product_Controller{
         $products = $this->productModel->search();
         include '../component/search.php';
         if(is_null($products)){ // Nếu không có sản phẩm nào
-            require_once '../component/functionsHTML.php';
             $this->noFilterOrSearch("../component/maylike.php",require '../config/database.php');
+            require_once '../component/functionsHTML.php';
         }
     }
     function addImageProduct(){

@@ -43,8 +43,17 @@
                 <div class="quantity-sold-commment-pdts keclass">Insurance: Mobile device insurance</div>
                 <div class="quantity-sold-commment-pdts keclass">Transport: Free shipping</div>
                 <div class="price-pdts">
-                    <span class="cost-pdts">$<?= $product['price'] ?> </span>
-                    <span class="price-pdts-end"> $5555</span>
+                    <?php 
+                    if($product['discount'] > 0){
+                        ?><span class="cost-pdts">$<?= $product['price'] ?> </span><?php //HTML
+                    }
+                    ?>
+                    <span class="price-pdts-end">
+                        <?php 
+                            $price = $product['price'] - ($product['price'] * $product['discount'] / 100);
+                            ?><span>$<?= $price ?></span><?php //HTML
+                        ?>
+                    </span>
                 </div>
                 <!-- /* ------------------------------- ADD TO CART ------------------------------ */ -->
                 <?php 
@@ -72,7 +81,6 @@
             </div>
             <div class="sub-image-pdts">
                 <?php 
-                $db = include './config/database.php';
                 $productController = new Product_Controller($db);
                 $images = $productController->showListImageWeb();
                 if(!is_null($images)){
@@ -143,10 +151,10 @@
     </article>
 </main>
 <!-- /* ----------------------------------- JAVASCRIPT ----------------------------------- */ -->
-<script src="./assets/javascript/add-to-cart.js"></script>
-<script src="./assets/javascript/quantity-actions.js"></script>
 <script src="./assets/javascript/comment.js"></script>
 <script src="./assets/javascript/delete-comment.js"></script>
+<script src="./assets/javascript/add-to-cart.js"></script>
+<script src="./assets/javascript/quantity-actions.js"></script>
 <script src="./assets/javascript/product-detail.js"></script>
 <script src="./assets/javascript/search.js"></script>
 <!-- /* ----------------------------------- JAVASCRIPT ----------------------------------- */ -->

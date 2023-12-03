@@ -1,3 +1,66 @@
+<main>
+    <!-- /* -------------------------------- GET DATA -------------------------------- */ -->
+    <?php 
+    $db = require '../config/database.php';
+    $statisticalController = new Statistical_Controller($db);
+    ?>
+    <!-- /* -------------------------------- GET DATA -------------------------------- */ -->
+    <!-- Đơn hàng, người dùng, sản phẩm, doanh thu -->
+    <div class="statistical">
+        <div class="box-statis">
+          <div class="ic-statis">
+          <i class="fa-solid fa-money-bills" style="color: green;"></i>
+          </div>
+          <div class="statis-right">
+            <div class="title-statis">
+             Revenue
+            </div>
+            <div class="num-statis">$
+              <?= $total = $statisticalController->statiscalRevenue(); ?>
+            </div>
+          </div>
+        </div>
+        <div class="box-statis">
+          <div class="ic-statis">
+            <i class="fa-solid fa-boxes-stacked"></i>
+          </div>
+          <div class="statis-right">
+            <div class="title-statis">
+              Orders
+            </div>
+            <div class="num-statis">
+              <?= $statisticalController->statistical('orders') ?>
+            </div>
+          </div>
+        </div>
+        <div class="box-statis">
+          <div class="ic-statis">
+            <i class="fa-solid fa-comments" style="color: gray;"></i>
+          </div>
+          <div class="statis-right">
+            <div class="title-statis">
+              Comments
+            </div>
+            <div class="num-statis">
+              <?= $statisticalController->statistical('comments') ?>
+            </div>
+          </div>
+        </div>
+        <div class="box-statis">
+          <div class="ic-statis">
+            <i class="fa-solid fa-users"></i>
+          </div>
+          <div class="statis-right">
+            <div class="title-statis">
+              Users
+            </div>
+            <div class="num-statis">
+              <?= $statisticalController->statistical('users') ?>
+            </div>
+          </div>
+        </div>
+    </div>
+</main>
 <!-- /* --------------------------------- ORDER -------------------------------- */ -->
 <canvas id="orders"></canvas>
 <script>

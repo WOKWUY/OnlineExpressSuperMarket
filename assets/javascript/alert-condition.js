@@ -35,4 +35,3 @@ function confirmAction(url) {
   });
   return false;
 }
-

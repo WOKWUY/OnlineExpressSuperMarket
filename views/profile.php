@@ -1,4 +1,5 @@
 <main>
+    <article>
     <div id="my-profile">
         <h1>My Profile</h1>
         <div class="my-profile">
@@ -91,7 +92,10 @@
                         <td class="rpbl"><?= $order['status'] ?></td>
                         <td><?= $order['process'] ?></td>
                         <td class="actionOrderClient">
-                            <a href=""><i class="fa-solid fa-xmark"></i> Cancel</a>
+                            <form action="?page=profile&action=cancel-order" method="POST">
+                                <input name="id" hidden type="number" id="idOrder" value="<?= $order['id'] ?>">
+                                <button onclick="return confirm('Are you sure ? ? ?')"><i class="fa-solid fa-xmark"></i> Cancel</button>
+                            </form>
                             <button><i class="fa-solid fa-eye"></i> Details</button>
                         </td>
                     </tr>
@@ -107,7 +111,12 @@
         ?>
         <!-- /* -------------------------------- MY ORDER -------------------------------- */ -->
     </div>
+    </article>
 </main>
+<!-- Xử lí hiển thị -->
+<?= (isset($alertUpdate) && $alertUpdate === "Thành công") ? "<script>Swal.fire({icon: 'success',title: 'Success',text: 'Successfuly cancel order',allowOutsideClick: false,}).then((result) => { if (result.isConfirmed) {window.location.href = '?page=profile';}});</script>" : ""?>
+<?= (isset($alertUpdate) && $alertUpdate === "Lỗi") ? "<script>Swal.fire({icon: 'error',title: 'Oops...',text: 'Error!',allowOutsideClick: false,}).then((result) => { if (result.isConfirmed) {window.location.href = '?page=profile';}});</script>" : "" ?>
+<!-- Xử lí hiển thị -->
 <!-- /* ----------------------------------- JAVASCRIPT ----------------------------------- */ -->
 <script src="./assets/javascript/search.js"></script>
 <script src="./assets/javascript/my-profile.js"></script>

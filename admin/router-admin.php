@@ -24,7 +24,6 @@ include './auth-role.php'; // Xác thực quyền
 // controller và model user nằm trong auth-role
 /* ---------------------------------- AUTH ---------------------------------- */ 
 define("ROOM", isset($_GET["room"]) ? $_GET["room"] : "");
-define("SUBROOM", isset($_GET["subroom"]) ? $_GET["subroom"] : "");
 define("ACTION", isset($_GET["action"]) ? $_GET["action"] : "");
 /* -------------------------------- VIEW MAIN ------------------------------- */
 $db = require '../config/database.php';

@@ -16,6 +16,9 @@
             <th>Action</th>
         </tr>
         <?php // HTML
+        $db = include '../config/database.php';
+        $commentController = new Comment_Controller($db);
+        $productController = new Product_Controller($db);
         foreach ($result as $product) : 
             ?>
             <tr>
@@ -31,10 +34,8 @@
                 <!-- /* ------------------------------ QUANTITY ------------------------------ */ -->
                 <td>
                     <?php 
-                    $db = require '../config/database.php';
-                    $productController = new Product_Controller($db);
-                    $quantityOld = $productController->quantityOld($product['id']);
                     $quantity = $product['quantity'];
+                    $quantityOld = $productController->quantityOld($quantity);
                     if($quantityOld >= $quantity){
                         messRed("Sold old");
                     }else{
@@ -77,8 +78,6 @@
                         <a href="?room=comment-details&productId=<?= $product['id'] ?>" class="black rlvcmt">
                         <i class="fa-regular fa-comments"></i>
                             <?php
-                                $db = include '../config/database.php';
-                                $commentController = new Comment_Controller($db);
                                 $numberComment = $commentController->quantityCommentAdmin($product['id']);
                                 if($numberComment > 0){
                                     ?>

@@ -30,6 +30,7 @@
     <script src="../assets/javascript/auth.js"></script>
     <script src="../assets/javascript/alert.js"></script>
     <script src="../assets/javascript/alert-condition.js"></script>
+    <script src="../assets/javascript/snowfall.js" ></script>
     <!-- /* --------------------------------- SCRIPT --------------------------------- */ -->
 </body>
 </html>

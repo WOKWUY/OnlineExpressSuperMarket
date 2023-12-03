@@ -1,6 +1,7 @@
 header{
     background: linear-gradient(90deg, #fd411b,#ff2a00);
     padding: 35px 30px 10px 30px;
+    margin-bottom: 10px;
 }
 .header-top{
     display: flex;

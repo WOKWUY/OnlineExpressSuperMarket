@@ -175,5 +175,29 @@ class Order_Model{
             }
         } 
         /* -------------------------- SHOW ORDER WEB (USER) ------------------------- */
+        /* ------------------------------ CANCEL ORDER ------------------------------ */
+        function cancelOrder(){
+            $mess = "";
+            $id = (isset($_POST["id"])) ? $_POST["id"] : "";
+            if(!empty($id) && is_numeric($id)){
+                // Delete order details
+                $stmt = $this->db->prepare("DELETE FROM orderdetails WHERE orderId = ?");
+                $stmt->bind_param("i", $id);
+                if($stmt->execute()){
+                    // Delete order
+                    $stmt = $this->db->prepare("DELETE FROM orders WHERE id = ?");
+                    $stmt->bind_param("i", $id);
+                    if($stmt->execute()){
+                        $mess = "Thành công";
+                    }else{
+                        $mess = "Lỗi";
+                    }
+                }
+            }else{
+                $mess = "Lỗi";
+            }
+            return $mess;
+        }
+        /* ------------------------------ CANCEL ORDER ------------------------------ */
 }
 ?>

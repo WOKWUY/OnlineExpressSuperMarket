@@ -290,3 +290,23 @@ canvas{
     line-height: 10px;
     border-radius: 30px;
 }
+/* ------------------------------- STATISTICAL ------------------------------ */
+.statistical{
+    display: flex;
+    justify-content: space-between;
+}
+.box-statis{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    font-size: 18px;
+    justify-content: center;
+}
+.ic-statis{
+    font-size: 40px;
+}
+.statis-right{
+    display: flex;
+    flex-direction: column;
+}
+/* ------------------------------- STATISTICAL ------------------------------ */

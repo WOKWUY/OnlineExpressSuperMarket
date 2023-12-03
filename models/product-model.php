@@ -15,6 +15,18 @@ class Product_Model{
         }
     }
     /* ---------------------------- SHOW PRODUCT LIST --------------------------- */
+    /* ---------------------------- SHOW PRODUCT LIST OPTION --------------------------- */
+    function showProductListBycategory($categoryId, $titleCategory){
+        $stmt = $this->db->prepare("SELECT * FROM products WHERE categoryId = ?");
+        $stmt->bind_param("i", $categoryId);
+        if($stmt->execute()){
+            $result = $stmt->get_result();
+            if($result->num_rows > 0){
+                return $result;
+            }
+        }
+    }
+    /* ---------------------------- SHOW PRODUCT LIST OPTION --------------------------- */
     /* ---------------------------- ADD PRODUCT --------------------------- */
     function createProduct(){
         $mess = "";
@@ -181,7 +193,7 @@ class Product_Model{
         usort($data, function($a, $b){ // Sắp xếp mảng theo tổng số lượng giảm dần
             return $b['totalQuantity'] - $a['totalQuantity'];
         });
-        $top5 = array_slice($data,0,10); // Lấy số lượng sản phẩm bán chạy nhất (giảm dần) - mảng, bắt đầu, kết thúc
+        $top5 = array_slice($data,0,5); // Lấy số lượng sản phẩm bán chạy nhất (giảm dần) - mảng, bắt đầu, kết thúc
         $dataTop5Product = [];
         foreach ($top5 as $product){
             $id = $product['productId'];
@@ -337,10 +349,12 @@ class Product_Model{
             if($stmtQuantityOld->execute()){
                 $result = $stmtQuantityOld->get_result();
                 $quantityOld = 0;
-                while($row = $result->fetch_assoc()){
-                    $quantityOld += $row['quantity'];
+                if($result->num_rows > 0){
+                    while($row = $result->fetch_assoc()){
+                        $quantityOld += $row['quantity'];
+                    }
+                    return $quantityOld;
                 }
-                return $quantityOld;
             }
         }
     }

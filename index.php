@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="keyword" content="Điện thoại, Điện thoại Iphone, Điện thoại Samsung, Smartphone, Iphone">
+    <meta name="keyword" content="Điện thoại, Điện thoại Iphone, Điện thoại Samsung, Smartphone, Điện thoại chính hãng, Điện thoại di động, Điện thoại cao cấp, Điện thoại di động giá rẻ">
     <!-- FAVICON -->
     <link rel="shortcut icon" href="./assets/image/favicon.png" type="image/x-icon">
     <!-- FAVICON -->
@@ -40,5 +40,6 @@
     <!-- /* --------------------------------- SCRIPT --------------------------------- */ -->
     <script src="./assets/javascript/alert-condition.js"></script>
     <!-- /* --------------------------------- SCRIPT --------------------------------- */ -->
+    <script src="./assets/javascript/snowfall.js" ></script>
 </body>
 </html>

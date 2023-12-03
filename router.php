@@ -40,6 +40,7 @@ $categoryController = new Category_Controller($db);
 $commentController = new Comment_Controller($db);
 $bannerController = new Banner_Controller($db);
 $cartController = new Cart_Controller($db);
+$orderController = new Order_Controller($db);
 /* -------------------------------- VIEW MAIN (ROUTER) ------------------------------- */
 if(!empty(PAGE)){
     if(PAGE === 'home'){
@@ -68,6 +69,11 @@ if(!empty(PAGE)){
     include './views/home.php';
 }
 /* -------------------------------- VIEW MAIN (ROUTER) ------------------------------- */
+/* --------------------------------- ACTION --------------------------------- */
+if(ACTION === 'cancel-order'){
+    $orderController->cancelOrder();
+}
+/* --------------------------------- ACTION --------------------------------- */
 /* --------------------------------- LOADING -------------------------------- */
 include './component/loading.php';
 /* --------------------------------- LOADING -------------------------------- */
@@ -75,7 +81,7 @@ include './component/loading.php';
 if(PAGE === 'admin'){
     // ADMIN
 }else{
-    // include './layout/footer.php';
+    include './layout/footer.php';
 }
 /* --------------------------------- FOOTER --------------------------------- */
 ?>
