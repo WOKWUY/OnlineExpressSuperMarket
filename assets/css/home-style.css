@@ -20,7 +20,7 @@
     box-shadow: 0px 1px 2px #dadada;
 }
 .category-list ul li:nth-child(1){
-    background: linear-gradient(90deg, #fd411b,#fd411b);
+    background: var(--color-admin);
     color: white;
     font-weight: bold;
     margin-bottom: 1px;
@@ -40,7 +40,7 @@
     transition: 0.2s;
 }
 .category-list ul li a:hover{
-    background: linear-gradient(90deg, #fd411b,#fd411b);
+    background: var(--color-admin);
     color: white;
     transition: 0.2s;
     font-weight: bold;
@@ -86,7 +86,7 @@
 .title-best-seller{
     display: block;
     padding: 10px 15px;
-    background: linear-gradient(90deg, #fd411b,#fd411b);
+    background: var(--color-admin);
     color: white;
     font-weight: bold;
     text-transform: uppercase;
@@ -103,7 +103,7 @@
 }
 #product-list{
     display: grid;
-    grid-template-columns: repeat(6,1fr);
+    grid-template-columns: repeat(5,1fr);
     gap: 10px;
     padding: 20px;
 }
@@ -130,6 +130,9 @@
     transition: 0.3s;
     transform: translateY(-5px);
 }
+.product-image {
+    height: 160px;
+}
 .product-image img{
     width: 100%;
     height: 100%;
@@ -139,7 +142,7 @@
     padding: 10px;
 }
 .title{
-    height: 45px;
+    height: 40px;
     overflow: hidden;
     padding-bottom: 10px;
 }
@@ -154,13 +157,14 @@
     flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
+    padding-top: 5px;
 }
 .price del{
     font-size: 12px;
-    color: gray;
+    color: black;
 }
 .price span{
-    color: #fd411b;
+    color: red !important;
 }
 /* PRODUCT */
 /* --------------------------------- REPONSE -------------------------------- */
@@ -264,3 +268,31 @@
 @media screen and (max-width: 320px){
 }
 /* --------------------------------- REPONSE -------------------------------- */
+/* VIEW-MORE */
+.view-more{
+    display: flex;
+    justify-content: center;
+}
+.view-more button{
+    display: block;
+    padding: 10px 15px;
+    border: 2px solid;
+    border-radius: 3px;
+    background-color: var(--color-admin);
+    color: white;
+    font-size: 16px;
+}
+/* VIEW-MORE */
+/* COLOR PRODUCT */
+.allColorProduct{
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding-top: 10px;
+}
+.allColorProduct > div{
+    padding: 10px;
+    width: 20px;
+    border-radius: 50px;
+}
+/* COLOR PRODUCT */

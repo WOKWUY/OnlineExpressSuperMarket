@@ -12,51 +12,28 @@
                     <?= $product['productName'] ?>
                 </div>
                 <div class="quantity-sold-commment-pdts">
-                    <span>
-                        Quantity Comment:
-                        <?php
-                        $db = include './config/database.php';
-                        $commentController = new Comment_Controller($db);
-                        echo $commentController->quantityComment();
-                        ?>
-                    </span>
-                    |<span> 500 Sold</span>
+                    <span style="color: #F1C93B;"> <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></span>
+                    <span>978 số lượt thích</span>
                 </div>
-                <div class="discount-pdts">
-                    Discount: <?= $product['discount'] ?> %
-                </div>
-                <!-- /* -------------------------------- QUANTITY -------------------------------- */ -->
-                <div class="quantity-sold-commment-pdts keclass">
-                    <?php 
-                    $db = require './config/database.php';
-                    $productController = new Product_Controller($db);
-                    $quantityOld = $productController->quantityOld($product['id']);
-                    $quantity = $product['quantity'];
-                    if($quantityOld >= $quantity){
-                        messRed("Sold old");
-                    }else{
-                        echo "Sold: " . $quantityOld . " / " . $quantity;
-                    }
-                    ?>
-                </div>
-                <!-- /* -------------------------------- QUANTITY -------------------------------- */ -->
-                <div class="quantity-sold-commment-pdts keclass">Insurance: Mobile device insurance</div>
-                <div class="quantity-sold-commment-pdts keclass">Transport: Free shipping</div>
                 <div class="price-pdts">
                     <?php 
                     if($product['discount'] > 0){
-                        ?><span class="cost-pdts">$<?= $product['price'] ?> </span><?php //HTML
+                        ?><span class="cost-pdts"><?= $product['price'] ?> VNĐ</span><?php //HTML
                     }
                     ?>
                     <span class="price-pdts-end">
                         <?php 
                             $price = $product['price'] - ($product['price'] * $product['discount'] / 100);
-                            ?><span>$<?= $price ?></span><?php //HTML
+                            ?><span><?= number_format($price) ?> VNĐ</span><?php //HTML
                         ?>
                     </span>
                 </div>
                 <!-- /* ------------------------------- ADD TO CART ------------------------------ */ -->
                 <?php 
+                    $db = require './config/database.php';
+                    $productController = new Product_Controller($db);
+                    $quantityOld = $productController->quantityOld($product['id']);
+                    $quantity = $product['quantity'];
                     if($quantityOld !== $quantity){ // Kiểm tra xem hàng trong kho đã bán hết chưa
                         ?>
                         <form action="" method="POST" onsubmit="return false">
@@ -72,81 +49,36 @@
                                 <input type="number" value="1" id="quantity_add_cart">
                                 <button type="button" id="up-qtt"><i class="fa-solid fa-plus"></i></button>
                             </div>
-                            <button type="submit" id="add-to-cart">Add to cart</button>
+                            <button type="submit" id="buy-now" class="button-action-pdt">Mua ngay</button>
+                            <button type="submit" id="add-to-cart" class="button-action-pdt">Thêm vào giỏ hàng</button>
                         </form>
                         <?php // HTML
                     }
                 ?>
                 <!-- /* ------------------------------- ADD TO CART ------------------------------ */ -->
             </div>
-            <div class="sub-image-pdts">
-                <?php 
-                $productController = new Product_Controller($db);
-                $images = $productController->showListImageWeb();
-                if(!is_null($images)){
-                    $idDOM = 1;
-                    $totalIdDOM = 0;
-                    foreach($images as $image){
-                        $number = $idDOM++;
-                        ?>
-                        <div class="box-subimage">
-                            <img id="nextImageMore<?= $number ?>" onmouseover="nextImage(<?= $number ?>)" src="./assets/image/<?= $image['image'] ?>" alt="">
-                        </div>
-                        <?php // HTML
-                        $totalIdDOM++;
-                    }
-                }
-                ?>
-                <!-- SỐ LƯỢNG ẢNH -->
-                <input type="hidden" value="<?= $totalIdDOM ?>" id="quantitySubImage">
-                <!-- SỐ LƯỢNG ẢNH -->
-            </div>
         </div>
     </div>
     <div class="infor-more">
         <div class="detais-description-pdts">
             <div class="title-details-description-pdts">
-                Product Description
-            </div>
-            <div class="content-details-description-pdts">
-                <?= $product['details'] ?>
-            </div>
-            <div class="title-details-description-pdts">
-                Product Details
+                Mô tả sản phẩm: <?= $product['productName'] ?>
             </div>
             <div class="content-details-description-pdts">
                 <?= $product['description'] ?>
             </div>
+            <div class="title-details-description-pdts">
+                Chi tiết sản phẩm
+            </div>
+            <div class="content-details-description-pdts">
+                <?= $product['details'] ?>
+            </div>
             <!-- /* ------------------------------- ALL PRODUCT ------------------------------ */ -->
             <?php 
-            $commentController = new Comment_Controller($db);
             $productController = new Product_Controller($db);
-            $commentController->showListCommentForProduct();
-            $productController->showProductListWeb();
+            $productController->showProductListByCategory($product['categoryId']);
             ?>
             <!-- /* ------------------------------- ALL PRODUCT ------------------------------ */ -->
-        </div>
-        <!-- /* ---------------------------------- CODE DISCOUNT --------------------------------- */ -->
-        <div class="all-discounts">
-            <?php 
-                for($i = 0; $i<9;$i++){
-                    ?>
-                        <div class="item-code-discount">
-                            <div class="infor-item-code">
-                                <span>Sale 10%</span>
-                                <span>Minium order 10$</span>
-                                <span>Minimize 30$</span>
-                                <span class="hsd">2023-12-10</span>
-                            </div>
-                            <div class="add-code-discount">
-                                <button>Get Code</button>
-                            </div>
-                        </div>
-                        <?php //HTML
-                }
-                ?>
-        </div>
-        <!-- /* ---------------------------------- CODE DISCOUNT --------------------------------- */ -->
     </div>
     </article>
 </main>

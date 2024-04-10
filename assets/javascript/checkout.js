@@ -3,10 +3,8 @@ document.addEventListener("DOMContentLoaded", function () { // Giúp đồng b�
     checkout.addEventListener("click", function () {
         let total = document.getElementById("total");
         let fullName = document.getElementById("fullname");
-        let email = document.getElementById("email");
         let address = document.getElementById("address");
         let numberphone = document.getElementById("numberphone");
-        let note = document.getElementById("note");
         let isValid = true;
         
         if((total.value).trim() <= 0){
@@ -18,12 +16,6 @@ document.addEventListener("DOMContentLoaded", function () { // Giúp đồng b�
             fullName.style.borderColor = "red";
         }else{
             fullName.style.borderColor = "gray";
-        }
-        if((email.value).trim() == ""){
-            isValid = false;
-            email.style.borderColor = "red";
-        }else{
-            email.style.borderColor = "gray";
         }
         if((address.value).trim() == ""){
             isValid = false;
@@ -50,22 +42,23 @@ document.addEventListener("DOMContentLoaded", function () { // Giúp đồng b�
                 if(xhr.readyState === 4 && xhr.status === 200){
                     let result = xhr.responseText;
                     if(result == "Thành công"){
-                        Swal.fire({icon: 'success',title: 'Order Success',text: 'Thank you for trusting us', allowOutsideClick: false,}).then((result) => { if (result.isConfirmed) {window.location.href = '?page=profile';}});
+                        Swal.fire({icon: 'success',title: 'Đặt hàng thành công',text: 'Cảm ơn bạn đã tin tưởng chúng tôi', allowOutsideClick: false,}).then((result) => { if (result.isConfirmed) {window.location.href = '?page=profile';}});
                     }else if(result === "Bạn chưa đăng nhập"){
-                        Swal.fire({icon: 'error',title: 'Oops...',text: 'You are not logged in!',allowOutsideClick: false,}).then((result) => { if (result.isConfirmed) {window.location.href = './auth/?auth=login';}});
+                        Swal.fire({icon: 'error',title: 'Oops...',text: 'Bạn chưa đăng nhập!',allowOutsideClick: false,}).then((result) => { if (result.isConfirmed) {window.location.href = './auth/?auth=login';}});
                     }else if(result === "Email không hợp lệ"){
                         Swal.fire({icon: 'error',title: 'Oops...',text: 'Email ???',});
                     }else{
-                        Swal.fire({icon: 'error',title: 'Oops...',text: 'Something went wrong!',});
+                        Swal.fire({icon: 'error',title: 'Oops...',text: result,});
                     }
                 }
             }
             xhr.send("fullname=" + fullName.value +
-                    "&email=" + email.value +
                     "&numberphone=" + numberphone.value +
                     "&address=" + address.value +
-                    "&note=" + note.value +
-                    "&total=" + total.value)
+                    "&total=" + total.value +
+                    "&province=" + province.value +
+                    "&district=" + district.value +
+                    "&wards=" + wards.value) 
         }
     });
 });

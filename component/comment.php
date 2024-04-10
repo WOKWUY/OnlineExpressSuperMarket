@@ -1,7 +1,7 @@
 <!-- /* -------------------------------- COMMENTS -------------------------------- */ -->
 <div id="comments">
     <div class="title-details-description-pdts">
-        Product Comments
+        Bình luận của sản phẩm
     </div>
     <!-- KIỂM TRA ĐĂNG NHẬP -->
     <?php 
@@ -9,9 +9,9 @@
         ?>
         <div class="input-comment">
             <form action="" method="POST" onsubmit="return false">
-                <input type="text" placeholder="Your Comment" id="content-comment">
+                <input type="text" placeholder="Nhập bình luận" id="content-comment">
                 <input type="hidden" id="productId" value="<?= isset($_GET["id"]) ? $_GET["id"] : "" ?>">
-                <button id="comment">Comment</button>
+                <button id="comment">Gửi</button>
             </form>
         </div>
         <?php // HTML
@@ -54,7 +54,7 @@
                 <?php // HTML
             endforeach;
         }else{
-            messRed("No comments yet");
+            messRed("Chưa có bình luận nào");
         }
         ?>
         <div class="user-comment" id="new-comment"></div>

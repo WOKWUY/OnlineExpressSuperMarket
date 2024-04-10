@@ -8,7 +8,7 @@ a,p,span,li{
     line-height: 20px;
 }
 body{
-    font-size: 14px;
+    font-size: 15px;
     font-family: 'Cabin', sans-serif;
     background-color: #f5f5f5;
 }
@@ -58,4 +58,44 @@ input::placeholder{
     display: flex;
     align-items: center;
     gap: 10px;
+}
+.aColor{
+    border: 1px solid gray;
+}
+/* phân trang */
+.pag-style {
+    display: flex;
+    justify-content: center;
+}
+.pag-style button{
+    padding: 5px 9px;
+    border: 2px solid #20262e;
+    background-color: #20262e;
+    color: white;
+    margin: 5px;
+}
+#aboutus{
+    padding: 20px;
+    background-color: white;
+}
+#aboutus h1{
+    padding-bottom: 15px;
+}
+#aboutus p{
+    line-height: 30px;
+}
+#aboutus > div{
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(2,1fr);
+}
+#aboutus img{
+    width: 100%;
+    border-radius: 10px;
+}
+@media screen and (max-width: 575px) {
+    #aboutus > div{
+        gap: 10px;
+        grid-template-columns: repeat(1,1fr);
+    }
 }

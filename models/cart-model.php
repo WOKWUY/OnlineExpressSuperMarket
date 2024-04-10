@@ -8,35 +8,39 @@ class Cart_Model{
     function showCartList(){
         $userId = (isset($_SESSION["user"])) ? $_SESSION["user"]['id'] : "";
         if(!empty($userId) && is_numeric($userId)){
-            $getIdCart = $this->db->prepare("SELECT productId FROM carts WHERE userId = ?");
-            $getIdCart->bind_param("i", $userId);
-            if($getIdCart->execute()){
-                $listId = $getIdCart->get_result();
-                if($listId->num_rows > 0){
-                    $data = [];
-                    while($row = $listId->fetch_assoc()){
-                        $productId = $row['productId'];
-                        $stmt = $this->db->prepare(
-                            "SELECT products.id AS productId ,products.productName AS productName, products.image AS image, products.price AS price, carts.quantity AS quantity, products.quantity AS quantityPrd  
-                            FROM carts
-                            INNER JOIN products
-                            ON carts.productId = products.id
-                            WHERE products.id = ? AND userId = ?
-                        ");
-                        $stmt->bind_param("ii", $productId, $userId);
-                        if($stmt->execute()){
-                            $result = $stmt->get_result();
-                            if($result->num_rows > 0){
-                                $row = $result->fetch_assoc();
-                                $data[] = $row;
-                            }
-                        }
+            $data = array();
+            $stmt = $this->db->prepare(
+                "SELECT 
+                    products.id AS productId,
+                    products.productName AS productName,
+                    products.image AS image,
+                    products.price AS price,
+                    products.discount AS discount,
+                    carts.quantity AS quantity,
+                    products.quantity AS quantityPrd
+                FROM 
+                    carts
+                INNER JOIN 
+                    products ON carts.productId = products.id
+                WHERE 
+                    carts.userId = ?"
+            );
+            $stmt->bind_param("i", $userId);
+            if($stmt->execute()){
+                $result = $stmt->get_result();
+                if($result->num_rows > 0){
+                    while($row = $result->fetch_assoc()){
+                        $data[] = $row;
                     }
-                    return $data;
                 }
+            }
+            if(!empty($data)){
+                return $data;
             }
         }
     }
+    
+    
     /* ------------------------------- SHOW LIST CART ------------------------------ */
     /* ------------------------------- ADD TO CART ------------------------------ */
     function addToCart(){
@@ -48,7 +52,7 @@ class Cart_Model{
         
         if(!empty($userId) && is_numeric($userId)){ // Kiểm tra đăng nhập chưa
             if(!empty($productId) && is_numeric($productId) && !empty($quantity) && is_numeric($quantity)){ // validate
-                /* ---------------- Check sản phẩm đã được thêm từ trước chưa --------------- */
+                // Kiểm tra xem sản phẩm đã tồn tại trong giỏ hàng với cùng một kích thước và màu sắc hay không
                 $check = $this->db->prepare("SELECT * FROM carts WHERE userId = ? AND productId = ?");
                 $check->bind_param("ii", $userId, $productId);
                 if($check->execute()){
@@ -57,7 +61,7 @@ class Cart_Model{
                         $row = $result->fetch_assoc();
                         $dbQuantity = $row['quantity'];
                         $newQuantity = $quantity + $dbQuantity;
-                        $update = $this->db->prepare("UPDATE carts SET quantity = ? WHERE productId = ? AND userId = ? ");
+                        $update = $this->db->prepare("UPDATE carts SET quantity = ? WHERE productId = ? AND userId = ?");
                         $update->bind_param("iii", $newQuantity, $productId, $userId);
                         if($update->execute()){
                             $mess = "Thành công";
@@ -65,7 +69,7 @@ class Cart_Model{
                             $mess = "Lỗi";
                         }
                     }else{ // Nếu chưa có
-                        $stmt = $this->db->prepare("INSERT INTO carts(`userId`,`productId`,`quantity`) VALUES (?,?,?)");
+                        $stmt = $this->db->prepare("INSERT INTO carts(`userId`,`productId`, `quantity`) VALUES (?,?,?)");
                         $stmt->bind_param("iii", $userId, $productId, $quantity);
                         if($stmt->execute()){
                             $mess = "Thành công";
@@ -82,6 +86,7 @@ class Cart_Model{
         }
         return $mess;
     }
+    
     /* ------------------------------- ADD TO CART ------------------------------ */
     /* ------------------------------- UPDATE QUANTITY CART ------------------------------ */
     function updateQuantityCart(){
@@ -167,4 +172,3 @@ class Cart_Model{
     }
     /* -------------------------------- QUANTITY CART -------------------------------- */
 }
-?>

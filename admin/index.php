@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- FAVICON -->
-    <link rel="shortcut icon" href="../assets/image/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="https://cdn.icon-icons.com/icons2/2879/PNG/512/orange_food_fruit_icon_182571.png" type="image/x-icon">
     <!-- FAVICON -->
     <!-- CSS -->
     <link rel="stylesheet" href="../assets/css/common-style.css">
@@ -37,33 +37,14 @@
             <div class="controller-dashboard">
                 <div>
                     <h1>DashBoard</h1>
-                    <a href="../?page=home"><i class="fa-solid fa-earth-americas fa-spin fa-spin-reverse"></i> Website</a>
-                    <li>
-                        <a href="?room=banners"><i class="fa-solid fa-sliders"></i> Banner</a>
-                        <div class="item-more-admin">
-                            <a href="?room=add-banner"><i class="fa-solid fa-plus"></i></a>
-                        </div>
-                    </li>
-                    <a href="?room=users"><i class="fa-solid fa-users"></i> Users</a>
-                    <li>
-                        <a href="?room=categories"><i class="fa-solid fa-calendar-days"></i> Categories</a>
-                        <div class="item-more-admin">
-                            <a href="?room=add-category"><i class="fa-solid fa-plus"></i></a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="?room=products"><i class="fa-solid fa-boxes-stacked"></i> Products</a>
-                        <div class="item-more-admin">
-                            <a href="?room=add-product"><i class="fa-solid fa-plus"></i></a>
-                        </div>
-                    </li>
-                    <a href="?room=comments"><i class="fa-regular fa-comments"></i> Comments</a>
-                    <a href="?room=blogs"><i class="fa-solid fa-blog"></i> Blogs</a>
-                    <a href="?room=orders"><i class="fa-solid fa-cube"></i> Orders</a>
-                    <a href="?room=emails"><i class="fa-regular fa-envelope"></i> Emails</a>
-                    <a href="?room=statistical"><i class="fa-solid fa-chart-line"></i> Statistical</a>
+                    <a href="../?page=home"><i class="fa-solid fa-earth-americas fa-spin fa-spin-reverse"></i> Cửa hàng</a>
+                    <a href="?room=users"><i class="fa-solid fa-users"></i> Người dùng</a>
+                    <a href="?room=categories"><i class="fa-solid fa-calendar-days"></i> Danh mục</a>
+                    <a href="?room=products"><i class="fa-solid fa-boxes-stacked"></i> Sản phẩm</a>
+                    <a href="?room=orders"><i class="fa-solid fa-cube"></i> Đơn hàng</a>
+                    <a href="?room=statistical"><i class="fa-solid fa-chart-line"></i> Thống kê</a>
                 </div>
-                <a href="../auth/?action=logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
+                <a href="../auth/?action=logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Đăng xuất</a>
             </div>
             <div class="content-dashboard">
                 <!-- /* -------------------------------- VIEW MAIN ------------------------------- */ -->

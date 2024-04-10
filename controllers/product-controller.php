@@ -12,6 +12,10 @@ class Product_Controller{
         $result = $this->productModel->showProductList();
         include './products/products.php';
     }
+    function showProductListByCategory($categoryId){
+        $products = $this->productModel->showProductListByCategory($categoryId);
+        include './component/relate-products.php';
+    }
     function showProductListWeb(){
         $products = $this->productModel->showProductList();
         include './component/products.php';
@@ -67,7 +71,7 @@ class Product_Controller{
     function searchProduct(){
         require_once '../component/functionsHTML.php';
         $products = $this->productModel->search();
-        include '../component/search.php';
+        include '../component/filter-products.php';
         if(is_null($products)){ // Nếu không có sản phẩm nào
             $this->noFilterOrSearch("../component/maylike.php",require '../config/database.php');
             require_once '../component/functionsHTML.php';
@@ -92,5 +96,20 @@ class Product_Controller{
     function quantityOld($productId){
         return $this->productModel->quantityOld($productId);
     }
+    function showProductByStatusLimit($title, $status, $limit){
+        $products = $this->productModel->showProductByStatusLimit($status, $limit);
+        include './component/productByStatus.php';
+    }
+    // new search
+    function searchhh(){
+        $products = $this->productModel->searchhh();
+        include './component/searchhh.php';
+    }
+    function fillterProductNav(){
+        $fillters = $this->productModel->fillterProductNav();
+        include './component/fillter-product-nav.php'; 
+    }
+    function getAllProvinces(){
+        return $this->productModel->getAllProvinces();
+    }
 }
-?>

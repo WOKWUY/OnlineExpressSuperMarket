@@ -3,9 +3,9 @@
         <?php
         $db = require './config/database.php';
         $productController = new Product_Controller($db);
-        $title = (isset($_GET["title"])) ? $_GET["title"] : "ALL PRODUCTS";
+        $title = (isset($_GET["title"])) ? $_GET["title"] : "SẢN PHẨM";
         if($title === 'search'){
-            messGreen("Result");
+            messGreen("Kết quả tìm kiếm");
         }else{
             echo ucfirst($title);
         }
@@ -16,7 +16,7 @@
         if(isset($products)){
             foreach ($products as $product) :
             ?>
-                <div class="product">
+                <div class="product" data-filter="<?= $product['status'] ?>">
                     <a href="?page=details&id=<?= $product['id'] ?>">
                         <div class="product-image">
                             <img width="200px" src="./assets/image/<?= $product['image'] ?>" alt="">
@@ -26,30 +26,16 @@
                             <div class="price">
                                 <?php 
                                 if($product['discount'] > 0){
-                                    ?><del>$<?= $product['price'] ?></del><?php //HTML
+                                    ?><del><?= $product['price'] ?> VNĐ</del><?php //HTML
                                     $price = $product['price'] - ($product['price'] * $product['discount'] / 100);
-                                    ?><span>$<?= $price ?></span><?php //HTML
+                                    ?><span><?= number_format($price) ?> VNĐ</span><?php //HTML
                                 }else{
                                     ?>
-                                    <span>$<?= $product['price'] ?></span>
+                                    <span><?= number_format($product['price']) ?>VNĐ</span>
                                     <?php //HTML
                                 }
                                 ?>
                             </div>
-                            <div class="quantity">Quantity: <?= $product['quantity'] ?></div>
-                            <!-- /* ------------------------------ QUANTITY SOLD ----------------------------- */ -->
-                            <div class="sold">
-                                <?php 
-                                $quantityOld = $productController->quantityOld($product['id']);
-                                $quantity = $product['quantity'];
-                                if($quantityOld >= $quantity){
-                                    messRed("Sold old");
-                                }else{
-                                    echo "Sold: " . $quantityOld;
-                                }
-                                ?>
-                            </div>
-                            <!-- /* ------------------------------ QUANTITY SOLD ----------------------------- */ -->
                         </div>
                     </a>
                 </div>
@@ -57,8 +43,9 @@
             endforeach;
         }else{
             // require_once '../component/functionsHTML.php';
-            messRed("Empty Product !!!");
+            messRed("Chưa có sản phẩm !!!");
         }
         ?>
     </div>
+    <?php include './component/pagination-product.php' ?>
 </div>

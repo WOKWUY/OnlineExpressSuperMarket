@@ -13,10 +13,13 @@
           </div>
           <div class="statis-right">
             <div class="title-statis">
-             Revenue
+             Doanh thu
             </div>
-            <div class="num-statis">$
-              <?= $total = $statisticalController->statiscalRevenue(); ?>
+            <div class="num-statis">
+              <?php
+              $total = $statisticalController->statiscalRevenue();
+              echo ($total > 0) ? number_format($total) . ' VNĐ' : "0";
+              ?>
             </div>
           </div>
         </div>
@@ -26,23 +29,10 @@
           </div>
           <div class="statis-right">
             <div class="title-statis">
-              Orders
+              Đơn hàng
             </div>
             <div class="num-statis">
               <?= $statisticalController->statistical('orders') ?>
-            </div>
-          </div>
-        </div>
-        <div class="box-statis">
-          <div class="ic-statis">
-            <i class="fa-solid fa-comments" style="color: gray;"></i>
-          </div>
-          <div class="statis-right">
-            <div class="title-statis">
-              Comments
-            </div>
-            <div class="num-statis">
-              <?= $statisticalController->statistical('comments') ?>
             </div>
           </div>
         </div>
@@ -52,7 +42,7 @@
           </div>
           <div class="statis-right">
             <div class="title-statis">
-              Users
+              Người dùng
             </div>
             <div class="num-statis">
               <?= $statisticalController->statistical('users') ?>
@@ -70,7 +60,7 @@
     data: {
       labels: <?= json_encode($data['date']) ?>,
       datasets: [{
-        label: 'Order',
+        label: 'Đơn hàng',
         fill: false,
         data: <?= json_encode($data['orderTotal']) ?>,
         borderWidth: 1,
@@ -100,7 +90,7 @@
     data: {
       labels: <?= json_encode($data['date']) ?>,
       datasets: [{
-        label: 'Revenue',
+        label: 'Doanh thu',
         fill: false,
         data: <?= json_encode($data['total']) ?>,
         borderWidth: 1,

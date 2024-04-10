@@ -13,9 +13,9 @@ addImageMore.addEventListener("click",()=>{
             if(xhr.status === 200 && xhr.readyState === 4){
                 let result = xhr.responseText;
                 if(result === "Thành công"){
-                    Swal.fire({icon: 'success',title: 'Success',text: 'Added product success',});
+                    Swal.fire({icon: 'success',title: 'Thành công',text: 'Thêm thành công',});
                 }else if(result === "Chưa nhập đầy đủ thông tin"){
-                    Swal.fire({icon: 'error',title: 'Oops...',text: 'Not fully entered information!',});
+                    Swal.fire({icon: 'error',title: 'Oops...',text: 'Chưa nhập đầy đủ thông tin!',});
                 }else{
                     Swal.fire({icon: 'error',title: 'Oops...',text: 'Error!',});
                 }

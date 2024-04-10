@@ -34,13 +34,13 @@ function validateRegister(){
     if(isValid === false){
         Swal.fire({
             icon: 'error',
-            title: 'Oops...',
-            text: 'Not fully entered information!',
+            title: 'Lỗi',
+            text: 'Chưa nhập đầy đủ thông tin!',
         });
     }else{
         if(password.value !== confirmpassword.value){
             isValid = false;
-            error_confirm.innerHTML = "Password incorrect";
+            error_confirm.innerHTML = "Mật khẩu không trùng khớp";
         }
     }
     return isValid;
@@ -65,8 +65,8 @@ function validateLogin(){
     if(isValid === false){
         Swal.fire({
             icon: 'error',
-            title: 'Oops...',
-            text: 'Not fully entered information!',
+            title: 'Lỗi',
+            text: 'Chưa nhập đầy đủ thông tin!',
         });
     }
     return isValid;
@@ -84,8 +84,8 @@ function validateForgotPassword(){
     if(isValid === false){
         Swal.fire({
             icon: 'error',
-            title: 'Oops...',
-            text: 'Not fully entered information!',
+            title: 'Lỗi',
+            text: 'Chưa nhập đầy đủ thông tin!',
         });
     }
     return isValid;
@@ -98,7 +98,7 @@ function validateNewPassword(){
     let pass = password.value;
     let cfPass = confirmpassword.value;
     if(pass !== cfPass){
-        error_confirm.innerHTML = "Password incorrect";
+        error_confirm.innerHTML = "Mật khẩu không trùng khớp";
         isValid == false;
     }
     if(password.value == 0){
@@ -117,8 +117,8 @@ function validateNewPassword(){
     if(isValid === false){
         Swal.fire({
             icon: 'error',
-            title: 'Oops...',
-            text: 'Not fully entered information!',
+            title: 'Lỗi',
+            text: 'Chưa nhập đầy đủ thông tin!',
         });
     }
     return isValid;

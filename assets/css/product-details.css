@@ -37,6 +37,14 @@
 .quantity-sold-commment-pdts{
     padding: 10px 0px;
 }
+/* SELECT COLOR SIZE */
+.selectCLS > div{
+    padding: 10px 0px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+/* SELECT COLOR SIZE */
 .price-pdts{
     display: flex;
     align-items: center;
@@ -48,11 +56,11 @@
     margin: 10px 0px;
 }
 .cost-pdts{
-    color: gray;
+    color: black;
     text-decoration: line-through;
 }
 .price-pdts-end{
-    color: #ff2a00;
+    color: red;
     font-size: 25px;
 }
 .control-quantity{
@@ -90,20 +98,20 @@ button#up-qtt{
     background-color: white;
     color: black;
 }
-button#add-to-cart{
+button.button-action-pdt{
     padding: 10px 60px;
     margin: 10px 0px;
     font-size: 16px;
-    background-color: #ff2a00;
+    background-color: var(--color-admin);
     color: white;
     font-weight: bold;
-    border: 2px solid #ff2a00;
+    border: 2px solid var(--color-admin);
     border-radius: 2px;
     font-family: 'Cabin', sans-serif;
 }
-button#add-to-cart:hover{
-    border: 2px solid orangered;
-    box-shadow: 0px 0px 5px 1px orangered;
+button.button-action-pdt:hover{
+    border: 2px solid var(--color-admin);
+    box-shadow: 0px 0px 5px 1px var(--color-admin);
     transition: 0.2s;
 }
 /* SUBIMAGE */
@@ -160,29 +168,30 @@ button#add-to-cart:hover{
 }
 .item-code-discount{
     padding: 10px;
-    border: 1px solid #ff2a00;
-    background-color: #fff4f4;
+    border: 1px solid var(--color-admin);
+    background-color: var(--color-admin);
     display: grid;
     grid-template-columns: repeat(3,1fr);
     align-items: center;
+    border-radius: 3px;
 }
 .infor-item-code{
     grid-column: 1/3;
 }
 .infor-item-code span{
+    color: white;
     display: block;
-    color: orangered;
 }
 .add-code-discount{
     grid-column: 3/4;
 }
 .add-code-discount button{
-    padding: 2px;
-    background-color: #ff2a00;
-    color: white;
+    display: block;
+    padding: 10px;
+    background-color: white;
+    color: black;
     border: none;
     font-size: 12px;
-    padding: 2px;
     border-radius: 2px;
 }
 /* ITEM DISCOUNT CODE */
@@ -270,7 +279,13 @@ button#comment{
 }
 /* COMMENT */
 
-
+/* -------------------------------- HIGHLIGHT ------------------------------- */
+/* CSS cho input được chọn */
+/* CSS cho input được chọn */
+/* -------------------------------- HIGHLIGHT ------------------------------- */
+.color{
+    box-shadow: 0px 0px 3px 0px gray;
+}
 /* ---------- FRAME RESPONSIVE --------- */
 @media screen and (max-width: 1080px){
     #product-details{
@@ -341,6 +356,9 @@ button#comment{
     main .control-quantity{
         width: 100%;
         height: 50px;
+    }
+    .image-pdts{
+        height: auto;
     }
 }
 @media screen and (max-width: 480px){

@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="keyword" content="Điện thoại, Điện thoại Iphone, Điện thoại Samsung, Smartphone, Điện thoại chính hãng, Điện thoại di động, Điện thoại cao cấp, Điện thoại di động giá rẻ">
     <!-- FAVICON -->
-    <link rel="shortcut icon" href="./assets/image/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="https://cdn.icon-icons.com/icons2/2879/PNG/512/orange_food_fruit_icon_182571.png" type="image/x-icon">
     <!-- FAVICON -->
     <!-- CSS -->
     <link rel="stylesheet" href="./assets/css/root.css">
     <link rel="stylesheet" href="./assets/css/common-style.css">
     <link rel="stylesheet" href="./assets/css/header-style.css">
+    <link rel="stylesheet" href="./assets/css/more-home.css">
     <link rel="stylesheet" href="./assets/css/banner-style.css">
     <link rel="stylesheet" href="./assets/css/home-style.css">
     <link rel="stylesheet" href="./assets/css/footer-style.css">
@@ -20,6 +21,7 @@
     <link rel="stylesheet" href="./assets/css/contact.css">
     <link rel="stylesheet" href="./assets/css/cart.css">
     <link rel="stylesheet" href="./assets/css/my-profile-style.css">
+    <link rel="stylesheet" href="./assets/css/fillter-style.css">
     <!-- CSS -->
     <!-- ALERT -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.6.2/dist/sweetalert2.min.css">
@@ -31,7 +33,7 @@
     <!-- CHART.JS -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- CHART.JS -->
-    <title>Website <?= (isset($_GET["page"]) && !empty($_GET["page"])) ? " - " . ucfirst($_GET["page"]) : "" ?></title>
+    <title>Online Express Supermarket</title>
 </head>
 <body>
     <div id="root">

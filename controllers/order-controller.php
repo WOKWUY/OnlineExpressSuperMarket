@@ -11,22 +11,22 @@ class Order_Controller{
         include './orders/orders.php';
     }
     function showOrderDetails(){
-        $result = $this->orderModel->orderDetails();
+        // $result = $this->orderModel->orderDetails();
         include './orders/order-details.php';
+    }
+    function showOrderAddress(){
+        $result = $this->orderModel->order();
+        include './orders/order-address.php';
     }
     function showOrderWeb(){
         return $this->orderModel->showOrderWeb();
-    }
-    function showNoteOrder(){
-        $result = $this->orderModel->showNoteOrder();
-        include './orders/note-details.php';
     }
     function updateOrder(){
         $alertUpdate = $this->orderModel->updateOrder();
         include './orders/orders.php';
     }
     function deleteOrder(){
-        $alertDelete = $this->orderModel->deleteOrder();
+        $alertDelete = $this->orderModel->cancelOrder();
         include './orders/orders.php';
     }
     function deleteOrderDetails(){
@@ -48,4 +48,3 @@ class Order_Controller{
         include './views/profile.php';
     }
 }
-?>

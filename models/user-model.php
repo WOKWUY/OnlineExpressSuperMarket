@@ -24,59 +24,70 @@ class User_Model{
                 $role = 'user';
                 $token = bin2hex(random_bytes(40)); // chuỗi nhị phân ngẫu nhiên
                 
-                if(filter_var($email, FILTER_VALIDATE_EMAIL)){
-                    if(!empty($username) && !empty($email) && !empty($password) && !empty($confirmpassword)){ // Kiểm tra xem có rỗng không
-                        if($confirmpassword === $password){ // Kiểm tra mật khẩu trùng khớp không
-                            $check_email = $this->db->prepare("SELECT * FROM users WHERE email = ? AND status = 'active'");
-                            $check_email->bind_param("s", $email);
-                            if($check_email->execute()){ 
-                                $result = $check_email->get_result(); 
-                                if($result->num_rows > 0){ // Nếu có kết quả
-                                    $mess = "Tài khoản đã được đăng ký";
-                                }else{
-                                    $password_hash = password_hash($password, PASSWORD_BCRYPT);
-                                    $create_account = $this->db->prepare(" INSERT INTO users(`token`,`userName`,`email`,`password`,`role`,`status`) VALUES (?,?,?,?,?,?)");
-                                    $create_account->bind_param("ssssss", $token, $username, $email, $password_hash, $role, $status);
-                                    if($create_account->execute()){
-                                        // SendMail để kích hoạt tài khoản
-                                        // Cấu hình SendMail
-                                        require '../PHPMailer-master/src/Exception.php';
-                                        require '../PHPMailer-master/src/PHPMailer.php';
-                                        require '../PHPMailer-master/src/SMTP.php';
-                                        // Cấu hình SendMail
-                                        $mail = new PHPMailer(true);
-    
-                                        $mail->isSMTP();
-                                        $mail->Host = 'smtp.gmail.com';
-                                        $mail->SMTPAuth = true;
-                                        $mail->Username = 'niboss458@gmail.com';
-                                        $mail->Password = 'vlvh udyo ypui pvey';
-                                        $mail->SMTPSecure = 'ssl';
-                                        $mail->Port = 465;
-    
-                                        $mail->setFrom('niboss458@gmail.com');
-                                        $mail->addAddress($email);
-                                        $mail->isHTML(true);
-                                        $mail->Subject = "ACTIVE ACCOUNT";
-                                        $mail->Body = "http://localhost/PHP/xuong/website/auth/?action=active-account&token=" . $token;
-    
-                                        if($mail->send()){
-                                            $mess = 'Thành công';
-                                        }else{
-                                            $mess = "Lỗi gửi mail";
+                // Điều kiện mới: mật khẩu từ 8-11 kí tự, bao gồm ít nhất 1 chữ hoa, 1 chữ thường, 1 kí tự đặc biệt và 1 số
+                $password_length = strlen($password);
+                if ($password_length >= 8 && $password_length <= 11 &&
+                    preg_match('/[A-Z]/', $password) &&
+                    preg_match('/[a-z]/', $password) &&
+                    preg_match('/[0-9]/', $password) &&
+                    preg_match('/[^a-zA-Z0-9]/', $password)) {
+                    
+                    if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+                        if(!empty($username) && !empty($email) && !empty($password) && !empty($confirmpassword)){ // Kiểm tra xem có rỗng không
+                            if($confirmpassword === $password){ // Kiểm tra mật khẩu trùng khớp không
+                                $check_email = $this->db->prepare("SELECT * FROM users WHERE email = ? AND status = 'active'");
+                                $check_email->bind_param("s", $email);
+                                if($check_email->execute()){ 
+                                    $result = $check_email->get_result(); 
+                                    if($result->num_rows > 0){ // Nếu có kết quả
+                                        $mess = "Tài khoản đã được đăng ký";
+                                    }else{
+                                        $password_hash = password_hash($password, PASSWORD_BCRYPT);
+                                        $create_account = $this->db->prepare(" INSERT INTO users(`token`,`userName`,`email`,`password`,`role`,`status`) VALUES (?,?,?,?,?,?)");
+                                        $create_account->bind_param("ssssss", $token, $username, $email, $password_hash, $role, $status);
+                                        if($create_account->execute()){
+                                            // SendMail để kích hoạt tài khoản
+                                            // Cấu hình SendMail
+                                            require '../PHPMailer-master/src/Exception.php';
+                                            require '../PHPMailer-master/src/PHPMailer.php';
+                                            require '../PHPMailer-master/src/SMTP.php';
+                                            // Cấu hình SendMail
+                                            $mail = new PHPMailer(true);
+        
+                                            $mail->isSMTP();
+                                            $mail->Host = 'smtp.gmail.com';
+                                            $mail->SMTPAuth = true;
+                                            $mail->Username = USERNAME;
+                                            $mail->Password = PASSWORD;
+                                            $mail->SMTPSecure = 'ssl';
+                                            $mail->Port = 465;
+        
+                                            $mail->setFrom(FROM);
+                                            $mail->addAddress($email);
+                                            $mail->isHTML(true);
+                                            $mail->Subject = "ACTIVE ACCOUNT";
+                                            $mail->Body = URLWEBSITE ."auth/?action=active-account&token=" . $token;
+        
+                                            if($mail->send()){
+                                                $mess = 'Thành công';
+                                            }else{
+                                                $mess = "Lỗi gửi mail";
+                                            }
+                                            // SendMail để kích hoạt tài khoản
                                         }
-                                        // SendMail để kích hoạt tài khoản
                                     }
                                 }
+                            }else{
+                                $mess = "Mật khẩu không khớp";
                             }
                         }else{
-                            $mess = "Mật khẩu không khớp";
+                            $mess = "Chưa nhập đầy đủ thông tin";
                         }
                     }else{
-                        $mess = "Chưa nhập đầy đủ thông tin";
+                        $mess = "Định dạng Email không hợp lệ";
                     }
-                }else{
-                    $mess = "Định dạng Email không hợp lệ";
+                } else {
+                    $mess = "Mật khẩu không đáp ứng yêu cầu: phải từ 8-11 kí tự, bao gồm ít nhất 1 chữ hoa, 1 chữ thường, 1 kí tự đặc biệt và 1 số";
                 }
                 
             }
@@ -84,8 +95,9 @@ class User_Model{
         return $mess;
     }
     /* -------------------------------- ADD USER -------------------------------- */
+    
     /* -------------------------------- ACTIVE ACCOUNT -------------------------------- */
-    function activeAccount(){ // Login
+    function activeAccount(){ 
         $mess = "";
         $token = $_GET["token"];
         $status = "active";
@@ -139,12 +151,9 @@ class User_Model{
                                             $_SESSION['user']['token'] = $row['token'];
                                             $_SESSION['user']['role'] = $row['role'];
                                             $_SESSION["user"]['id'] = $userId;
-                                            date_default_timezone_set('Asia/Ho_Chi_Minh'); // Cấu hình giờ Việt Nam
-                                            $loginTime = date("Y-m-d H:i:s");
-                                            $create_logs = $this->db->prepare("INSERT INTO logs(`userId`,`loginTime`) VALUES (?,?)");
-                                            $create_logs->bind_param("is", $userId, $loginTime);
-                                            if($create_logs->execute()){
-                                                $_SESSION['user']['loginTime'] = $loginTime;
+                                            if($_SESSION["user"]['role'] == 'admin'){
+                                                header("Location: ../admin/?room=statistical");
+                                            }else{
                                                 header("Location: ../?page=home");
                                             }
                                         }else{
@@ -230,16 +239,16 @@ class User_Model{
                                     $mail->isSMTP();
                                     $mail->Host = 'smtp.gmail.com';
                                     $mail->SMTPAuth = true;
-                                    $mail->Username = 'niboss458@gmail.com';
-                                    $mail->Password = 'vlvh udyo ypui pvey';
+                                    $mail->Username = USERNAME;
+                                    $mail->Password = PASSWORD;
                                     $mail->SMTPSecure = 'ssl';
                                     $mail->Port = 465;
                 
-                                    $mail->setFrom('niboss458@gmail.com');
+                                    $mail->setFrom(FROM);
                                     $mail->addAddress($email);
                                     $mail->isHTML(true);
                                     $mail->Subject = "ACTIVE ACCOUNT";
-                                    $mail->Body = "http://localhost/PHP/xuong/website/auth/?auth=new-password&token=" . $db_token;
+                                    $mail->Body = URLWEBSITE . "auth/?auth=new-password&token=" . $db_token;
                 
                                     if($mail->send()){
                                         $mess = 'Thành công';
@@ -333,7 +342,7 @@ class User_Model{
     function showInformationUser(){
         $id = (isset($_GET["id"])) ? $_GET["id"] : "";
         if(!empty($id) && is_numeric($id)){
-            $stmt = $this->db->prepare("SELECT * FROM userinformation WHERE userId = ?");
+            $stmt = $this->db->prepare("SELECT * FROM users WHERE id = ?");
             $stmt->bind_param("i", $id);
             if($stmt->execute()){
                 $result = $stmt->get_result();
@@ -344,26 +353,26 @@ class User_Model{
         }
     }
     /* -------------------------- SHOW INFORMATION USER ------------------------- */
-        /* -------------------------- SHOW INFORMATION USER ------------------------- */
-        function showInformationOneUser(){
-            $id = (isset($_SESSION["user"])) ? $_SESSION["user"]["id"] : "";
-            if(!empty($id) && is_numeric($id)){
-                $stmt = $this->db->prepare("SELECT * FROM userinformation WHERE userId = ?");
-                $stmt->bind_param("i", $id);
-                if($stmt->execute()){
-                    $result = $stmt->get_result();
-                    if($result->num_rows > 0){
-                        return $result->fetch_assoc();
-                    }
+    /* -------------------------- SHOW INFORMATION USER ------------------------- */
+    function showInformationOneUser(){
+        $id = (isset($_SESSION["user"])) ? $_SESSION["user"]["id"] : "";
+        if(!empty($id) && is_numeric($id)){
+            $stmt = $this->db->prepare("SELECT * FROM users WHERE id = ?");
+            $stmt->bind_param("i", $id);
+            if($stmt->execute()){
+                $result = $stmt->get_result();
+                if($result->num_rows > 0){
+                    return $result->fetch_assoc();
                 }
             }
         }
-        /* -------------------------- SHOW INFORMATION USER ------------------------- */
+    }
+    /* -------------------------- SHOW INFORMATION USER ------------------------- */
     /* -------------------------- SHOW INFORMATION OLD USER ------------------------- */
     function showInformationUserOld(){
         $userId = (isset($_SESSION["user"])) ? $_SESSION["user"]['id'] : "";
         if(!empty($userId) && is_numeric($userId)){
-            $stmt = $this->db->prepare("SELECT * FROM userinformation WHERE userId = ?");
+            $stmt = $this->db->prepare("SELECT * FROM users WHERE id = ?");
             $stmt->bind_param("i", $userId);
             if($stmt->execute()){
                 $result = $stmt->get_result();
@@ -438,21 +447,13 @@ class User_Model{
 
             if(!empty($userId) && is_numeric($userId)){
                 // Check người dùng đã có thông tin chưa
-                $checkInformation = $this->db->prepare("SELECT * FROM userinformation WHERE userId = ?");
+                $checkInformation = $this->db->prepare("SELECT * FROM users WHERE id = ?");
                 $checkInformation->bind_param("i",$userId);
                 if($checkInformation->execute()){
                 $resultCheck = $checkInformation->get_result();
                 if($resultCheck->num_rows > 0){
-                    $stmt = $this->db->prepare("UPDATE userinformation SET fullName = ?, email = ?, address = ?, numberphone = ? WHERE userId = ?");
+                    $stmt = $this->db->prepare("UPDATE users SET fullname = ?, email = ?, address = ?, numberphone = ? WHERE id = ?");
                     $stmt->bind_param("ssssi", $newFullName, $newEmail, $newAddress, $newNumberphone, $userId);
-                    if($stmt->execute()){
-                        $mess = "Thành công";
-                    }else{
-                        $mess = "Lỗi";
-                    }
-                }else{
-                    $stmt = $this->db->prepare("INSERT INTO userinformation (`userId`, `fullName`,`email`,`address`,`numberphone`) VALUES (?,?,?,?,?) ");
-                    $stmt->bind_param("issss", $userId, $newFullName, $newEmail, $newAddress, $newNumberphone);
                     if($stmt->execute()){
                         $mess = "Thành công";
                     }else{
@@ -467,20 +468,6 @@ class User_Model{
     }
 }
     /* ------------------------- UPDATE INFROMATION USER ------------------------ */
-    /* ------------------------- CREATE DATETIME LOGOUT ------------------------- */
-    function updateTimeLogs(){
-        session_start();
-        date_default_timezone_set("Asia/Ho_Chi_Minh");
-        $loginTime = isset($_SESSION["user"]) ? $_SESSION["user"]['loginTime'] : "";
-        if($loginTime !== ""){
-            $logoutTime = date("Y-m-d H:i:s");
-            $stmt = $this->db->prepare("UPDATE logs SET logoutTime = ? WHERE loginTime = ? ");
-            $stmt->bind_param("ss", $logoutTime, $loginTime);
-            $stmt->execute();
-        }
-        return;
-    }
-    /* ------------------------- CREATE DATETIME LOGOUT ------------------------- */
     /* -------------------------- DISABLE BECAUSE BOOM -------------------------- */
     function disableBecauseBoom(){
         $users = $this->db->prepare("SELECT id, boomNum FROM users");
@@ -516,17 +503,6 @@ class User_Model{
                 $avatar = $_FILES['avatar']['name'];
                 $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION)); //pathinfo(): Lấy thông tin về một đường dẫn tệp tin
             
-                // Kiểm tra xem tệp đã tồn tại chưa
-                // if (file_exists($target_file)) {
-                //     echo "Tệp tin đã tồn tại.";
-                //     $uploadOk = 0;
-                // }
-            
-                // Kiểm tra kích thước tệp tin
-                if($_FILES["avatar"]["size"] > 5000000){
-                    $mess = "Tệp tin quá lớn.";
-                    $uploadOk = 0;
-                }
                 // Cho phép png, jpg, jpeg
                 if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "gif" ){
                     $mess = "Chỉ cho phép tệp tin hình ảnh.";
@@ -537,7 +513,7 @@ class User_Model{
                     $mess = "Tệp tin của bạn không được tải lên.";
                 }else{
                     if(move_uploaded_file($_FILES["avatar"]["tmp_name"], $target_file)){
-                        $stmt = $this->db->prepare("UPDATE userinformation SET avatar = ? WHERE userId = ?");
+                        $stmt = $this->db->prepare("UPDATE users SET avatar = ? WHERE id = ?");
                         $stmt->bind_param("si", $avatar, $userId);
                         if($stmt->execute()){
                             $mess = "Thành công";
@@ -555,4 +531,23 @@ class User_Model{
         }
     }
     /* ----------------------------- UPLOAD AVATAR ----------------------------- */
+    /* ------------------------------ GET LOCATION ------------------------------ */
+    function getLocation($table, $id){
+        if(is_numeric($id)){
+            $col = $table . "_id";
+            $stmt = $this->db->prepare(
+                "SELECT *
+                FROM $table
+                WHERE $col = ?"
+            );
+            $stmt->bind_param("i", $id);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if($result->num_rows > 0){
+                $row = $result->fetch_assoc();
+                return $row['name'];
+            }
+        }
+    }
+    /* ------------------------------ GET LOCATION ------------------------------ */
 }

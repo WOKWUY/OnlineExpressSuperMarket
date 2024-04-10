@@ -7,6 +7,7 @@
     <link rel="shortcut icon" href="../assets/image/favicon.png" type="image/x-icon">
     <!-- FAVICON -->
     <!-- CSS -->
+    <link rel="stylesheet" href="../assets/css/root.css">
     <link rel="stylesheet" href="../assets/css/auth-style.css">
     <link rel="stylesheet" href="../assets/css/common-style.css">
     <!-- CSS -->

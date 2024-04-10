@@ -125,7 +125,7 @@ button.up-qtt-cart{
     text-align: center;
     margin-top: 10px;
     padding: 10px;
-    background-color: #fd411b;
+    background-color: var(--color-admin);
     color: white;
     border-radius: 3px;
     text-transform: uppercase;
@@ -140,7 +140,7 @@ button.up-qtt-cart{
 .title-sub-cart{
     text-transform: uppercase;
     padding: 15px 20px;
-    background-color: #fd411b;
+    background-color: var(--color-admin);
     color: white;
     display: flex;
     justify-content: space-between;
@@ -165,11 +165,11 @@ button.checkout-btn a {
     text-align: center;
     font-weight: bold;
     padding: 10px 20px;
-    border: 3px solid #fd411b;
+    border: 3px solid var(--color-admin);
     border-radius: 2px;
     position: relative;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.1);
-    color: #fd411b;
+    color: var(--color-admin);
     text-decoration: none;
     transition: 0.2s ease all;
     z-index: 1;

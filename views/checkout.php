@@ -1,16 +1,17 @@
 <link rel="stylesheet" href="./assets/css/checkout.css">
+<?= titlePage("Thanh toán") ?>
 <main>
     <article>
     <div id="checkout">
         <div class="main-cart">
             <div class="all-cart">
-                <h1>Checkout</h1>
+                <h1>Thanh toán</h1>
                 <table id="all-cart">
                     <tr>
-                        <th>PRD Name</th>
-                        <th>Price</th>
-                        <th>Quantity</th>
-                        <th>Total</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Giá</th>
+                        <th>Số lượng</th>
+                        <th>Tổng tiền</th>
                     </tr>
                     <?php
                     //Tổng tiền
@@ -25,24 +26,33 @@
                                     <?= $cart['productName'] ?>
                                 </span>
                             </td>
-                            <td>$
-                                <?= $cart['price'] ?>
+                            <?php 
+                            if ($cart['discount'] > 0) {
+                                // Xử lý khi có giảm giá
+                                $discount_amount = $cart['price'] * ($cart['discount'] / 100); // Tính số tiền giảm giá dựa trên phần trăm
+                                $price = $cart['price'] - $discount_amount; // Giá sau khi áp dụng giảm giá
+                            } else {
+                                $price = $cart['price'];
+                            }
+                            ?>
+                            <td>
+                                <?= number_format($price) . ' VNĐ' ?>
                             </td>
                             <td class="quantity-checkout">
                                 <input type="number" min="1" value="<?= $cart['quantity'] ?>" readonly class="update_quantity_cart">
                             </td>
-                            <td>$
+                            <td>
                                 <!-- dữ liệu ẩn gốc  -->
-                                <input type="hidden" value="<?= $cart['price'] ?>" class="defaultTotalPrice">
+                                <input type="hidden" value="<?= $price ?>" class="defaultTotalPrice">
                                 <!-- dữ liệu ẩn gốc  -->
                                 <!-- dữ liệu ẩn sau khi thao tác -->
-                                <input type="hidden" value="<?= $cart['price'] * $cart['quantity'] ?>"
+                                <input type="hidden" value="<?= $price * $cart['quantity'] ?>"
                                     class="afterTotalPrice">
                                 <!-- dữ liệu ẩn sau khi thao tác -->
                                 <div class="totalPrice">
                                     <?php
-                                    $subTotal = $cart['price'] * $cart['quantity'];
-                                    echo $subTotal;
+                                    $subTotal = $price * $cart['quantity'];
+                                    echo number_format($subTotal) . ' VNĐ';
                                     ?>
                                 </div>
                             </td>
@@ -56,7 +66,9 @@
                 </table>
             </div>
             <input id="total" type="hidden" value="<?= $total ?>">
-            <span class="quantity-checkout">Total: $<?= $total ?></span>
+            <span class="quantity-checkout">Tổng tiền hàng: <?= number_format($total) ?> VNĐ</span>
+            <span class="quantity-checkout">Phí vận chuyển: Miễn phí</span>
+            <span class="quantity-checkout">Tổng cộng: <?= number_format($total) ?> VNĐ</span>
         </div>
         <div class="information-checkout">
             <!-- /* -------------------------------- DATA OLD -------------------------------- */ -->
@@ -64,40 +76,36 @@
             $db = require './config/database.php';
             $userController = new User_Controller($db);
             $dataOld = $userController->showInformationUserOld();
+            $productController = new Product_Controller($db);
+            $provinces = $productController->getAllProvinces();
             ?>
             <!-- /* -------------------------------- DATA OLD -------------------------------- */ -->
-            <div><span class="title-inff">INFORMATION FORM</span></div>
+            <div><span class="title-inff">Thông tin vận chuyển</span></div>
             <div>
-                <label for="fullName">Full Name</label>
-                <input type="text" name="full-name" id="fullname" placeholder="Enter Full Name" value="<?= (!is_null($dataOld)) ? $dataOld['fullName'] : "" ?>">
+                <input type="text" name="full-name" id="fullname" placeholder="Họ tên" value="<?= (!is_null($dataOld)) ? $dataOld['fullname'] : "" ?>">
             </div>
             <div>
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" placeholder="Enter Email" value="<?= (!is_null($dataOld)) ? $dataOld['email'] : "" ?>">
+                <input type="text" name="numberphone" id="numberphone" placeholder="SĐT" value="<?= (!is_null($dataOld)) ? $dataOld['numberphone'] : "" ?>">
             </div>
             <div>
-                <label for="address">Address</label>
-                <input type="text" name="address" id="address" placeholder="Enter Address" value="<?= (!is_null($dataOld)) ? $dataOld['address'] : "" ?>">
+                <input type="text" name="address" id="address" placeholder="Địa chỉ nhận hàng" value="<?= (!is_null($dataOld)) ? $dataOld['address'] : "" ?>">
             </div>
-            <div>
-                <label for="numberphone">Number Phone</label>
-                <input type="text" name="numberphone" id="numberphone" placeholder="Enter Number Phone" value="<?= (!is_null($dataOld)) ? $dataOld['numberphone'] : "" ?>">
-            </div>
-            <div>
-                <label for="note">Note</label>
-                <input type="text" name="note" id="note" placeholder="Enter Note">
-            </div>
+            <!-- /* ----------------------------------- NEW ---------------------------------- */ -->
+            <!-- /* -------------------------------- LOCATION -------------------------------- */ -->
+            <?php include './component/location.php' ?>
+            <!-- /* -------------------------------- LOCATION -------------------------------- */ -->
+            <!-- /* ----------------------------------- NEW ---------------------------------- */ -->
             <button id="CHECKOUT" class="btn-53">
-                <div class="original">Checkout</div>
+                <div class="original">Đặt Hàng</div>
                 <div class="letters">
-                    <span>C</span>
-                    <span>H</span>
-                    <span>E</span>
-                    <span>C</span>
-                    <span>K</span>
-                    <span>O</span>
-                    <span>U</span>
+                    <span>Đ</span>
+                    <span>Ặ</span>
                     <span>T</span>
+                    <span style="padding: 0px 2px;"></span>
+                    <span>H</span>
+                    <span>À</span>
+                    <span>N</span>
+                    <span>G</span>
                 </div>
             </button>
         </div>

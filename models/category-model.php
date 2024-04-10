@@ -20,13 +20,12 @@ class Category_Model{
         $mess = "";
         if($_SERVER["REQUEST_METHOD"] === 'POST'){
             if(isset($_POST["add-category"])){
-                $userId = $_SESSION["user"]['id'];
                 $categoryName = $_POST["categoryName"];
                 $description = $_POST["description"];
                 
                 if(!empty($categoryName) && !empty($description)){
-                    $stmt = $this->db->prepare("INSERT INTO categories (`userId`,`categoryName`,`description`) VALUES (?,?,?)");
-                    $stmt->bind_param("iss", $userId, $categoryName, $description);
+                    $stmt = $this->db->prepare("INSERT INTO categories (`categoryName`,`description`) VALUES (?,?)");
+                    $stmt->bind_param("ss", $categoryName, $description);
                     if($stmt->execute()){
                         $mess = "Thành công";
                     }else{
@@ -62,13 +61,12 @@ class Category_Model{
         if($_SERVER["REQUEST_METHOD"] === 'POST'){
             if(isset($_POST["edit-category"])){
                 $id = $_GET["id"];
-                $userId = $_SESSION["user"]['id'];
                 $categoryName = $_POST["categoryName"];
                 $description = $_POST["description"];
                 
-                if(!empty($id) && !empty($userId) && !empty($categoryName) && !empty($description)){
-                    $stmt = $this->db->prepare("UPDATE categories SET userId = ?,categoryName = ?, description = ? WHERE id = ?");
-                    $stmt->bind_param("issi", $userId, $categoryName, $description, $id);
+                if(!empty($id) && !empty($categoryName) && !empty($description)){
+                    $stmt = $this->db->prepare("UPDATE categories SET categoryName = ?, description = ? WHERE id = ?");
+                    $stmt->bind_param("ssi", $categoryName, $description, $id);
                     if($stmt->execute()){
                         $mess = "Thành công";
                     }else{

@@ -13,7 +13,7 @@
         </tr>
         <?php // HTML
     }else{
-        messRed("Empty Data");
+        messRed("Dữ liệu trống");
     }
     ?>
 </table>

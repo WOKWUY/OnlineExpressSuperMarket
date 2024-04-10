@@ -4,7 +4,7 @@
 }
 .controller-dashboard{
     padding: 10px 20px;
-    background-color: var(--color-admin);
+    background-color: black;
     color: white;
     height: 100vh;
     position: sticky;
@@ -36,30 +36,31 @@
 .content-dashboard{
     width: 100%;
     padding: 10px;
-    border-top: 50px solid var(--color-admin);
+    border-top: 50px solid black;
     position: relative;
 }
 table{
     text-align: center;
-    border: 2px solid;
+    border: 2px solid black;
     border-collapse: collapse;
     margin: auto;
     background-color: white;
     font-size: 13px;
 }
 table th{
-    background-color: var(--color-admin);
+    background-color: black;
     color: white;
-    border-color: var(--color-admin);
+    border-color: black;
     white-space: nowrap;
 }
 table td,th{
     position: relative;
-    border: 2px solid;
+    border: 2px solid black;
     padding: 5px 10px;
     overflow-wrap: break-word;
 }
 .inforUserMore{
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -122,6 +123,18 @@ td button{
 }
 button.green{
     background-color: green;
+}
+button.add{
+    border-radius: 3px;
+    font-size: 15px;
+    margin: 5px 0px;
+    border: none;
+    background-color: black;
+}
+button.add a{
+    display: block;
+    padding: 10px 15px;
+    color: white;
 }
 button.red{
     background-color: red;
@@ -199,11 +212,11 @@ a.add-edit{
 }
 .item-more-admin > a{
     padding: 5px 10px;
-    background-color: var(--color-admin);
+    background-color: black;
     border: 2px solid gray;
 }
 .item-more-admin > a:hover{
-    background-color: var(--color-admin);
+    background-color: black;
     color: white;
 }
 /* ITEM MORE */
@@ -236,7 +249,7 @@ form.input{
     border-radius: 2px;
 }
 .input button{
-    background-color: var(--color-admin);
+    background-color: black;
     color: white;
     padding: 10px 20px;
     margin-top: 10px;
@@ -310,3 +323,18 @@ canvas{
     flex-direction: column;
 }
 /* ------------------------------- STATISTICAL ------------------------------ */
+/* VIEW-MORE */
+.view-more{
+    display: flex;
+    justify-content: center;
+}
+.view-more button{
+    display: block;
+    padding: 10px 15px;
+    border: 2px solid;
+    border-radius: 3px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+}
+/* VIEW-MORE */

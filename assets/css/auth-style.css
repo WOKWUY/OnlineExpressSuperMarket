@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(90deg, #ff4b28,#fd4622);
+    background: var(--color-admin);
     background-size: cover;
     height: 100vh;
 }
@@ -38,7 +38,7 @@
     padding: 12px 7px;
     margin: 20px 0px;
     font-weight: bold;
-    background: linear-gradient(90deg, #fd411b,#ff2a00);
+    background: var(--color-admin);
     background-size: cover;
     color: white;
     border-radius: 3px;
@@ -67,4 +67,9 @@ a.forgotpassword{
 #error-confirm{
     font-weight: bold;
     color: red;
+}
+a.back-web{
+    text-decoration: underline;
+    color: black;
+    margin-top: 20px;
 }

@@ -15,24 +15,6 @@ class Order_Model{
         }
     }
     /* ----------------------------- SHOW ORDER LIST ---------------------------- */
-    /* ----------------------------- SHOW NOTE---------------------------- */
-    function showNoteOrder(){
-        $id = (isset($_GET["id"])) ? $_GET["id"] : "";
-        if(!empty($id) && is_numeric($id)){
-            $stmt = $this->db->prepare("SELECT note FROM orders WHERE id = ?");
-            $stmt->bind_param("i", $id);
-            if($stmt->execute()){
-                $result = $stmt->get_result();
-                if($result->num_rows > 0){
-                    $row = $result->fetch_assoc();
-                    if($row['note'] !== ""){
-                        return $row;
-                    }
-                }
-            }
-        }
-    }
-    /* ----------------------------- SHOW NOTE---------------------------- */
     /* ----------------------------- UPDATE ORDER ---------------------------- */
     function updateOrder(){
         $mess = "";
@@ -61,6 +43,21 @@ class Order_Model{
         return $mess;
     }
     /* ----------------------------- UPDATE ORDER ---------------------------- */
+    /* ---------------------------------- ORDER --------------------------------- */
+    function order(){
+        $id = (isset($_GET["orderId"])) ? $_GET["orderId"] : "";
+        if(!empty($id)){
+            $stmt = $this->db->prepare("SELECT * FROM orders WHERE id = ?");
+            $stmt->bind_param("i", $id);
+            if($stmt->execute()){
+                $result = $stmt->get_result();
+                if($result->num_rows > 0){
+                    return $result->fetch_assoc();
+                }
+            }
+        }
+    }
+    /* ---------------------------------- ORDER --------------------------------- */
     /* ----------------------------- ORDER DETAILS ---------------------------- */
     function orderDetails(){
         $orderId = (isset($_GET["orderId"])) ? $_GET["orderId"] : "";
@@ -76,24 +73,6 @@ class Order_Model{
         }
     }
     /* ----------------------------- ORDER DETAILS ---------------------------- */
-    /* ----------------------------- DELETE ORDER ---------------------------- */
-    function deleteOrder(){
-        $mess = "";
-        $id = (isset($_GET["id"])) ? $_GET["id"] : "";
-        if(!empty($id) && is_numeric($id)){
-            $stmt = $this->db->prepare("DELETE FROM orders WHERE id= ?");
-            $stmt->bind_param("i", $id);
-            if($stmt->execute()){
-                $mess = "Thành công";
-            }else{
-                $mess = "Lỗi";
-            }
-        }else{
-            $mess = "Lỗi";
-        }
-        return $mess;
-    }
-    /* ----------------------------- DELETE ORDER ---------------------------- */
     /* ----------------------------- DELETE ORDER DETAILS ---------------------------- */
     function deleteOrderDetails(){
         $mess = "";
@@ -142,62 +121,61 @@ class Order_Model{
         }
     }
     /* -------------------------------- ORDER NUM ------------------------------- */
-        /* -------------------------------- ORDER BOM ------------------------------- */
-        function boomNum($userId){
-            $status = "boom";
-            $stmt = $this->db->prepare("SELECT * FROM orders WHERE userId = ? AND status = ?");
-            $stmt->bind_param("is", $userId, $status);
+    /* -------------------------------- ORDER BOM ------------------------------- */
+    function boomNum($userId){
+        $status = "boom";
+        $stmt = $this->db->prepare("SELECT * FROM orders WHERE userId = ? AND status = ?");
+        $stmt->bind_param("is", $userId, $status);
+        if($stmt->execute()){
+            $result = $stmt->get_result();
+            $row = $result->num_rows;
+            if($row > 3){
+                $newStatus = "disable";
+                $disable = $this->db->prepare("UPDATE users SET status = ? WHERE id = ?");
+                $disable->bind_param("si", $newStatus, $userId);
+                $disable->execute();
+            }
+            return $row;
+        }
+    }
+    /* -------------------------------- ORDER BOM ------------------------------- */
+    /* -------------------------- SHOW ORDER WEB (USER) ------------------------- */
+    function showOrderWeb(){
+        $userId = (isset($_SESSION["user"])) ? $_SESSION["user"]["id"] : "";
+        if(!empty($userId) && is_numeric($userId)){
+            $stmt = $this->db->prepare("SELECT * FROM orders WHERE userId = ?");
+            $stmt->bind_param("i", $userId);
             if($stmt->execute()){
                 $result = $stmt->get_result();
-                $row = $result->num_rows;
-                if($row > 3){
-                    $newStatus = "disable";
-                    $disable = $this->db->prepare("UPDATE users SET status = ? WHERE id = ?");
-                    $disable->bind_param("si", $newStatus, $userId);
-                    $disable->execute();
+                if($result->num_rows > 0){
+                    return $result;
                 }
-                return $row;
             }
         }
-        /* -------------------------------- ORDER BOM ------------------------------- */
-        /* -------------------------- SHOW ORDER WEB (USER) ------------------------- */
-        function showOrderWeb(){
-            $userId = (isset($_SESSION["user"])) ? $_SESSION["user"]["id"] : "";
-            if(!empty($userId) && is_numeric($userId)){
-                $stmt = $this->db->prepare("SELECT * FROM orders WHERE userId = ?");
-                $stmt->bind_param("i", $userId);
-                if($stmt->execute()){
-                    $result = $stmt->get_result();
-                    if($result->num_rows > 0){
-                        return $result;
-                    }
-                }
-            }
-        } 
-        /* -------------------------- SHOW ORDER WEB (USER) ------------------------- */
-        /* ------------------------------ CANCEL ORDER ------------------------------ */
-        function cancelOrder(){
-            $mess = "";
-            $id = (isset($_POST["id"])) ? $_POST["id"] : "";
-            if(!empty($id) && is_numeric($id)){
-                // Delete order details
-                $stmt = $this->db->prepare("DELETE FROM orderdetails WHERE orderId = ?");
+    } 
+    /* -------------------------- SHOW ORDER WEB (USER) ------------------------- */
+    /* ------------------------------ CANCEL ORDER ------------------------------ */
+    function cancelOrder(){
+        $mess = "";
+        $id = (isset($_GET["id"])) ? $_GET["id"] : "";
+        if(!empty($id) && is_numeric($id)){
+            // Delete order details
+            $stmt = $this->db->prepare("DELETE FROM orderdetails WHERE orderId = ?");
+            $stmt->bind_param("i", $id);
+            if($stmt->execute()){
+                // Delete order
+                $stmt = $this->db->prepare("DELETE FROM orders WHERE id = ?");
                 $stmt->bind_param("i", $id);
                 if($stmt->execute()){
-                    // Delete order
-                    $stmt = $this->db->prepare("DELETE FROM orders WHERE id = ?");
-                    $stmt->bind_param("i", $id);
-                    if($stmt->execute()){
-                        $mess = "Thành công";
-                    }else{
-                        $mess = "Lỗi";
-                    }
+                    $mess = "Thành công";
+                }else{
+                    $mess = "Lỗi";
                 }
-            }else{
-                $mess = "Lỗi";
             }
-            return $mess;
+        }else{
+            $mess = "Lỗi";
         }
-        /* ------------------------------ CANCEL ORDER ------------------------------ */
+        return $mess;
+    }
+    /* ------------------------------ CANCEL ORDER ------------------------------ */
 }
-?>

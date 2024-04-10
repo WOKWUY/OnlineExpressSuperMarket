@@ -5,4 +5,3 @@ if(!isset($_SESSION["user"])){ // Nếu chưa khởi tạo session
 session_unset();
 session_destroy();
 header("Location: ?auth=login");
-?>

@@ -1,4 +1,5 @@
 <?php 
+include '../config/config.php';
 /* ---------------------------------- MODEL --------------------------------- */
 include '../models/user-model.php';
 include '../models/product-model.php';
@@ -43,7 +44,6 @@ if(ACTION === 'register'){
 }elseif(ACTION === 'new-password'){
     $userController->newPass();
 }elseif(ACTION === 'logout'){
-    $userController->logout();
     include './views/logout.php';
 }
 /* --------------------------------- ACTION --------------------------------- */

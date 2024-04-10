@@ -8,4 +8,10 @@ function messGreen($mess){
 function messNavi($mess){
     ?><span class='span-navi'><?= $mess ?></span><?php // HTML
 }
+function titlePage($title){
+    ?>
+    <input type="hidden" id="titlePage" value="<?= $title ?>">
+    <script>document.title = document.getElementById('titlePage').value</script>
+    <?php //HTML + JS
+}
 ?>

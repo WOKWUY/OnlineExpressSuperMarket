@@ -1,18 +1,17 @@
-<table>
+<table style="width:100%;">
     <!-- /* ---------------------------------- DATA ---------------------------------- */ -->
     <?php 
     if(isset($result)){
         ?>
         <tr>
-            <th>ID</th>
-            <th>Username</th>
+            <th>Mã người dùng</th>
+            <th>Họ và tên</th>
             <th>Email</th>
-            <th>Role</th>
-            <th>Status</th>
-            <th>OrderNum</th>
-            <th>BoomNum</th>
-            <th>Action</th>
-            <th>Logs</th>
+            <th>Quyền</th>
+            <th>Trạng thái</th>
+            <th>Đơn đặt</th>
+            <th>Đơn Boom</th>
+            <th>Thao tác</th>
         </tr>
         <?php // HTML
         foreach ($result as $users => $user) :
@@ -70,10 +69,10 @@
                         ?>
                             <form action="?action=updateUser" method="POST">
                                 <input type="hidden" name="id" value="<?= $user['id'] ?>">
-                                <button name="action" value="active" class="green"><i class="fa-solid fa-lock-open"></i> Active</button>
-                                <button name="action" value="disable" class="red"><i class="fa-solid fa-lock"></i> Disable</button>
-                                <button name="action" value="user" class="green"><i class="fa-regular fa-user"></i> User</button>
-                                <button name="action" value="staff" class="black"><i class="fa-solid fa-users"></i> Staff</button>
+                                <button name="action" value="active" class="green"><i class="fa-solid fa-lock-open"></i> Kích hoạt</button>
+                                <button name="action" value="disable" class="red"><i class="fa-solid fa-lock"></i> Vô hiệu hóa</button>
+                                <button name="action" value="user" class="green"><i class="fa-regular fa-user"></i> Người dùng</button>
+                                <button name="action" value="staff" class="black"><i class="fa-solid fa-users"></i> Nhân viên</button>
                             </form>
                         <?php //HTML
                     }else{
@@ -84,12 +83,11 @@
                 }
                 ?>
             </td>
-            <td><a href="?room=logs&id=<?= $user['id'] ?>" class="black"><i class="fa-solid fa-clock-rotate-left"></i> Logs</a></td>
         </tr>
         <?php // HTML
         endforeach;
     }else{
-        messRed("Empty");
+        messRed("Trống");
     }
     ?>
     <!-- /* ---------------------------------- DATA ---------------------------------- */ -->

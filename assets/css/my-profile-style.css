@@ -86,10 +86,10 @@ form#uploadAvatar label{
 form#uploadAvatar button{
     padding: 5px 10px;
     border: none;
-    background-color: #ee4e2e;
+    background-color: var(--color-admin);
     color: white;
     border-radius: 20px;
-    border: 2px solid #ff2a00;
+    border: 2px solid var(--color-admin);
 }
 form#uploadAvatar button:hover{
     background-color: green;
@@ -118,9 +118,15 @@ form#uploadAvatar button:hover{
     color: white;
     background-color: transparent;
     padding: 0px 10px;
+    background-color: green;
+    padding: 5px 10px;
+    margin: 2px;
+}
+.actionOrderClient form button.cancelBtn{
+    background-color: red;
 }
 .actionOrderClient form button{
-    color: red;
+    color: white;
 }
 .actionOrderClient button{
     color: black;

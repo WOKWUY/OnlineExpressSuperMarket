@@ -1,13 +1,13 @@
 <form class="input" action="?action=add-category" method="POST" onsubmit="return validateAddCategory()">
-    <h1>Add Category</h1>
-    <label for="">Category Name</label>
-    <input type="text" name="categoryName" id="categoryName" placeholder="Enter Category Name">
-    <label for="">Description</label>
-    <textarea name="description" id="description" cols="30" rows="10" placeholder="Enter Description"></textarea>
-    <button name="add-category">Add Category</button>
+    <h1>Thêm danh mục</h1>
+    <label for="">Tên danh mục</label>
+    <input type="text" name="categoryName" id="categoryName" placeholder="Nhập tên danh mục">
+    <label for="">Mô tả</label>
+    <textarea name="description" id="description" cols="30" rows="10" placeholder="Nhập mô tả"></textarea>
+    <button name="add-category">Thêm danh mục</button>
 </form>
 <!-- Xử lí hiển thị -->
-<?= (isset($result) && $result === "Thành công") ? "<script>Swal.fire({icon: 'success',title: 'Success',text: 'Added category successfully',confirmButtonText: 'View',showCancelButton: true,cancelButtonText: 'Continue',}).then((result) => { if (result.isConfirmed) {window.location.href = '?room=categories';}});</script>" : ""?>
-<?= (isset($result) && $result === "Chưa nhập đầy đủ thông tin") ? "<script>Swal.fire({icon: 'error',title: 'Oops...',text: 'Not fully entered information!',});</script>" : "" ?>
-<?= (isset($result) && $result === "Lỗi") ? "<script>Swal.fire({icon: 'error',title: 'Oops...',text: 'Error!',});</script>" : "" ?>
+<?= (isset($result) && $result === "Thành công") ? "<script>Swal.fire({icon: 'success',title: 'Thành công',text: 'Thêm thành công',confirmButtonText: 'OK',}).then((result) => { if (result.isConfirmed) {window.location.href = '?room=categories';}});</script>" : ""?>
+<?= (isset($result) && $result === "Chưa nhập đầy đủ thông tin") ? "<script>Swal.fire({icon: 'error',title: 'Lỗi',text: 'Chưa nhập đầy đủ thông tin!',});</script>" : "" ?>
+<?= (isset($result) && $result === "Lỗi") ? "<script>Swal.fire({icon: 'error',title: 'Lỗi',text: 'Error!',});</script>" : "" ?>
 <!-- Xử lí hiển thị -->

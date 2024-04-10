@@ -1,17 +1,17 @@
-<table>
+<table style="width:100%;">
     <?php 
     if(isset($result)){
         ?>
         <tr>
             <th>ID</th>
             <th>User ID</th>
-            <th>User ID Handle</th>
-            <th>Create Date</th>
-            <th>Total</th>
-            <th>Process</th>
-            <th>Status</th>
-            <th>Note</th>
-            <th>Action</th>
+            <th>Mã người xử lí</th>
+            <th>Ngày tạo</th>
+            <th>Mã khuyến mãi</th>
+            <th>Tổng tiền</th>
+            <th>Tiến trình</th>
+            <th>Trạng thái</th>
+            <th>Thao tác</th>
         </tr>
         <?php // HTML
         foreach ($result as $order) :
@@ -23,7 +23,8 @@
                 <?= ($order['userIdHandle'] === 0) ? "not yet" : $order['userIdHandle'] ?>
             </td>
             <td><?= $order['createdate'] ?></td>
-            <td><?= $order['total'] ?></td>
+            <td>Chưa xử lý</td>
+            <td><?= number_format($order['total']) ?> VNĐ</td>
             <td>
                 <?php 
                 // Xử lí hiển thị - màu
@@ -61,9 +62,8 @@
                 <!-- XỬ LÍ HIỂN THỊ CHO ĐẸP -->
                 <span class="span-<?= $colorST ?>"><?= $status ?></span>
             </td>
-            <td><a class="black" href="?room=note-details&id=<?= $order['id'] ?>">Details</a></td>
             <td class="actions">
-                <form action="" method="POST">
+                <form action="" method="POST" onsubmit="return false">
                     <!-- KIỂM TRA ĐƠN HÀNG ĐÃ CÓ AI CHỊU TRÁCH NHIỆM HAY CHƯA -->
                     <?php 
                     if($order['userIdHandle'] !== 0){
@@ -83,11 +83,12 @@
                         <!-- DELETE -->
                         <?php //HTML
                     }else{
-                        ?><button onclick="return confirmAction('?room=orders&action=receive-order&id=<?= $order['id'] ?>')" name="confirm" class="black"><i class="fa-solid fa-hand-back-fist"></i>  Receive</button><?php // HTML
+                        ?><button onclick="return confirmAction('?room=orders&action=receive-order&id=<?= $order['id'] ?>')" name="confirm" class="black"><i class="fa-solid fa-hand-back-fist"></i>  Nhận</button><?php // HTML
                     }
                     ?>
                     <!-- KIỂM TRA ĐƠN HÀNG ĐÃ CÓ AI CHỊU TRÁCH NHIỆM HAY CHƯA -->
-                    <a href="?room=order-details&orderId=<?= $order['id'] ?>" class="green"><i class="fa-regular fa-eye"></i> View</a>
+                    <a href="?room=order-details&orderId=<?= $order['id'] ?>" class="green"><i class="fa-regular fa-eye"></i> Xem</a>
+                    <a href="?room=order-address&orderId=<?= $order['id'] ?>" class="green"><i class="fa-solid fa-location-dot"></i> Địa chỉ</a>
                 </form>
             </td>
         </tr>
@@ -102,8 +103,8 @@
 </table>
 
 <!-- Xử lí hiển thị -->
-<?= (isset($alertUpdate) && $alertUpdate === "Cập nhật thành công") ? "<script>Swal.fire({icon: 'success',title: 'Success',text: 'Success',allowOutsideClick: false}).then((result) => { if (result.isConfirmed) {window.location.href = '?room=orders';}});</script>" : ""?>
-<?= (isset($alertUpdate) && $alertUpdate === "Lỗi") ? "<script>Swal.fire({icon: 'error',title: 'Oops...',text: 'Error!',});</script>" : "" ?>
-<?= (isset($alertDelete) && $alertDelete === "Thành công") ? "<script>Swal.fire({icon: 'success',title: 'Success',text: 'Deleted successfully',allowOutsideClick: false}).then((result) => { if (result.isConfirmed) {window.location.href = '?room=orders';}});</script>" : ""?>
-<?= (isset($alertDelete) && $alertDelete === "Lỗi") ? "<script>Swal.fire({icon: 'error',title: 'Oops...',text: 'Error!',});</script>" : "" ?>
+<?= (isset($alertUpdate) && $alertUpdate === "Cập nhật thành công") ? "<script>Swal.fire({icon: 'success',title: 'Thành công',text: 'Cập nhật thành công',allowOutsideClick: false}).then((result) => { if (result.isConfirmed) {window.location.href = '?room=orders';}});</script>" : ""?>
+<?= (isset($alertUpdate) && $alertUpdate === "Lỗi") ? "<script>Swal.fire({icon: 'error',title: 'Lỗi',text: 'Error!',});</script>" : "" ?>
+<?= (isset($alertDelete) && $alertDelete === "Thành công") ? "<script>Swal.fire({icon: 'success',title: 'Thành công',text: 'Xóa thành công',allowOutsideClick: false}).then((result) => { if (result.isConfirmed) {window.location.href = '?room=orders';}});</script>" : ""?>
+<?= (isset($alertDelete) && $alertDelete === "Lỗi") ? "<script>Swal.fire({icon: 'error',title: 'Lỗi',text: 'Error!',});</script>" : "" ?>
 <!-- Xử lí hiển thị -->

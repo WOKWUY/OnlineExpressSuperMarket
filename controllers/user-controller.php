@@ -46,9 +46,6 @@ class User_Controller{
         $result = $this->userModel->showLogs();
         include './users/logs.php';
     }
-    function logout(){
-        $this->userModel->updateTimeLogs();
-    }
     function updateUser(){
         $result = $this->userModel->updateStatusOrRole();
     }
@@ -64,6 +61,9 @@ class User_Controller{
     }
     function uploadAvatar(){
         return $this->userModel->uploadAvatar();
+    }
+    function getLocation($table, $id){
+        return $this->userModel->getLocation($table, $id);
     }
 }
 ?>

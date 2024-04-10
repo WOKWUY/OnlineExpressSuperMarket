@@ -16,7 +16,7 @@ class Product_Model{
     }
     /* ---------------------------- SHOW PRODUCT LIST --------------------------- */
     /* ---------------------------- SHOW PRODUCT LIST OPTION --------------------------- */
-    function showProductListBycategory($categoryId, $titleCategory){
+    function showProductListByCategory($categoryId){
         $stmt = $this->db->prepare("SELECT * FROM products WHERE categoryId = ?");
         $stmt->bind_param("i", $categoryId);
         if($stmt->execute()){
@@ -359,21 +359,88 @@ class Product_Model{
         }
     }
     /* ------------------------------ QUANTITY OLD ------------------------------ */
-        /* --------------------------------- SELECT --------------------------------- */
-        function quantityProductOnCart(){
-            $userId = (isset($_SESSION["user"])) ? $_SESSION["user"]['id'] : "";
-            $productId = (isset($_GET["id"])) ? $_GET["id"] : "";
-            $stmt = $this->db->prepare("SELECT quantity FROM carts WHERE productId = ? AND userId = ?");
-            $stmt->bind_param("ii", $productId,$userId);
+    /* --------------------------------- SELECT --------------------------------- */
+    function quantityProductOnCart(){
+        $userId = (isset($_SESSION["user"])) ? $_SESSION["user"]['id'] : "";
+        $productId = (isset($_GET["id"])) ? $_GET["id"] : "";
+        $stmt = $this->db->prepare("SELECT quantity FROM carts WHERE productId = ? AND userId = ?");
+        $stmt->bind_param("ii", $productId,$userId);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if($result->num_rows > 0){
+            $row = $result->fetch_assoc();
+            $quantity = $row['quantity'];
+            return $quantity;
+        }else{
+            return 0;
+        }
+    }
+    /* --------------------------------- SELECT --------------------------------- */
+    /* ----------------------- SELECT BY STATUS AND LIMIT ----------------------- */
+    function showProductByStatusLimit($status, $limit){
+        $stmt = $this->db->prepare("SELECT * FROM products WHERE status = ? LIMIT ?");
+        $stmt->bind_param("si", $status, $limit);
+        if($stmt->execute()){
+            $result = $stmt->get_result();
+            if($result->num_rows > 0){
+                return $result;
+            }
+        }
+    }
+    /* ----------------------- SELECT BY STATUS AND LIMIT ----------------------- */
+    /* ------------------------------- SEARCH NEW ------------------------------- */
+    function searchhh(){
+        $keyword = '%' . $_POST["keyword"] . '%';
+        if(isset($_POST["search"])){
+            $stmt = $this->db->prepare("SELECT * FROM products WHERE productName LIKE ?");
+            $stmt->bind_param("s", $keyword);
             $stmt->execute();
             $result = $stmt->get_result();
             if($result->num_rows > 0){
-                $row = $result->fetch_assoc();
-                $quantity = $row['quantity'];
-                return $quantity;
-            }else{
-                return 0;
+                return $result;
             }
         }
-        /* --------------------------------- SELECT --------------------------------- */
+    }
+    /* ------------------------------- SEARCH NEW ------------------------------- */
+    /* --------------------------- FILLTER PRODUCT NAV -------------------------- */
+    function fillterProductNav(){
+        $categoryId = (isset($_GET["categoryId"])) ? $_GET["categoryId"] : "";
+
+        if(!empty($categoryId)){
+            $stmt = $this->db->prepare(
+                "SELECT products.id AS id,
+                products.image AS image,
+                products.productName AS productName,
+                products.price AS price,
+                products.discount AS discount,
+                products.quantity AS quantity,
+                products.description AS products,
+                products.status AS status,
+                categories.categoryName AS categoryName
+                FROM products
+                INNER JOIN categories 
+                ON categories.id = products.categoryId
+                WHERE categoryId = ?
+            ");
+            $stmt->bind_param("i", $categoryId);
+            if($stmt->execute()){
+                $result = $stmt->get_result();
+                if($result->num_rows > 0){
+                    return $result;
+                }
+            }
+        }
+    }
+    /* --------------------------- FILLTER PRODUCT NAV -------------------------- */
+    function getAllProvinces(){
+        $provinces = array(
+            'Hà Nội', 'Hồ Chí Minh', 'Đà Nẵng', 'Hải Phòng', 'Cần Thơ', 'An Giang', 'Bà Rịa-Vũng Tàu', 'Bạc Liêu', 'Bắc Kạn', 'Bắc Giang',
+            'Bắc Ninh', 'Bến Tre', 'Bình Dương', 'Bình Định', 'Bình Phước', 'Bình Thuận', 'Cà Mau', 'Cao Bằng', 'Đắk Lắk', 'Đắk Nông',
+            'Điện Biên', 'Đồng Nai', 'Đồng Tháp', 'Gia Lai', 'Hà Giang', 'Hà Nam', 'Hà Tĩnh', 'Hải Dương', 'Hậu Giang', 'Hòa Bình', 'Hưng Yên',
+            'Khánh Hòa', 'Kiên Giang', 'Kon Tum', 'Lai Châu', 'Lâm Đồng', 'Lạng Sơn', 'Lào Cai', 'Long An', 'Nam Định', 'Nghệ An', 'Ninh Bình',
+            'Ninh Thuận', 'Phú Thọ', 'Phú Yên', 'Quảng Bình', 'Quảng Nam', 'Quảng Ngãi', 'Quảng Ninh', 'Quảng Trị', 'Sóc Trăng', 'Sơn La', 'Tây Ninh',
+            'Thái Bình', 'Thái Nguyên', 'Thanh Hóa', 'Thừa Thiên-Huế', 'Tiền Giang', 'Trà Vinh', 'Tuyên Quang', 'Vĩnh Long', 'Vĩnh Phúc', 'Yên Bái'
+        );
+        return $provinces;
+    }
 }
